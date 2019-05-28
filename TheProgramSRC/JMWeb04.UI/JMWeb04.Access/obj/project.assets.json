@@ -3283,11 +3283,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj",
+      "projectUniqueName": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj",
       "projectName": "JMWeb04.Access",
-      "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj",
+      "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj",
       "packagesPath": "C:\\Users\\JIMILI\\.nuget\\packages\\",
-      "outputPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Access\\obj\\",
+      "outputPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Access\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -3310,8 +3310,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj": {
-              "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj"
+            "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj": {
+              "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj"
             }
           }
         }

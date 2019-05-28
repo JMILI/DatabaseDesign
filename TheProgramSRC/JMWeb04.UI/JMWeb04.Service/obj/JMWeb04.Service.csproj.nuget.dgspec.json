@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Service\\JMWeb04.Service.csproj": {}
+    "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Service\\JMWeb04.Service.csproj": {}
   },
   "projects": {
-    "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj": {
+    "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj",
+        "projectUniqueName": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj",
         "projectName": "JMWeb04.Access",
-        "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj",
+        "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj",
         "packagesPath": "C:\\Users\\JIMILI\\.nuget\\packages\\",
-        "outputPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Access\\obj\\",
+        "outputPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Access\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -34,8 +34,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj": {
-                "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj"
+              "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj": {
+                "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj"
               }
             }
           }
@@ -78,14 +78,14 @@
         }
       }
     },
-    "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj": {
+    "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj",
+        "projectUniqueName": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj",
         "projectName": "JMWeb04.Model",
-        "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj",
+        "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj",
         "packagesPath": "C:\\Users\\JIMILI\\.nuget\\packages\\",
-        "outputPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\obj\\",
+        "outputPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -148,14 +148,14 @@
         }
       }
     },
-    "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Service\\JMWeb04.Service.csproj": {
+    "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Service\\JMWeb04.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Service\\JMWeb04.Service.csproj",
+        "projectUniqueName": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Service\\JMWeb04.Service.csproj",
         "projectName": "JMWeb04.Service",
-        "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Service\\JMWeb04.Service.csproj",
+        "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Service\\JMWeb04.Service.csproj",
         "packagesPath": "C:\\Users\\JIMILI\\.nuget\\packages\\",
-        "outputPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Service\\obj\\",
+        "outputPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -178,11 +178,11 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj": {
-                "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj"
+              "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj": {
+                "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Access\\JMWeb04.Access.csproj"
               },
-              "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj": {
-                "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\项目源码\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj"
+              "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj": {
+                "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\C#web\\DatabaseDesign\\TheProgramSRC\\JMWeb04.UI\\JMWeb04.Model\\JMWeb04.Model.csproj"
               }
             }
           }

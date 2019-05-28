@@ -71,13 +71,13 @@ namespace JMWeb04.UI.Controllers
         }
         #endregion
 
-        #region Error
-        public IActionResult PasswordError()
-        {
-            ViewData["Message"] = "Your contact page.";
-            return View();
-        }
-        #endregion
+        //#region Error
+        //public IActionResult PasswordError()
+        //{
+        //    ViewData["Message"] = "Your contact page.";
+        //    return View();
+        //}
+        //#endregion
 
     }
 }
