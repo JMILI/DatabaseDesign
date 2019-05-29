@@ -14,5 +14,19 @@ namespace JMWeb04.UI.Controllers
         {
             return View();
         }
+        public IActionResult SignIn()
+        {
+            user = service.QueryStudentService(student);
+            if (user == null || user.Password != student.Password)
+            {
+                return Redirect(Url.Action("PasswordError", "Errors"));
+            }
+            else
+            {
+                this.Response.Cookies.Append("StudentId", student.StudentId.ToString());
+                return View("LoginIn", user);
+            }
+            return View();
+        }
     }
 }
