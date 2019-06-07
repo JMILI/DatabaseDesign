@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "_SignInLayout";
+}
+<form action="@Url.Action("SignIn","Home")" method="post">
+    <section>
+        <div class="input-group">
+            <input type="text" class="form-control" name="Id" placeholder="您的账号">
+            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+        </div>
+        <div class="input-group">
+            <input type="password" class="form-control" name="Password" placeholder="您的密码">
+            <div class="input-group-addon"><i class="fa fa-key"></i></div>
+        </div>
+        <div class="input-group">
+            <input checked type="radio" name="Identify" value="depository">储户
+            <input type="radio" name="Identify" value="cards">ATM-银行卡
+            <input type="radio" name="Identify" value="manager">管理员
+            <input type="radio" name="Identify" value="governor">行长
+        </div>
+    </section>
+    <section class="log-in">
+        <button class="btn btn-greensea" type="submit">登录</button>
+        <span>or</span>
+        <button class="btn btn-slategray" type="button" onclick="show()">储户注册</button>
+    </section>
+</form>
+<script type="text/javascript">
+    function show(){
+        var url = '@Url.Action("AddInformation", "Depositors")';
+        location.href = url;
+        //window.open(url);
+    }
+</script>
