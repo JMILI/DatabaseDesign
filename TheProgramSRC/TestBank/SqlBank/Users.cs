@@ -14,6 +14,7 @@ namespace TestBank.SqlBank
         public int? Ucid { get; set; }
         public string Uname { get; set; }
         public string Upassword { get; set; }
+        public string Uidentify { get; set; }
         public string Ustatus { get; set; }
 
         public ICollection<Cards> Cards { get; set; }

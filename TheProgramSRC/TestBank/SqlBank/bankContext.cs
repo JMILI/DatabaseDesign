@@ -16,11 +16,10 @@ namespace TestBank.SqlBank
         }
 
         public virtual DbSet<Cards> Cards { get; set; }
+        public virtual DbSet<Fixbalances> Fixbalances { get; set; }
         public virtual DbSet<Managers> Managers { get; set; }
         public virtual DbSet<Records> Records { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-
-      
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -44,14 +43,61 @@ namespace TestBank.SqlBank
 
                 entity.Property(e => e.Cid).HasColumnType("int(100)");
 
-                entity.Property(e => e.Cpassword).HasColumnType("varchar(200)");
+                entity.Property(e => e.CflowBalance)
+                    .HasColumnType("double(200,5)")
+                    .HasDefaultValueSql("'0.00000'");
+
+                entity.Property(e => e.CflowBalanceRate)
+                    .HasColumnType("double(200,5)")
+                    .HasDefaultValueSql("'0.00000'");
+
+                entity.Property(e => e.Cpassword)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)");
 
                 entity.Property(e => e.Cuid).HasColumnType("int(100)");
 
                 entity.HasOne(d => d.Cu)
                     .WithMany(p => p.Cards)
                     .HasForeignKey(d => d.Cuid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Reference_2");
+            });
+
+            modelBuilder.Entity<Fixbalances>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("fixbalances");
+
+                entity.HasIndex(e => e.Fcid)
+                    .HasName("FK_Reference_5");
+
+                entity.Property(e => e.Fid).HasColumnType("int(100)");
+
+                entity.Property(e => e.FbusinessTime)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("'CURRENT_TIMESTAMP'");
+
+                entity.Property(e => e.Fcid).HasColumnType("int(100)");
+
+                entity.Property(e => e.FfixBalance)
+                    .HasColumnType("double(200,3)")
+                    .HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.FfixBalanceRate)
+                    .HasColumnType("double(200,5)")
+                    .HasDefaultValueSql("'0.00000'");
+
+                entity.Property(e => e.Fyear)
+                    .HasColumnType("int(50)")
+                    .HasDefaultValueSql("'0'");
+
+                entity.HasOne(d => d.Fc)
+                    .WithMany(p => p.Fixbalances)
+                    .HasForeignKey(d => d.Fcid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Reference_5");
             });
 
             modelBuilder.Entity<Managers>(entity =>
@@ -62,11 +108,18 @@ namespace TestBank.SqlBank
 
                 entity.Property(e => e.Mid).HasColumnType("int(100)");
 
-                entity.Property(e => e.Midentify).HasColumnType("varchar(200)");
+                entity.Property(e => e.Midentify)
+                    .IsRequired()
+                    .HasColumnType("varchar(5)")
+                    .HasDefaultValueSql("'管理员'");
 
-                entity.Property(e => e.Mname).HasColumnType("varchar(200)");
+                entity.Property(e => e.Mname)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)");
 
-                entity.Property(e => e.Mpassword).HasColumnType("varchar(200)");
+                entity.Property(e => e.Mpassword)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)");
             });
 
             modelBuilder.Entity<Records>(entity =>
@@ -82,15 +135,28 @@ namespace TestBank.SqlBank
 
                 entity.Property(e => e.Rcid).HasColumnType("int(100)");
 
+                entity.Property(e => e.RfixDepostit)
+                    .HasColumnType("double(200,3)")
+                    .HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.RflowDeposit)
+                    .HasColumnType("double(200,3)")
+                    .HasDefaultValueSql("'0.000'");
+
                 entity.Property(e => e.RnowDateTime)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("'CURRENT_TIMESTAMP'");
 
                 entity.Property(e => e.Ruid).HasColumnType("int(100)");
 
+                entity.Property(e => e.Rwithdrawals)
+                    .HasColumnType("double(200,3)")
+                    .HasDefaultValueSql("'0.000'");
+
                 entity.HasOne(d => d.Rc)
                     .WithMany(p => p.Records)
                     .HasForeignKey(d => d.Rcid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Reference_4");
             });
 
@@ -104,11 +170,23 @@ namespace TestBank.SqlBank
 
                 entity.Property(e => e.Ucid).HasColumnType("int(100)");
 
-                entity.Property(e => e.Uname).HasColumnType("varchar(200)");
+                entity.Property(e => e.Uidentify)
+                    .IsRequired()
+                    .HasColumnType("varchar(5)")
+                    .HasDefaultValueSql("'储户'");
 
-                entity.Property(e => e.Upassword).HasColumnType("varchar(200)");
+                entity.Property(e => e.Uname)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)");
 
-                entity.Property(e => e.Ustatus).HasColumnType("varchar(200)");
+                entity.Property(e => e.Upassword)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)");
+
+                entity.Property(e => e.Ustatus)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)")
+                    .HasDefaultValueSql("'正常'");
             });
         }
     }
