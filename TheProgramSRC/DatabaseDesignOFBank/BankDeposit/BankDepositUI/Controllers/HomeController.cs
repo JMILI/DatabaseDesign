@@ -12,6 +12,7 @@ namespace BankDepositUI.Controllers
 {
     public class HomeController : Controller
     {
+        #region 实例一些工具对象
         public static DepositorsService userServive = new DepositorsService();
         public static CardsService cardServive = new CardsService();
         public static ManagersService managerServive = new ManagersService();
@@ -22,11 +23,17 @@ namespace BankDepositUI.Controllers
         public static Managers manager = new Managers();
         public static DepositorAndCard dAndC = new DepositorAndCard();
         //public static User users = new User();
+        #endregion
+
+        #region 返回登录初始页面
         public IActionResult Index()
         {
             //返回登录页面
             return View();
         }
+        #endregion
+
+        #region 分情况，分别登录各个系统
         public IActionResult SignIn(User user)//接受页面参数，准备判断应该登录那个系统
         {
             //此处分类，让储户,管理员分别登录到自己的界面，还有ATM系统登录（利用卡号登录）
@@ -74,5 +81,6 @@ namespace BankDepositUI.Controllers
             }
             #endregion
         }
+        #endregion
     }
 }

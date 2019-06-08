@@ -9,9 +9,12 @@ namespace BankDeposit.Data
 {
     public class AccessDepositors
     {
+        #region 实例化一些工具对象
         public static User user = new User();
-        public static Depositors depositor= new Depositors();
-        #region 查询储户
+        public static Depositors depositor = new Depositors();
+        #endregion
+
+        #region 查询储户 （登录的）
         public Depositors QueryDepositorsData(User user)
         {
             using (var dbContext = new bankContext())
@@ -20,16 +23,29 @@ namespace BankDeposit.Data
             }
         }
         #endregion
-        #region 增加账户
+
+        #region 增加账户 缺少验证数据库中是否已经存在该账户
         public void AddData(Depositors depositor)
         {
             using (var dbContext = new bankContext())
             {
-                dbContext.Add(depositor);
-                dbContext.SaveChanges();
+                //修改数据库信息最好有一些事务操作
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        dbContext.Add(depositor);
+                        dbContext.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        transaction.Rollback();
+                    }
+                }
             }
         }
         #endregion
-
     }
 }

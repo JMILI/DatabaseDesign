@@ -9,8 +9,10 @@ namespace BankDeposit.Data
 {
     public class AccessManagers
     {
-        public static User user = new User();
-        #region 查询管理员与行长
+        #region 实例一些容器
+        #endregion
+
+        #region 查询管理员与行长 （登录的）
         public Managers QueryManagersData(User user)
         {
             using (var dbContext = new bankContext())

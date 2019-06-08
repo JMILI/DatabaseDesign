@@ -12,9 +12,11 @@ namespace BankDepositUI.Controllers
 {
     public class ErrorsController : Controller
     {
+        #region 账户或密码错误页面
         public IActionResult PasswordError()
         {
             return View();
         }
+        #endregion
     }
 }

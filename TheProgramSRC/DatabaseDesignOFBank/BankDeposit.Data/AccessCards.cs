@@ -9,7 +9,7 @@ namespace BankDeposit.Data
 {
     public class AccessCards
     {
-        #region 查询银行卡
+        #region 查询银行卡（登录的）
         public Cards QueryCardsData(User user)
         {
             using (var dbContext = new bankContext())

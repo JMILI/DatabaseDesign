@@ -14,7 +14,8 @@ namespace BankDeposit.Data
         public static Depositors depositors = new Depositors();
         public static DepositorAndCard dAndC = new DepositorAndCard();
         #endregion
-        #region 查询储户和储户默认的银行卡所构成的视图对象
+
+        #region 查询储户和储户默认的银行卡所构成的视图对象 （登录的）
         public DepositorAndCard QueryDAndCData(User user)
         {
             using (var dbContext = new bankContext())
