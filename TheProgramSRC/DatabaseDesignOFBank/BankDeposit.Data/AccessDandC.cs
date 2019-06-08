@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using BankDeposit.Model.SqlBank;
 using Microsoft.EntityFrameworkCore;
-
 namespace BankDeposit.Data
 {
     public class AccessDAndC
     {
         #region 实例一些容器
+        //public static User user = new User();
         public static Cards card = new Cards();
-        public static User user = new User();
         public static Depositors depositors = new Depositors();
         public static DepositorAndCard dAndC = new DepositorAndCard();
         #endregion

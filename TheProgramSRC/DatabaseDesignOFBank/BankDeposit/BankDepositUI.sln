@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankDepositUI", "BankDepositUI\BankDepositUI.csproj", "{66027D56-8C60-4393-B7F1-C797427B15CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankDepositUI", "BankDepositUI\BankDepositUI.csproj", "{66027D56-8C60-4393-B7F1-C797427B15CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankDeposit.Data", "..\BankDeposit.Data\BankDeposit.Data.csproj", "{6DC08B9C-9649-454D-9809-38B704D91BA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankDeposit.Data", "..\BankDeposit.Data\BankDeposit.Data.csproj", "{6DC08B9C-9649-454D-9809-38B704D91BA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankDeposit.Model", "..\BankDeposit.Model\BankDeposit.Model.csproj", "{C9274635-EAF9-4F06-8AA9-8185BD261ADF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankDeposit.Model", "..\BankDeposit.Model\BankDeposit.Model.csproj", "{C9274635-EAF9-4F06-8AA9-8185BD261ADF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankDeposit.Service", "..\BankDeposit.Service\BankDeposit.Service.csproj", "{187F1AD1-2CBB-49AA-8EB0-D9CD580F9A17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankDeposit.Service", "..\BankDeposit.Service\BankDeposit.Service.csproj", "{187F1AD1-2CBB-49AA-8EB0-D9CD580F9A17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
