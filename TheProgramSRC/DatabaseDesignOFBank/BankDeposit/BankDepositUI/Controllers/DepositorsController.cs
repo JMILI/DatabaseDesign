@@ -36,12 +36,12 @@ namespace BankDepositUI.Controllers
         //2.将返回的信息进行处理，然后登陆系统主页
         public IActionResult AddLogin(Depositors depositor)
         {
-            depositorServive.AddService(depositor);
-            depositors.Dcid = 0;
-            depositors.Dname = depositor.Uname;
-            depositors.Duid = depositor.Uid;
-            cooikeAdd(depositors);
-            return RedirectToAction("Login", "Depositors", depositors);
+            if (depositorServive.AddService(depositor)!=null)
+            {
+                cooikeAdd(depositors);
+                return RedirectToAction("Login", "Depositors", depositors);
+            }else
+                return Redirect(Url.Action("DepositoryExistError", "Errors"));
         }
         #endregion
 

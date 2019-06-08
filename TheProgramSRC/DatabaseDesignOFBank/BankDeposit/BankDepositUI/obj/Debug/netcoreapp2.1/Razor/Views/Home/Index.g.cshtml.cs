@@ -58,7 +58,7 @@ using BankDepositUI.Models;
 #line default
 #line hidden
             BeginContext(38, 1095, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1b0ea096436c4ba88afbbbacaa47ff10", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ef3b664e3834b88b2d97268632f7298", async() => {
                 BeginContext(96, 1030, true);
                 WriteLiteral(@"
     <section>

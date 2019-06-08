@@ -24,6 +24,9 @@
     <Content Update="Views\Depositors\AddInformation.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Errors\DepositoryExistError.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Managers\Login.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

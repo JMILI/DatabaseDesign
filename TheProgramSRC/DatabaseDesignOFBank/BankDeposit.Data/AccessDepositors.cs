@@ -15,6 +15,11 @@ namespace BankDeposit.Data
         #endregion
 
         #region 查询储户 （登录的）
+        /// <summary>
+        /// 传入的对象为User
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public Depositors QueryDepositorsData(User user)
         {
             using (var dbContext = new bankContext())
@@ -24,7 +29,22 @@ namespace BankDeposit.Data
         }
         #endregion
 
-        #region 增加账户 缺少验证数据库中是否已经存在该账户
+        #region 查询储户 （注册的）
+        /// <summary>
+        /// 传入的对象为Depositors
+        /// </summary>
+        /// <param name="depositor"></param>
+        /// <returns></returns>
+        public Depositors CheakData(Depositors depositor)
+        {
+            using (var dbContext = new bankContext())
+            {
+                return depositor = dbContext.Depositors.FirstOrDefault(a => a.Uid == depositor.Uid);
+            }
+        }
+        #endregion
+
+        #region 增加账户 
         public void AddData(Depositors depositor)
         {
             using (var dbContext = new bankContext())

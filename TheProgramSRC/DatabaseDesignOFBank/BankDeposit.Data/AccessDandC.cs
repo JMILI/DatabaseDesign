@@ -20,42 +20,49 @@ namespace BankDeposit.Data
         {
             using (var dbContext = new bankContext())
             {
-                if (user.Identify == "depository")
-                {
-                    depositors = dbContext.Depositors.FirstOrDefault(a => a.Uid == user.Id);
-                    if (depositors == null)
-                    {
-                        return dAndC = null;
-                    }
-                    //判断是否为正确
-                    else if (depositors.Upassword == user.Password)
-                    {
-                        using (var viewContext = new ViewContext())
-                        {
-                            dAndC = viewContext.DepositorAndCard.FirstOrDefault(a => a.Dcid == depositors.Ucid);//返回储户和该用户默认的卡号组成的视图
-                        }
-                    }
-                    else dAndC = null;
-                }
-                else
-                {
-                    card = dbContext.Cards.FirstOrDefault(a => a.Cid == user.Id);
-                    if (card == null)
-                    {
-                        return dAndC = null;
-                    }
-                    if (card.Cpassword == user.Password)
-                    {
-                        using (var viewContext = new ViewContext())
-                        {
-                            dAndC = viewContext.DepositorAndCard.FirstOrDefault(a => a.Dcid == card.Cid);//返回储户和该用户默认的卡号组成的视图
-                        }
-                    }
-                    else dAndC = null;
-                }
-                return dAndC;
+                if (user.Identify == "depository") return QueryDepositorData(user);
+                else return QueryCardsData(user);
             }
         }
+
+        #region 查询是否为储户
+        public DepositorAndCard QueryDepositorData(User user)
+        {
+            using (var dbContext = new bankContext())
+            {
+                depositors = dbContext.Depositors.FirstOrDefault(a => a.Uid == user.Id);
+                //判断是否为正确
+                if (depositors != null && depositors.Upassword == user.Password)
+                {
+                    using (var viewContext = new ViewContext())
+                    {
+                        dAndC = viewContext.DepositorAndCard.FirstOrDefault(a => a.Dcid == depositors.Ucid);//返回储户和该用户默认的卡号组成的视图
+                    }
+                }
+                else dAndC = null;
+            }
+            return dAndC;
+        }
+        #endregion 
+
+        #region 查询是否为银行卡登录
+        public DepositorAndCard QueryCardsData(User user)
+        {
+            using (var dbContext = new bankContext())
+            {
+                card = dbContext.Cards.FirstOrDefault(a => a.Cid == user.Id);
+                if (card != null&&card.Cpassword == user.Password)
+                {
+                    using (var viewContext = new ViewContext())
+                    {
+                        dAndC = viewContext.DepositorAndCard.FirstOrDefault(a => a.Dcid == card.Cid);//返回储户和该用户默认的卡号组成的视图
+                    }
+                }
+                else dAndC = null;
+            }
+            return dAndC;
+        }
+        #endregion 
     }
     #endregion
 }

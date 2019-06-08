@@ -11,3 +11,4 @@ namespace BankDeposit.Model.SqlBank
         public string Dname { get; set; }
     }
 }
+

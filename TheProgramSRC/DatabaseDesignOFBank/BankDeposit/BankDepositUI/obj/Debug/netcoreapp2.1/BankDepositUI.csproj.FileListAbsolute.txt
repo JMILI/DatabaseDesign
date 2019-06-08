@@ -83,7 +83,6 @@ F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDe
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ManagersPageLayout.g.cshtml.cs
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_SignInLayout.g.cshtml.cs
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
-F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Users\Index.g.cshtml.cs
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\BankDepositUI.RazorTargetAssemblyInfo.cache
@@ -92,3 +91,4 @@ F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDe
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\BankDepositUI.csproj.CopyComplete
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\BankDepositUI.dll
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\BankDepositUI.pdb
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Errors\DepositoryExistError.g.cshtml.cs

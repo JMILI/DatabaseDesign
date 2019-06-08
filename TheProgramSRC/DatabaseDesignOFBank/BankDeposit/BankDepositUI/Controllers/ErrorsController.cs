@@ -18,5 +18,11 @@ namespace BankDepositUI.Controllers
             return View();
         }
         #endregion
+        #region 账户已存在页面
+        public IActionResult DepositoryExistError()
+        {
+            return View();
+        }
+        #endregion
     }
 }
