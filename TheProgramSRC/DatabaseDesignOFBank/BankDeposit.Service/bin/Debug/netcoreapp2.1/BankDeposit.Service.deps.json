@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "07780e0225b1d07b58f59b03586776a65f053aac"
+    "signature": "3a0879b64c36f2989a7f32aafed4f7c53c785600"
   },
   "compilationOptions": {},
   "targets": {
@@ -12,7 +12,10 @@
           "BankDeposit.Model": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.8",
-          "Pomelo.EntityFrameworkCore.MySql": "2.1.4"
+          "Newtonsoft.Json": "12.0.2",
+          "Pomelo.EntityFrameworkCore.MySql": "2.1.4",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.1.1.0",
+          "System.Web.Extensions": "3.5.0.0"
         },
         "runtime": {
           "BankDeposit.Service.dll": {}
@@ -206,11 +209,11 @@
           }
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/12.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.2.21924"
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.2.23222"
           }
         }
       },
@@ -230,7 +233,7 @@
       "Pomelo.JsonObject/2.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "4.5.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/Pomelo.JsonObject.dll": {
@@ -441,6 +444,7 @@
         "dependencies": {
           "BankDeposit.Model": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
+          "Newtonsoft.Json": "12.0.2",
           "Pomelo.EntityFrameworkCore.MySql": "2.1.4"
         },
         "runtime": {
@@ -450,10 +454,87 @@
       "BankDeposit.Model/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
+          "Newtonsoft.Json": "12.0.2",
           "Pomelo.EntityFrameworkCore.MySql": "2.1.4"
         },
         "runtime": {
           "BankDeposit.Model.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.1.1.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.18157"
+          }
+        }
+      },
+      "System.Web.Extensions/3.5.0.0": {
+        "runtime": {
+          "System.Web.Extensions.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.30729.9035"
+          }
+        }
+      },
+      "System.Web.Abstractions/3.5.0.0": {
+        "runtime": {
+          "System.Web.Abstractions.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.30729.9034"
+          }
+        }
+      },
+      "System.Data.Linq/3.5.0.0": {
+        "runtime": {
+          "System.Data.Linq.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.30729.9034"
+          }
+        },
+        "resources": {
+          "zh-CHS/System.Data.Linq.resources.dll": {
+            "locale": "zh-CHS"
+          }
+        }
+      },
+      "System.Data.Services.Client/3.5.0.0": {
+        "runtime": {
+          "System.Data.Services.Client.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.30729.9034"
+          }
+        },
+        "resources": {
+          "zh-CHS/System.Data.Services.Client.resources.dll": {
+            "locale": "zh-CHS"
+          }
+        }
+      },
+      "System.Data.Services.Design/3.5.0.0": {
+        "runtime": {
+          "System.Data.Services.Design.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.30729.9034"
+          }
+        },
+        "resources": {
+          "zh-CHS/System.Data.Services.Design.resources.dll": {
+            "locale": "zh-CHS"
+          }
+        }
+      },
+      "System.Data.Entity/3.5.0.0": {
+        "runtime": {
+          "System.Data.Entity.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.30729.9034"
+          }
+        },
+        "resources": {
+          "zh-CHS/System.Data.Entity.resources.dll": {
+            "locale": "zh-CHS"
+          }
         }
       }
     }
@@ -597,12 +678,12 @@
       "path": "mysqlconnector/0.47.1",
       "hashPath": "mysqlconnector.0.47.1.nupkg.sha512"
     },
-    "Newtonsoft.Json/11.0.2": {
+    "Newtonsoft.Json/12.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
-      "path": "newtonsoft.json/11.0.2",
-      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+      "sha512": "sha512-rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+      "path": "newtonsoft.json/12.0.2",
+      "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
     },
     "Pomelo.EntityFrameworkCore.MySql/2.1.4": {
       "type": "package",
@@ -821,6 +902,41 @@
     },
     "BankDeposit.Model/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Web.Extensions/3.5.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Web.Abstractions/3.5.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Data.Linq/3.5.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Data.Services.Client/3.5.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Data.Services.Design/3.5.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Data.Entity/3.5.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

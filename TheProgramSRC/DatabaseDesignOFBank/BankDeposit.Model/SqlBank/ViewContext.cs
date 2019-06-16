@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BankDeposit.Model.SqlBank
 {
+    /// <summary>
+    /// 为数据库视图创建上下文对象，和自动生成的bankContext类似，其继承bankContext
+    /// </summary>
     public partial class ViewContext : bankContext
     {
         #region 含有储户名，储户账号，储户默认的银行卡号的视图

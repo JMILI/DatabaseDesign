@@ -1,6 +1,10 @@
 ﻿@{
+    @*@model IEnumerable<BankDeposit.Model.SqlBank.Records>
+    *@
     var user = Model;
+
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -278,15 +282,15 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="@Url.Action("UpdateView","Student")"><i class="fa fa-envelope"></i> 修改信息 </a>
+                                    <a href="@Url.Action(" UpdateView","Student")"><i class="fa fa-envelope"></i> 修改信息 </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="@Url.Action("Index","Home")"><i class="fa fa-power-off"></i> 退出</a>
+                                    <a href="@Url.Action(" Index","Home")"><i class="fa fa-power-off"></i> 退出</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="@Url.Action("Delete","Student")"><button type="submit" class="btn btn-red"><i class="fa fa-calendar"></i> 注销</button></a>
+                                    <a href="@Url.Action(" Delete","Student")"><button type="submit" class="btn btn-red"><i class="fa fa-calendar"></i> 注销</button></a>
                                 </li>
                             </ul>
                         <li>
@@ -306,24 +310,21 @@
                         <li class="navigation" id="navigation">
                             <a href="#" class="sidebar-toggle" data-toggle="#navigation">功能 <i class="fa fa-angle-up"></i></a>
                             <ul class="menu">
-                                <li class="active">
-                                    <a href="index.html">
-                                        <i class="fa fa-tachometer"></i> 学院通知
-                                        <span class="badge badge-red">1</span>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
+
+                                <li class="dropdown" id="btn_list" >
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-list"></i> 学期 <b class="fa fa-plus dropdown-plus"></b>
+                                        <i class="fa fa-list"></i> 交易记录 <b class="fa fa-plus dropdown-plus"></b>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-pencil"></i> 网上选课 <b class="fa fa-plus dropdown-plus"></b>
+                                <i class="fa fa-pencil"></i> 绑定银行卡 <b class="fa fa-plus dropdown-plus"></b>
                             </a>
                         </li>
+
                 </div>
             </div>
             <div id="content" class="col-md-12">
@@ -727,6 +728,7 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="~/assets/js/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="~/assets/js/vendor/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/assets/js/vendor/mmenu/js/jquery.mmenu.min.js"></script>
@@ -1031,6 +1033,8 @@
         })
 
     </script>
+
+
 </body>
 </html>
 

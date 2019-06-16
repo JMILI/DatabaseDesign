@@ -92,3 +92,13 @@ F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDe
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\BankDepositUI.dll
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\BankDepositUI.pdb
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Errors\DepositoryExistError.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\System.Web.Extensions.dll
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\System.Web.Abstractions.dll
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\System.Data.Linq.dll
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\System.Data.Services.Client.dll
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\System.Data.Services.Design.dll
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\System.Data.Entity.dll
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\zh-CHS\System.Data.Linq.resources.dll
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\zh-CHS\System.Data.Services.Client.resources.dll
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\zh-CHS\System.Data.Services.Design.resources.dll
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\bin\Debug\netcoreapp2.1\zh-CHS\System.Data.Entity.resources.dll

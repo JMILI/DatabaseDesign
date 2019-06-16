@@ -23,13 +23,13 @@ namespace TestBank
                 Console.WriteLine(infomation.Ioldtime);
                 foreach (var vPerson in vPersons)
                 {
-                    Console.Write(infomation.Icid + " ");
-                    Console.Write(infomation.Iuid + " ");
-                    Console.Write(infomation.Ioldtime + " ");
-                    Console.Write(infomation.IflowBalance + " ");
-                    Console.Write(infomation.IfixBalance + " ");
-                    Console.Write(infomation.Iname + " ");
-                    Console.WriteLine(infomation.Istatus + " ");
+                    Console.Write(vPerson.Icid + " ");
+                    Console.Write(vPerson.Iuid + " ");
+                    Console.Write(vPerson.Ioldtime + " ");
+                    Console.Write(vPerson.IflowBalance + " ");
+                    Console.Write(vPerson.IfixBalance + " ");
+                    Console.Write(vPerson.Iname + " ");
+                    Console.WriteLine(vPerson.Istatus + " ");
                 }
                 Console.WriteLine($"Information视图有{vPersons.Count.ToString()}行数据");
                 Console.WriteLine(vPersons[0].Icid.ToString());

@@ -6,9 +6,72 @@
 
     var user = Model;
 }
+<script src="~/assets/js/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 <div class="jumbotron bg-transparent-black-3">
-
     <div class="container text-center">
         <h2>您好!@user.Dname</h2>
     </div>
 </div>
+
+
+<section class="tile color transparent-white">
+    <div class="tile-header">
+        <h1><strong>前十项交易记录</strong> </h1>
+        <div class="controls">
+            <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+            <a href="#" class="remove"><i class="fa fa-times"></i></a>
+        </div>
+    </div>
+    <div class="tile-body nopadding">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>索引</th>
+                    <th>单号</th>
+                    <th>账户账号</th>
+                    <th>银行卡号</th>
+                    <th>活期存款额</th>
+                    <th>定期存款额</th>
+                    <th>取款额</th>
+                    <th>交易时间</th>
+                </tr>
+            </thead>
+            <tbody id="tb_list"></tbody>
+        </table>
+    </div>
+</section>
+<script>
+    $(function () {
+        initBind(); //初始化所有绑定函数
+    })
+    function initBind() {
+        $('#btn_list').bind('click', function () {
+            var url = "/Depositors/QueryTenRecords";
+            var strHtml;
+            $.ajax({
+                "url": url,
+                "async": true,
+                dataType: "json",	//必须加，将json字符串转换为json格式
+                success: function (result) {
+                    //result：Json数据，idx：下标，obj：内容（相当于result[idx]）
+                    $.each(result, function (idx, obj) {
+                        strHtml += '<tr class="danger">';
+                        strHtml += '<td>' + idx + '</td>'
+                        strHtml += '<td>' + obj.Rid + '</td>'
+                        strHtml += '<td>' + obj.Ruid + '</td>'
+                        strHtml += '<td>' + obj.Rcid + '</td>'
+                        strHtml += '<td>' + obj.RflowDeposit + '</td>'
+                        strHtml += '<td>' + obj.RfixDepostit + '</td>'
+                        strHtml += '<td>' + obj.Rwithdrawals + '</td>'
+                        strHtml += '<td>' + obj.RnowDateTime + '</td>'
+                        strHtml += '</tr>';
+                    })
+
+                    $('#tb_list').empty().append(strHtml);
+                    //$("#tb_list").text(result);
+                }
+            })
+        })
+    }
+</script>

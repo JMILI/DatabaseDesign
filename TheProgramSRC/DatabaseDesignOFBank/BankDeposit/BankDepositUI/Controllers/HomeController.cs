@@ -10,6 +10,9 @@ using BankDeposit.Service;
 
 namespace BankDepositUI.Controllers
 {
+    /// <summary>
+    /// 最开始登录时，系统选择控制器
+    /// </summary>
     public class HomeController : Controller
     {
         #region 实例一些工具对象
@@ -22,7 +25,7 @@ namespace BankDepositUI.Controllers
         public static Cards card = new Cards();
         public static Managers manager = new Managers();
         public static DepositorAndCard dAndC = new DepositorAndCard();
-        //public static User users = new User();
+        public static User users = new User();
         #endregion
 
         #region 返回登录初始页面
@@ -34,17 +37,24 @@ namespace BankDepositUI.Controllers
         #endregion
 
         #region 分情况，分别登录各个系统
-        public IActionResult SignIn(User user)//接受页面参数，准备判断应该登录那个系统
+        /// <summary>
+        /// 接受页面参数，准备判断应该登录那个系统
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public IActionResult SignIn(User user)
         {
-            //此处分类，让储户,管理员分别登录到自己的界面，还有ATM系统登录（利用卡号登录）
+            //此处分类，让储户,管理员分别登录到自己的界面，
+            //还有ATM系统登录（利用卡号登录）
             #region 储户新版本
             if (user.Identify == "depository")
             {
                 dAndC = dAndCServive.QueryDAndCService(user);//获得登录对象
-                if (dAndC!=null)
+                if (dAndC != null)
                 {
                     return RedirectToAction("Login", "Depositors", dAndC);
-                }else
+                }
+                else
                     return Redirect(Url.Action("PasswordError", "Errors"));
             }
             #endregion

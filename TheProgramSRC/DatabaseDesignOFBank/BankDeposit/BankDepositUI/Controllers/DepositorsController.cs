@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using BankDepositUI.Models;
 using BankDeposit.Model.SqlBank;
 using BankDeposit.Service;
+using System.Web.Script.Serialization;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace BankDepositUI.Controllers
 {
@@ -16,7 +19,6 @@ namespace BankDepositUI.Controllers
         public static DepositorsService depositorServive = new DepositorsService();
         public static Depositors depositor = new Depositors();
         public static DepositorAndCard depositors = new DepositorAndCard();
-
         #endregion
 
         #region “登录”功能 已实现
@@ -27,7 +29,7 @@ namespace BankDepositUI.Controllers
         }
         #endregion
 
-        #region  “注册储户”功能
+        #region  “注册储户”功能 已实现
         //1.返回填写信息页面
         public IActionResult AddInformation()
         {
@@ -36,11 +38,13 @@ namespace BankDepositUI.Controllers
         //2.将返回的信息进行处理，然后登陆系统主页
         public IActionResult AddLogin(Depositors depositor)
         {
-            if (depositorServive.AddService(depositor)!=null)
+            depositors = depositorServive.AddService(depositor);
+            if ( depositors != null)
             {
                 cooikeAdd(depositors);
                 return RedirectToAction("Login", "Depositors", depositors);
-            }else
+            }
+            else
                 return Redirect(Url.Action("DepositoryExistError", "Errors"));
         }
         #endregion
@@ -61,9 +65,20 @@ namespace BankDepositUI.Controllers
         //3.查询并返回信息列表
         #endregion
 
-        #region “查询近十笔交易记录”功能 待实现
-        //主要查询记录表中该用户的交易记录
-        //1.查询前十项记录，注意事项不够的情况
+        #region “查询近十笔交易记录”功能 已实现
+        /// <summary>
+        /// 主要查询记录表中该用户的交易记录,查询前十项记录，该功能要用Ajax，
+        /// 所以不需要建一个新的cshtml页面，只需要在Login的页面中加入数据即可。
+        /// </summary>
+        /// <returns>返回json数据</returns>
+        public ActionResult QueryTenRecords()
+        {
+            List<Records> record = new List<Records>() ;
+            this.Request.Cookies.TryGetValue("Cid", out string Cid);
+            int cid = int.Parse(Cid);
+            record = depositorServive.TenRecordsService(cid);
+            return Content(JsonConvert.SerializeObject(record));
+        }
         #endregion
 
         #region “绑定银行卡”功能 待实现

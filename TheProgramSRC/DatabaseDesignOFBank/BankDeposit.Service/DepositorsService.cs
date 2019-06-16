@@ -1,18 +1,20 @@
 ﻿using BankDeposit.Data;
 using BankDeposit.Model.SqlBank;
 //using Microsoft.AspNetCore.Mvc;
-using System;
+using System.Web.Extensions;
+
 using System.Collections.Generic;
-using System.Text;
+using System.Web.Script.Serialization;
 
 namespace BankDeposit.Service
 {
-   public class DepositorsService
+    public class DepositorsService
     {
         #region 实例化一些工具对象
         public static AccessDepositors access = new AccessDepositors();
         public static Depositors depositor = new Depositors();
         public static DepositorAndCard depositors = new DepositorAndCard();
+        public static List<Records> records = new List<Records>();
         #endregion
 
         #region 查询储户
@@ -35,7 +37,7 @@ namespace BankDeposit.Service
         /// <returns>DepositorAndCard</returns>
         public DepositorAndCard AddService(Depositors depositor)
         {
-            if (access.CheakData(depositor)!=null)
+            if (access.CheakData(depositor) != null)
             {
                 return null;
             }
@@ -47,6 +49,32 @@ namespace BankDeposit.Service
                 depositors.Duid = depositor.Uid;
                 return depositors;
             }
+        }
+        #endregion
+
+        #region 查询十项交易记录
+        /// <summary>
+        /// Service层用来查询前十项交易记录的函数
+        /// </summary>
+        /// <param name="cid">传入从cooike中查询的cid</param>
+        /// <returns>  /// <summary>
+        /// Service层用来查询前十项交易记录的函数
+        /// </summary>
+        /// <returns>返回一个根据储户当前默认银行卡的交易记录，取前十项</returns></returns>
+        public List<Records> TenRecordsService(int cid)
+        {
+            records = access.TenRecordsData();
+            List<Records> record = new List<Records>();
+            int i = 1; 
+            foreach (var item in records)
+            {
+                if (item.Rcid == cid && i <= 10)
+                {
+                    record.Add(item);
+                    i++;
+                }
+            }
+            return record;
         }
         #endregion
     }

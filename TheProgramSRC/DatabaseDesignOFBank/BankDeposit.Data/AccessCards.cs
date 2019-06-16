@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BankDeposit.Data
 {
+    /// <summary>
+    /// 此类用于ATM系统访问数据
+    /// </summary>
     public class AccessCards
     {
         #region 查询银行卡（登录的）
