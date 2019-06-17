@@ -104,6 +104,15 @@ namespace TestBank
                         //提交，如果不写并不会报错，但是数据库不会更新
 
 
+                        //User user = new User();
+                        //user.Id = 10001;
+                        //user.Password = "10002";
+                        ////user.Identify = "储户";
+                        //depositors = dbContext.Depositors.FromSql("select * from Depositors where  Uid= {0} and Upassword={1} ",
+                        //    user.Id, user.Password).AsNoTracking().ToList().FirstOrDefault();
+                        //Console.WriteLine(depositors.Uid);
+                        //Console.WriteLine(depositors.Upassword);
+
                         User user = new User();
                         user.Id = 10001;
                         user.Password = "10002";
