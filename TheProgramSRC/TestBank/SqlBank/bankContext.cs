@@ -15,11 +15,12 @@ namespace TestBank.SqlBank
         {
         }
 
+        public virtual DbSet<Bands> Bands { get; set; }
         public virtual DbSet<Cards> Cards { get; set; }
+        public virtual DbSet<Depositors> Depositors { get; set; }
         public virtual DbSet<Fixbalances> Fixbalances { get; set; }
         public virtual DbSet<Managers> Managers { get; set; }
         public virtual DbSet<Records> Records { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,6 +33,23 @@ namespace TestBank.SqlBank
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Bands>(entity =>
+            {
+                entity.HasKey(e => e.Bcid);
+
+                entity.ToTable("bands");
+
+                entity.Property(e => e.Bcid).HasColumnType("int(100)");
+
+                entity.Property(e => e.Buid).HasColumnType("int(100)");
+
+                entity.HasOne(d => d.Bc)
+                    .WithOne(p => p.Bands)
+                    .HasForeignKey<Bands>(d => d.Bcid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Reference_4");
+            });
+
             modelBuilder.Entity<Cards>(entity =>
             {
                 entity.HasKey(e => e.Cid);
@@ -39,7 +57,7 @@ namespace TestBank.SqlBank
                 entity.ToTable("cards");
 
                 entity.HasIndex(e => e.Cuid)
-                    .HasName("FK_Reference_2");
+                    .HasName("FK_Reference_1");
 
                 entity.Property(e => e.Cid).HasColumnType("int(100)");
 
@@ -61,7 +79,36 @@ namespace TestBank.SqlBank
                     .WithMany(p => p.Cards)
                     .HasForeignKey(d => d.Cuid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reference_2");
+                    .HasConstraintName("FK_Reference_1");
+            });
+
+            modelBuilder.Entity<Depositors>(entity =>
+            {
+                entity.HasKey(e => e.Uid);
+
+                entity.ToTable("depositors");
+
+                entity.Property(e => e.Uid).HasColumnType("int(100)");
+
+                entity.Property(e => e.Ucid).HasColumnType("int(100)");
+
+                entity.Property(e => e.Uidentify)
+                    .IsRequired()
+                    .HasColumnType("varchar(5)")
+                    .HasDefaultValueSql("'储户'");
+
+                entity.Property(e => e.Uname)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)");
+
+                entity.Property(e => e.Upassword)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)");
+
+                entity.Property(e => e.Ustatus)
+                    .IsRequired()
+                    .HasColumnType("varchar(200)")
+                    .HasDefaultValueSql("'正常'");
             });
 
             modelBuilder.Entity<Fixbalances>(entity =>
@@ -71,7 +118,7 @@ namespace TestBank.SqlBank
                 entity.ToTable("fixbalances");
 
                 entity.HasIndex(e => e.Fcid)
-                    .HasName("FK_Reference_5");
+                    .HasName("FK_Reference_3");
 
                 entity.Property(e => e.Fid).HasColumnType("int(100)");
 
@@ -97,7 +144,7 @@ namespace TestBank.SqlBank
                     .WithMany(p => p.Fixbalances)
                     .HasForeignKey(d => d.Fcid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reference_5");
+                    .HasConstraintName("FK_Reference_3");
             });
 
             modelBuilder.Entity<Managers>(entity =>
@@ -129,7 +176,7 @@ namespace TestBank.SqlBank
                 entity.ToTable("records");
 
                 entity.HasIndex(e => e.Rcid)
-                    .HasName("FK_Reference_4");
+                    .HasName("FK_Reference_2");
 
                 entity.Property(e => e.Rid).HasColumnType("int(100)");
 
@@ -157,36 +204,7 @@ namespace TestBank.SqlBank
                     .WithMany(p => p.Records)
                     .HasForeignKey(d => d.Rcid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reference_4");
-            });
-
-            modelBuilder.Entity<Users>(entity =>
-            {
-                entity.HasKey(e => e.Uid);
-
-                entity.ToTable("users");
-
-                entity.Property(e => e.Uid).HasColumnType("int(100)");
-
-                entity.Property(e => e.Ucid).HasColumnType("int(100)");
-
-                entity.Property(e => e.Uidentify)
-                    .IsRequired()
-                    .HasColumnType("varchar(5)")
-                    .HasDefaultValueSql("'储户'");
-
-                entity.Property(e => e.Uname)
-                    .IsRequired()
-                    .HasColumnType("varchar(200)");
-
-                entity.Property(e => e.Upassword)
-                    .IsRequired()
-                    .HasColumnType("varchar(200)");
-
-                entity.Property(e => e.Ustatus)
-                    .IsRequired()
-                    .HasColumnType("varchar(200)")
-                    .HasDefaultValueSql("'正常'");
+                    .HasConstraintName("FK_Reference_2");
             });
         }
     }

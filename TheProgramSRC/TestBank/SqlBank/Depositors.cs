@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace TestBank.SqlBank
 {
-    public partial class Users
+    public partial class Depositors
     {
-        public Users()
+        public Depositors()
         {
             Cards = new HashSet<Cards>();
         }

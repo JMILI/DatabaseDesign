@@ -17,7 +17,8 @@ namespace TestBank.SqlBank
         public double? CflowBalance { get; set; }
         public double? CflowBalanceRate { get; set; }
 
-        public Users Cu { get; set; }
+        public Depositors Cu { get; set; }
+        public Bands Bands { get; set; }
         public ICollection<Fixbalances> Fixbalances { get; set; }
         public ICollection<Records> Records { get; set; }
     }

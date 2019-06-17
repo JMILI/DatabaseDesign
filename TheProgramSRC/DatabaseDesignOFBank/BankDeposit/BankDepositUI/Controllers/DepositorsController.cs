@@ -36,6 +36,11 @@ namespace BankDepositUI.Controllers
             return View();
         }
         //2.将返回的信息进行处理，然后登陆系统主页
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="depositor">Uid,Uname,UPassword</param>
+        /// <returns></returns>
         public IActionResult AddLogin(Depositors depositor)
         {
             depositors = depositorServive.AddService(depositor);

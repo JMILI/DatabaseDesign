@@ -30,33 +30,21 @@
     </div>
 </form>
 <script type="text/javascript">
-    //function myCheck() {
-    //    for (var i = 0; i < document.form1.elements.length - 1; i++) {
-    //        if (document.form1.elements[i].value == "") {
-    //            alert("当前表单不能有空项");
-    //            document.form1.elements[i].focus();
-    //            return false;
-    //        }
-    //    }
-    //    return true;
-    //}
-
     function beforeSubmit(form) {
         if (form.Uid.value == '') {
-            alert('用户名不能为空！');
-            form.username.focus();
+            alert('账号不能为空！');
+            form.Uid.focus();
             return false;
         }
         if (form.Uname.value == '') {
             alert('用户名不能为空！');
-            form.password.focus();
+            form.Uname.focus();
             return false;
         }
         if (form.Upassword.value == '') {
             alert('密码不能为空！');
-            form.password.focus();
+            form.Upassword.focus();
             return false;
         }
-
     }
 </script>

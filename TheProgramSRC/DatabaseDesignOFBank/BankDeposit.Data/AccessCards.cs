@@ -12,13 +12,18 @@ namespace BankDeposit.Data
     /// </summary>
     public class AccessCards
     {
+        public static Cards card = new Cards();
+
         #region 查询银行卡（登录的）
         public Cards QueryCardsData(User user)
         {
             using (var dbContext = new bankContext())
             {
-                return dbContext.Cards.FirstOrDefault(a => a.Cid == user.Id);
+                card = dbContext.Cards.FromSql("select * from Cards where  Cid= {0} and Cpassword={1} ",
+                    user.Id, user.Password).AsNoTracking().ToList().FirstOrDefault();
+                return card;
             }
+            //return access.QueryCardsData(user);
         }
         #endregion
     }

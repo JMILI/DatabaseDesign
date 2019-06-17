@@ -5,6 +5,7 @@ using System.Web.Extensions;
 
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
+using System;
 
 namespace BankDeposit.Service
 {
@@ -14,6 +15,7 @@ namespace BankDeposit.Service
         public static AccessDepositors access = new AccessDepositors();
         public static Depositors depositor = new Depositors();
         public static DepositorAndCard depositors = new DepositorAndCard();
+        public static User userNow = new User();
         public static List<Records> records = new List<Records>();
         #endregion
 
@@ -23,9 +25,27 @@ namespace BankDeposit.Service
         /// </summary>
         /// <param name="user">Id，Password，Identify</param>
         /// <returns>Depositors</returns>
-        public Depositors QueryDepositorsService(User user)
+        public DepositorAndCard QueryDepositorsService(User user)
         {
-            return access.QueryDepositorsData(user);
+            depositor = access.QueryDepositorsData(user);
+            if (depositor != null)
+            {
+                if (depositor.Uid != user.Id)
+                {
+                    depositors = null;
+                }
+                else
+                {
+                    depositors.Dname = depositor.Uname;
+                    depositors.Duid = depositor.Uid;
+                    depositors.Dcid = depositor.Ucid;
+                }
+            }
+            else
+            {
+                depositors = null;
+            }
+            return depositors;
         }
         #endregion
 
@@ -33,23 +53,27 @@ namespace BankDeposit.Service
         /// <summary>
         /// 判断是否增加储户成功
         /// </summary>
-        /// <param name="depositor">表单填写的储户信息Duid,Dcid,Dname</param>
+        /// <param name="depositor">表单填写的储户信息Uid,Uname,UPassword</param>
         /// <returns>DepositorAndCard</returns>
         public DepositorAndCard AddService(Depositors depositor)
         {
-            if (access.CheakData(depositor) != null)
+            Depositors depositor1 = new Depositors();
+            depositor1 = access.CheakData(depositor.Uid);//查询有没有该储户
+            if (depositor1 != null)
             {
-                return null;
+                depositors = null;
             }
             else
             {
                 access.AddData(depositor);
-                depositors.Dcid = 0;
                 depositors.Dname = depositor.Uname;
                 depositors.Duid = depositor.Uid;
-                return depositors;
+                depositors.Dcid = null;
             }
+            return depositors;
         }
+
+    
         #endregion
 
         #region 查询十项交易记录
@@ -63,18 +87,7 @@ namespace BankDeposit.Service
         /// <returns>返回一个根据储户当前默认银行卡的交易记录，取前十项</returns></returns>
         public List<Records> TenRecordsService(int cid)
         {
-            records = access.TenRecordsData();
-            List<Records> record = new List<Records>();
-            int i = 1; 
-            foreach (var item in records)
-            {
-                if (item.Rcid == cid && i <= 10)
-                {
-                    record.Add(item);
-                    i++;
-                }
-            }
-            return record;
+            return access.TenRecordsData(cid);
         }
         #endregion
     }

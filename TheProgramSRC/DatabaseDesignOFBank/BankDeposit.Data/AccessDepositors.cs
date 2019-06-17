@@ -24,7 +24,9 @@ namespace BankDeposit.Data
         {
             using (var dbContext = new bankContext())
             {
-               return depositor = dbContext.Depositors.FirstOrDefault(a => a.Uid == user.Id);
+                depositor = dbContext.Depositors.FromSql("select * from Depositors where  Uid= {0} and Upassword={1} ",
+                    user.Id, user.Password).AsNoTracking().ToList().FirstOrDefault();
+                return depositor;
             }
         }
         #endregion
@@ -35,11 +37,18 @@ namespace BankDeposit.Data
         /// </summary>
         /// <param name="depositor"></param>
         /// <returns></returns>
-        public Depositors CheakData(Depositors depositor)
+        //public Depositors CheakData(Depositors depositor)
+        //{
+        //    using (var dbContext = new bankContext())
+        //    {
+        //        return depositor = dbContext.Depositors.FirstOrDefault(a => a.Uid == depositor.Uid);
+        //    }
+        //}
+        public Depositors CheakData(int uid)
         {
             using (var dbContext = new bankContext())
             {
-                return depositor = dbContext.Depositors.FirstOrDefault(a => a.Uid == depositor.Uid);
+                return depositor = dbContext.Depositors.FirstOrDefault(a => a.Uid ==uid);
             }
         }
         #endregion
@@ -67,18 +76,37 @@ namespace BankDeposit.Data
             }
         }
         #endregion
+        #region 查询储户是否绑定 （注册的）
+        /// <summary>
+        /// 传入的对象为Depositors
+        /// </summary>
+        /// <param name="depositor"></param>
+        /// <returns></returns>
+        public Bands CheakBandData(int? Ucid)
+        {
+            using (var dbContext = new bankContext())
+            {
+                //var res = dbContext.Bands.SqlQuery<Bands>("select *from tb_products");
+                ////Bands band = new Bands();
+                //band = dbContext.Bands.FromSql("select * from bands where Bcid = 20001").AsNoTracking().ToList().FirstOrDefault();
+                //var res = dbContext.Bands.FromSql("select * from bands");
+                //record = dbContext.Records.FromSql("select * from Records where Rcid={0} order by Rid desc", cid).AsNoTracking().ToList();
+                return dbContext.Bands.FromSql("select * from bands where Bcid = {0}", Ucid).AsNoTracking().ToList().FirstOrDefault();
+            }
+        }
+        #endregion
         #region 查询前十项记录
         /// <summary>
-        /// 查询前十项记录
+        /// 查询最近十项记录,
         /// </summary>
         /// <returns></returns>
-        public List<Records> TenRecordsData()
+        public List<Records> TenRecordsData(int cid)
         {
             using (bankContext dbContext = new bankContext())
             {
                 //通过ViewContext.Iformation属性从数据库中查询视图数据，因为和数据库表不同，
                 //我们不会更新数据库视图的数据，所以调用AsNoTracking方法来告诉EF Core不用在DbContext中跟踪返回的Iformation实体，可以提高EF Core的运行效率
-                return  dbContext.Records.AsNoTracking().ToList();
+                return dbContext.Records.FromSql("select * from Records where Rcid={0} order by Rid desc", cid).AsNoTracking().Take(10).ToList();
             }
         }
         #endregion

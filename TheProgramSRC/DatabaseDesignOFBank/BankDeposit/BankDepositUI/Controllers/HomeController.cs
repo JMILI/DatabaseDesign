@@ -16,7 +16,7 @@ namespace BankDepositUI.Controllers
     public class HomeController : Controller
     {
         #region 实例一些工具对象
-        public static DepositorsService userServive = new DepositorsService();
+        public static DepositorsService depositorServive = new DepositorsService();
         public static CardsService cardServive = new CardsService();
         public static ManagersService managerServive = new ManagersService();
         public static DAndCService dAndCServive = new DAndCService();
@@ -49,7 +49,7 @@ namespace BankDepositUI.Controllers
             #region 储户新版本
             if (user.Identify == "depository")
             {
-                dAndC = dAndCServive.QueryDAndCService(user);//获得登录对象
+                dAndC = depositorServive.QueryDepositorsService(user);
                 if (dAndC != null)
                 {
                     return RedirectToAction("Login", "Depositors", dAndC);
@@ -61,7 +61,7 @@ namespace BankDepositUI.Controllers
             #region ATM-银行卡
             else if (user.Identify == "cards")
             {
-                dAndC = dAndCServive.QueryDAndCService(user);//获得登录对象
+                dAndC = cardServive.QueryCardsService(user);
                 if (dAndC != null)
                 {
                     return RedirectToAction("Login", "Cards", dAndC);
