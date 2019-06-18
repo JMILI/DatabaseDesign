@@ -37,9 +37,9 @@ namespace TestBank
 
                 #region 计算利息原理
                 //时间差值计算利息
-                //1. C# DateTime转成MySQL DateTime的字符串：
+                //1.C# DateTime转成MySQL DateTime的字符串：
                 //DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                //2. MySQL 读出的DateTime转换成C#的DateTime
+                ////2.MySQL 读出的DateTime转换成C#的DateTime
                 //DateTime dt1 = Convert.ToDateTime(Convert.ToDateTime(infomation.Ioldtime).ToString("yyyy-MM-dd HH:mm:ss"));
                 //Console.WriteLine(infomation.Ioldtime);//查看数据库视图中的旧时间字段
                 //DateTime dt2 = System.DateTime.Now;//生成新的系统时间
@@ -67,10 +67,10 @@ namespace TestBank
                         //depositors.Uname = "newName" + (new Random().Next(1, 100));
                         //dbContext.SaveChanges();
                         ////第二个更改数据库操作
-                        var id = 10005;
-                        var cid = 20005;
-                        var sql = @"Update Depositors SET Ucid =  {0} WHERE Uid =  {1}";
-                        dbContext.Database.ExecuteSqlCommand(sql, cid, id);
+                        //var id = 10005;
+                        //var cid = 20005;
+                        //var sql = @"Update Depositors SET Ucid =  {0} WHERE Uid =  {1}";
+                        //dbContext.Database.ExecuteSqlCommand(sql, cid, id);
                         //保存数据
 
 
@@ -123,6 +123,31 @@ namespace TestBank
                         //Console.WriteLine(depositors.Upassword);
 
                         //dbContext.Add(depositor);
+                        //Records record = new Records();
+                        var cid = 20001;
+                        //record = dbContext.Records.FromSql("select * from Records where Rcid={0} And RflowDeposit != 0 or Rwithdrawals != 0 order by Rid desc", cid).AsNoTracking().ToList().FirstOrDefault();
+                        //foreach (var item in record)
+                        //{
+                        //    Console.WriteLine(item.RflowDeposit);
+                        //    Console.WriteLine(item.Rwithdrawals);
+                        //    Console.WriteLine(item.RnowDateTime);
+                        //}
+                        //Console.WriteLine(record.RnowDateTime);
+                        //Console.WriteLine(record.RflowDeposit);
+                        //Console.WriteLine(record.Rwithdrawals);
+                        //DateTime dt1 = (DateTime)record.RnowDateTime;
+                        ////DateTime dt1 = Convert.ToDateTime(Convert.ToDateTime(infomation.Ioldtime).ToString("yyyy-MM-dd HH:mm:ss"));
+                        //DateTime dt2 = System.DateTime.Now;//生成新的系统时间
+                        //Double Day = dt2.Day - dt1.Day;//天数差值
+                        //Console.WriteLine(Day);
+                        List<Fixbalances> fixbalances = new List<Fixbalances>();
+                        fixbalances = dbContext.Fixbalances.FromSql("select * from Fixbalances where Fcid={0} order by Fid desc", cid).AsNoTracking().ToList();
+                        foreach (var item in fixbalances)
+                        {
+                            Console.WriteLine(item.Fcid);
+                            Console.WriteLine(item.FfixBalance);
+                            Console.WriteLine(item.FfixBalanceRate);
+                        }
                         dbContext.SaveChanges();
 
 

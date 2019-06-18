@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "_DepositorsPageLayout";
 
     ViewData["Title"] = "Home Page";
@@ -15,6 +14,7 @@
 </div>
 
 
+<!-- 查询前十项记录功能块开始 -->
 <section class="tile color transparent-white">
     <div class="tile-header">
         <h1><strong>前十项交易记录</strong> </h1>
@@ -56,7 +56,7 @@
                 success: function (result) {
                     //result：Json数据，idx：下标，obj：内容（相当于result[idx]）
                     $.each(result, function (idx, obj) {
-                        strHtml += '<tr class="danger">';
+                        strHtml += '<tr class="danger">'
                         strHtml += '<td>' + idx + '</td>'
                         strHtml += '<td>' + obj.Rid + '</td>'
                         strHtml += '<td>' + obj.Ruid + '</td>'
@@ -74,12 +74,11 @@
             })
         })
     }
-        function band(){
-        var url = '@Url.Action("UpdataBandInformation", "Depositors")';
-        location.href = url;
-        //window.open(url);
-    }
+
 </script>
+
+<!-- 查询前十项记录功能块结束 -->
+<!-- 修改绑定银行卡号功能块开始 -->
 <script type="text/javascript">
     function band(){
         var url = '@Url.Action("UpdataBandInformation", "Depositors")';
@@ -87,3 +86,170 @@
         //window.open(url);
     }
 </script>
+<!-- 修改绑定银行卡号功能块结束-->
+<!-- 查询余额功能块开始 -->
+
+<section class="tile color transparent-black">
+
+    <!-- tile header -->
+    <div class="tile-header">
+        <h1><strong>您的存款余额</strong> </h1>
+        <div class="controls">
+            <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+            <a href="#" class="remove"><i class="fa fa-times"></i></a>
+        </div>
+    </div>
+    <!-- /tile header -->
+    <!-- tile body -->
+    <div class="tile-body">
+        <div class="panel-group accordion" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading" id=" huoqi">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
+                            <strong>活期存款</strong>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
+                    <section class="tile transparent">
+                        <div class="tile-body color transparent-black rounded-corners">
+                            <div class="row cards">
+                                <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+                                    <div class="card card-greensea hover">
+                                        <div class="front">
+                                            <div class="media">
+                                                <span class="pull-left">
+                                                    <i class="fa fa-usd media-object"></i>
+                                                </span>
+                                                <div class="media-body">
+                                                    <span>活期存款余额（包含利息）</span>
+                                                    <h2 id="yue" class="media-heading animate-number" data-animation-duration="1500"></h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="back">
+                                            <a href="#">
+                                                <i class="fa fa-bar-chart-o fa-4x"></i>
+                                                <span>产生利息：</span>
+                                                <span id="rate"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+
+                <script>
+                    $(function () {
+                        initBind1(); //初始化所有绑定函数
+                    })
+                    function initBind1() {
+                        $('#btn_listflow').bind('click', function () {
+                            var url = "/Depositors/FlowBalance";
+                            var balance;
+                            var rate;
+                            $.ajax({
+                                "url": url,
+                                "async": true,
+                                dataType: "json",	//必须加，将json字符串转换为json格式
+                                success: function (result) {
+                                    $('#rate').empty().append(result[0]);
+                                    $('#yue').empty().append(result[1]);
+                                },
+                                error: function (err) {
+                                    alert(err);
+                                }
+                            })
+                        })
+                    }
+                </script>
+
+
+                <div class="panel panel-hotpink">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
+                                <strong>定期存款</strong>
+                            </a>
+                        </h4>
+                    </div>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <section class="tile color greensea">
+                            <div class="tile-header">
+                                <h1><strong>定期存款详情表</strong> </h1>
+                                <div class="controls">
+                                    <i class="fa fa-refresh"></i>
+                                    <i class="fa fa-times"></i>
+                                    <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+                                    <a href="#" class="remove"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                            <div class="tile-body nopadding">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>索引</th>
+                                                <th>存款单号</th>
+                                                <th>银行卡号</th>
+                                                <th>存款年限</th>
+                                                <th>存款利率</th>
+                                                <th>定期存款余额</th>
+                                                <th>存款时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="fix"> </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    $(function () {
+        initBind2(); //初始化所有绑定函数
+    })
+    function initBind2() {
+        $('#btn_listfix').bind('click', function () {
+            var url = "/Depositors/FixBalance";
+            var str;
+            $.ajax({
+                "url": url,
+                "async": true,
+                dataType: "json",	//必须加，将json字符串转换为json格式
+                success: function (result) {
+                    //result：Json数据，idx：下标，obj：内容（相当于result[idx]）
+                    $.each(result, function (idx, obj) {
+                        //var rate = obj.FbusinessTime*
+                        str += '<tr >'
+                        str += '<td>' + idx + '</td>'
+                        str += '<td>' + obj.Fid + '</td>'
+                        str += '<td>' + obj.Fcid + '</td>'
+                         str += '<td>' + obj.Fyear + '</td>'
+                        str += '<td>' + obj.FfixBalanceRate + '</td>'
+                        str += '<td>' + obj.FfixBalance + '</td>'
+                        str += '<td>' + obj.FbusinessTime + '</td>'
+                        str += '</tr>';
+                    })
+                    $('#fix').empty().append(str);
+                }, error: function (err) {
+                    alert(err);
+                }
+            })
+        })
+    }
+</script>
+
+<!-- 查询余额功能块结束 -->

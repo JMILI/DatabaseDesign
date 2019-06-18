@@ -22,6 +22,11 @@ namespace BankDepositUI.Controllers
         #endregion
 
         #region “登录”功能 已实现
+        /// <summary>
+        /// “登录”功能
+        /// </summary>
+        /// <param name="depositor">传入的是DepositorAndCard类型的数据</param>
+        /// <returns></returns>
         public IActionResult Login(DepositorAndCard depositor)
         {
             cooikeAdd(depositor);
@@ -54,22 +59,6 @@ namespace BankDepositUI.Controllers
         }
         #endregion
 
-        #region “修改个人信息”功能，待实现，选做，由于设置的用户信息较少，可不做
-        //包含：密码和默认银行卡号
-        //1.返回一个页面用来填写信息。
-        //2.将得到的数据更新到数据库中
-        //3.重新返回用户主页
-        #endregion
-
-        #region “查询当前银行卡的余额明细”功能 待实现
-        //包含定期余额，定期利息，定期利率，定期年限，活期余额，活期利息，活期率
-        //此处应采用视图查询方便，以银行卡号为导向
-
-        //1.用户是否冻结（选做）
-        //2.注意要判断是否绑定银行卡
-        //3.查询并返回信息列表
-        #endregion
-
         #region “查询近十笔交易记录”功能 已实现
         /// <summary>
         /// 主要查询记录表中该用户的交易记录,查询前十项记录，该功能要用Ajax，
@@ -86,7 +75,7 @@ namespace BankDepositUI.Controllers
         }
         #endregion
 
-        #region “绑定银行卡”功能 待实现
+        #region “绑定银行卡”功能 已实现
         //1.向绑定band表中添加数据
         //2.绑定成功返回主页
         public IActionResult UpdataBandInformation()
@@ -118,7 +107,36 @@ namespace BankDepositUI.Controllers
 
         #endregion
 
+        #region “查询活期余额”功能 已实现
+        public ActionResult FlowBalance()
+        {
+            List<Double> record = new List<Double>();
+            this.Request.Cookies.TryGetValue("Cid", out string Cid);//从cookie中请求当前用户卡号
+            int cid = int.Parse(Cid);
+            record = depositorServive.FlowBalanceService(cid);//这里需要service返回一个余额，一个利息
+            return Content(JsonConvert.SerializeObject(record));//以json方式
+        }
+        #endregion
+
+        #region “查询定期余额”功能 已实现
+        public ActionResult FixBalance()
+        {
+            List<Fixbalances> record = new List<Fixbalances>();
+            this.Request.Cookies.TryGetValue("Cid", out string Cid);//从cookie中请求当前用户卡号
+            int cid = int.Parse(Cid);
+            record = depositorServive.FixBalanceService(cid);//这里需要service返回一个余额，一个利息
+            return Content(JsonConvert.SerializeObject(record));//以json方式
+        }
+        #endregion
+
         #region “转账”功能 待实现 选做
+        #endregion
+
+        #region “修改个人信息”功能，待实现，选做，由于设置的用户信息较少，可不做
+        //包含：密码和默认银行卡号
+        //1.返回一个页面用来填写信息。
+        //2.将得到的数据更新到数据库中
+        //3.重新返回用户主页
         #endregion
 
         #region 辅助函数：登录，注册功能模块中，加入cooike

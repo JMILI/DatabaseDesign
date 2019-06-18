@@ -14,11 +14,18 @@ namespace BankDeposit.Service
         #region 实例化一些工具对象
         public static AccessDepositors access = new AccessDepositors();
         public static AccessCards accessCard = new AccessCards();
-        public static AccessCards band  = new AccessCards();
+        public static AccessRecords accessRecord = new AccessRecords();
+
+
+        //public static AccessCards band = new AccessCards();
         public static Depositors depositor = new Depositors();
         public static DepositorAndCard depositors = new DepositorAndCard();
         public static Cards card = new Cards();
         public static List<Records> records = new List<Records>();
+       
+        public static CardsService cardsService = new CardsService();
+        public static FixbalanceService fixbalanceService = new FixbalanceService();
+        
         #endregion
 
         #region 查询储户
@@ -75,7 +82,7 @@ namespace BankDeposit.Service
             return depositors;
         }
 
-    
+
         #endregion
 
         #region 查询十项交易记录
@@ -91,10 +98,9 @@ namespace BankDeposit.Service
         {
             return accessCard.TenRecordsData(cid);
         }
-
-
         #endregion
 
+        #region 储户绑定卡号
         public bool UpdataBandService(DepositorAndCard depositor)
         {
             bool s = false;
@@ -104,7 +110,7 @@ namespace BankDeposit.Service
             {
                 if (depositor1.Uid == depositor.Duid)//判断查找到的储户是不是我们要找的
                 {
-                    card = band.CardsBandData(depositor.Dcid);
+                    card = accessCard.CardsData(depositor.Dcid);
                     if (card != null && card.Cuid == depositor.Duid)
                     {
                         access.UpdataBandData(depositor);//更新绑定卡号
@@ -112,7 +118,27 @@ namespace BankDeposit.Service
                     }
                 }
             }
-                return s; 
+            return s;
         }
+
+        #endregion
+
+        #region 查询活期存款余额情况
+        /// <summary>
+        ///  是DepositoryService的方法，将查询余额利息的职责交给CardsService类来处理
+        /// </summary>
+        /// <param name="cid"></param>
+        /// <returns></returns>
+        public List<double> FlowBalanceService(int cid)
+        {
+           return cardsService.FlowBalanceService(cid);
+        }
+        #endregion
+        #region 查询定期余额情况
+        public List<Fixbalances> FixBalanceService(int cid)
+        {
+            return fixbalanceService.FixBalancesService(cid);
+        } 
+        #endregion
     }
 }

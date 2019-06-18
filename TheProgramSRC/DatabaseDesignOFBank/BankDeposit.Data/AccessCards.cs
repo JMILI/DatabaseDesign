@@ -27,7 +27,7 @@ namespace BankDeposit.Data
         }
         #endregion
         #region 查询银行卡
-        public Cards CardsBandData(int? cid)
+        public Cards CardsData(int? cid)
         {
             using (var dbContext = new bankContext())
             {

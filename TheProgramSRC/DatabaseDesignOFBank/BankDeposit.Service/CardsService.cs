@@ -8,11 +8,13 @@ using System.Text;
 
 namespace BankDeposit.Service
 {
-   public class CardsService
+    public class CardsService
     {
         #region 实例化一些工具对象
         public static AccessCards CardsAccess = new AccessCards();
         public static AccessDepositors DepositorsAccess = new AccessDepositors();
+        public static AccessRecords accessRecord = new AccessRecords();
+
         public static Cards card = new Cards();
         public static Depositors depositor = new Depositors();
         public static DepositorAndCard cards = new DepositorAndCard();
@@ -34,7 +36,7 @@ namespace BankDeposit.Service
                     cards.Duid = card.Cuid;
                     cards.Dcid = card.Cid;
                     depositor = DepositorsAccess.CheakData(card.Cuid);
-                    cards.Dname= depositor.Uname;
+                    cards.Dname = depositor.Uname;
                 }
             }
             else
@@ -43,6 +45,38 @@ namespace BankDeposit.Service
             }
             return cards;
         }
+
+
         #endregion
+        #region 银行卡计算利息和余额
+        /// <summary>
+        /// 是CardsService的方法，银行卡计算利息和余额，没有更新数据库功能。只负责查询
+        /// </summary>
+        /// <param name="cid">那个卡？</param>
+        /// <returns>返回计算后的余额，和利息</returns>
+        public List<double> FlowBalanceService(int cid)
+        {
+            List<Double> record = new List<Double>();
+            card = CardsAccess.CardsData(cid);
+            if (card != null)
+            {
+                //计算利息
+                var balance = (double)card.CflowBalance;//取得卡表中活期现有存款
+                var rate = card.CflowBalanceRate;//取得相应利率
+                DateTime dt1 = (DateTime)accessRecord.RecordsTimeData(cid);//从records表中取得上次对活期存款操作的最后时间
+                DateTime dt2 = System.DateTime.Now;//生成新的系统时间
+                Double Day = dt2.Day - dt1.Day;//天数差值
+                var rates = (double)rate * Day * balance;//计算利息
+                balance = rates + balance;
+                //list表中加入我们要返回的数据
+                record.Add(rates);
+                record.Add(balance);
+                return record;
+            }
+            else return null;
+        }
+
+        #endregion
+
     }
 }
