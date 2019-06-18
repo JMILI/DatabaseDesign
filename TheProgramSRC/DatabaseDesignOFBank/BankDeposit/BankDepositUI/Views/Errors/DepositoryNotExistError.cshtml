@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "_SignInLayout";
+}
+
+<h1 class="error">错误 <strong></strong></h1>
+<h2 class="error"> <strong>该储户账号或卡号不存在</strong></h2>
+<form action="@Url.Action("UpdataBandInformation","Depositors")">
+    <div class="controls">
+        <button class="btn btn-greensea"><i class="fa fa-home"></i>重新绑定</button>
+    </div>
+</form>

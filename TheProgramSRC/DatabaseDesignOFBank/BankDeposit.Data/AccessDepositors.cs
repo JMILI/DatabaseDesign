@@ -31,7 +31,7 @@ namespace BankDeposit.Data
         }
         #endregion
 
-        #region 查询储户 （注册的）
+        #region 查询储户 （注册的,绑定卡号的）
         /// <summary>
         /// 传入的对象为Depositors
         /// </summary>
@@ -76,6 +76,7 @@ namespace BankDeposit.Data
             }
         }
         #endregion
+
         #region 查询储户是否绑定 （注册的）
         /// <summary>
         /// 传入的对象为Depositors
@@ -86,29 +87,48 @@ namespace BankDeposit.Data
         {
             using (var dbContext = new bankContext())
             {
-                //var res = dbContext.Bands.SqlQuery<Bands>("select *from tb_products");
-                ////Bands band = new Bands();
-                //band = dbContext.Bands.FromSql("select * from bands where Bcid = 20001").AsNoTracking().ToList().FirstOrDefault();
-                //var res = dbContext.Bands.FromSql("select * from bands");
-                //record = dbContext.Records.FromSql("select * from Records where Rcid={0} order by Rid desc", cid).AsNoTracking().ToList();
                 return dbContext.Bands.FromSql("select * from bands where Bcid = {0}", Ucid).AsNoTracking().ToList().FirstOrDefault();
             }
         }
         #endregion
-        #region 查询前十项记录
-        /// <summary>
-        /// 查询最近十项记录,
-        /// </summary>
-        /// <returns></returns>
-        public List<Records> TenRecordsData(int cid)
+
+        //#region 查询前十项记录
+        ///// <summary>
+        ///// 查询最近十项记录,
+        ///// </summary>
+        ///// <returns></returns>
+        //public List<Records> TenRecordsData(int cid)
+        //{
+        //    using (bankContext dbContext = new bankContext())
+        //    {
+        //        //通过ViewContext.Iformation属性从数据库中查询视图数据，因为和数据库表不同，
+        //        //我们不会更新数据库视图的数据，所以调用AsNoTracking方法来告诉EF Core不用在DbContext中跟踪返回的Iformation实体，可以提高EF Core的运行效率
+        //        return dbContext.Records.FromSql("select * from Records where Rcid={0} order by Rid desc", cid).AsNoTracking().Take(10).ToList();
+        //    }
+        //}
+        //#endregion
+
+        public void UpdataBandData(DepositorAndCard depositor)
         {
-            using (bankContext dbContext = new bankContext())
+            using (var dbContext = new bankContext())
             {
-                //通过ViewContext.Iformation属性从数据库中查询视图数据，因为和数据库表不同，
-                //我们不会更新数据库视图的数据，所以调用AsNoTracking方法来告诉EF Core不用在DbContext中跟踪返回的Iformation实体，可以提高EF Core的运行效率
-                return dbContext.Records.FromSql("select * from Records where Rcid={0} order by Rid desc", cid).AsNoTracking().Take(10).ToList();
+                //修改数据库信息最好有一些事务操作
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var sql = @"Update Depositors SET Ucid =  {0} WHERE Uid =  {1}";
+                        dbContext.Database.ExecuteSqlCommand(sql, depositor.Dcid, depositor.Duid);
+                        dbContext.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        transaction.Rollback();
+                    }
+                }
             }
         }
-        #endregion
     }
 }

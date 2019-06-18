@@ -13,9 +13,11 @@ namespace BankDeposit.Service
     {
         #region 实例化一些工具对象
         public static AccessDepositors access = new AccessDepositors();
+        public static AccessCards accessCard = new AccessCards();
+        public static AccessCards band  = new AccessCards();
         public static Depositors depositor = new Depositors();
         public static DepositorAndCard depositors = new DepositorAndCard();
-        public static User userNow = new User();
+        public static Cards card = new Cards();
         public static List<Records> records = new List<Records>();
         #endregion
 
@@ -87,8 +89,30 @@ namespace BankDeposit.Service
         /// <returns>返回一个根据储户当前默认银行卡的交易记录，取前十项</returns></returns>
         public List<Records> TenRecordsService(int cid)
         {
-            return access.TenRecordsData(cid);
+            return accessCard.TenRecordsData(cid);
         }
+
+
         #endregion
+
+        public bool UpdataBandService(DepositorAndCard depositor)
+        {
+            bool s = false;
+            Depositors depositor1 = new Depositors();
+            depositor1 = access.CheakData(depositor.Duid);//查询有没有该储户
+            if (depositor1 != null)
+            {
+                if (depositor1.Uid == depositor.Duid)//判断查找到的储户是不是我们要找的
+                {
+                    card = band.CardsBandData(depositor.Dcid);
+                    if (card != null && card.Cuid == depositor.Duid)
+                    {
+                        access.UpdataBandData(depositor);//更新绑定卡号
+                        s = true;
+                    }
+                }
+            }
+                return s; 
+        }
     }
 }

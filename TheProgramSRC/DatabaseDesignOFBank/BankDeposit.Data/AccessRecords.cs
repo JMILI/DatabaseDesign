@@ -7,34 +7,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BankDeposit.Data
 {
-    /// <summary>
-    /// 此类用于ATM系统访问数据
-    /// </summary>
-    public class AccessCards
+    public class AccessRecords
     {
-        public static Cards card = new Cards();
+        #region 实例化一些工具对象
+        public static User user = new User();
+        public static Depositors depositor = new Depositors();
+        #endregion
 
-        #region 查询银行卡（登录的）
-        public Cards QueryCardsData(User user)
-        {
-            using (var dbContext = new bankContext())
-            {
-                card = dbContext.Cards.FromSql("select * from Cards where  Cid= {0} and Cpassword={1} ",
-                    user.Id, user.Password).AsNoTracking().ToList().FirstOrDefault();
-                return card;
-            }
-            //return access.QueryCardsData(user);
-        }
-        #endregion
-        #region 查询银行卡
-        public Cards CardsBandData(int? cid)
-        {
-            using (var dbContext = new bankContext())
-            {
-                return  dbContext.Cards.FirstOrDefault(a => a.Cid == cid);
-            }
-        }
-        #endregion
         #region 查询前十项记录
         /// <summary>
         /// 查询最近十项记录,

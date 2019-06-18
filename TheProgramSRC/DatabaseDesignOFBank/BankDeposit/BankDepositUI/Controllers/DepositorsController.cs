@@ -89,6 +89,33 @@ namespace BankDepositUI.Controllers
         #region “绑定银行卡”功能 待实现
         //1.向绑定band表中添加数据
         //2.绑定成功返回主页
+        public IActionResult UpdataBandInformation()
+        {
+            return View();
+        }
+        //2.将返回的信息进行处理，然后登陆系统主页
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="depositor">Duid,Dname,Dcid</param>
+        /// <returns></returns>
+        public IActionResult UpdataBand(DepositorAndCard depositor)
+        {
+            this.Request.Cookies.TryGetValue("Uid", out string Uid);
+            this.Request.Cookies.TryGetValue("Name", out string Name);
+            depositor.Duid = int.Parse(Uid);
+            depositor.Dname = Name;
+            int uid = int.Parse(Uid);
+            bool s = depositorServive.UpdataBandService(depositor);
+            if (s ==true)
+            {
+                //cooikeAdd(depositors);
+                return RedirectToAction("Login", "Depositors", depositor);
+            }
+            else
+                return Redirect(Url.Action("DepositoryNotExistError", "Errors"));
+        }
+
         #endregion
 
         #region “转账”功能 待实现 选做

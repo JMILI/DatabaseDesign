@@ -67,10 +67,10 @@ namespace TestBank
                         //depositors.Uname = "newName" + (new Random().Next(1, 100));
                         //dbContext.SaveChanges();
                         ////第二个更改数据库操作
-                        //var id = 10001;
-                        //var uname = "王二麻子";
-                        //var sql = @"Update Users SET Uname =  {0} WHERE Uid =  {1}";
-                        //dbContext.Database.ExecuteSqlCommand(sql, uname, id);
+                        var id = 10005;
+                        var cid = 20005;
+                        var sql = @"Update Depositors SET Ucid =  {0} WHERE Uid =  {1}";
+                        dbContext.Database.ExecuteSqlCommand(sql, cid, id);
                         //保存数据
 
 
@@ -113,14 +113,19 @@ namespace TestBank
                         //Console.WriteLine(depositors.Uid);
                         //Console.WriteLine(depositors.Upassword);
 
-                        User user = new User();
-                        user.Id = 10001;
-                        user.Password = "10002";
-                        //user.Identify = "储户";
-                        depositors = dbContext.Depositors.FromSql("select * from Depositors where  Uid= {0} and Upassword={1} ",
-                            user.Id, user.Password).AsNoTracking().ToList().FirstOrDefault();
-                        Console.WriteLine(depositors.Uid);
-                        Console.WriteLine(depositors.Upassword);
+                        //User user = new User();
+                        //user.Id = 10001;
+                        //user.Password = "10002";
+                        ////user.Identify = "储户";
+                        //depositors = dbContext.Depositors.FromSql("select * from Depositors where  Uid= {0} and Upassword={1} ",
+                        //    user.Id, user.Password).AsNoTracking().ToList().FirstOrDefault();
+                        //Console.WriteLine(depositors.Uid);
+                        //Console.WriteLine(depositors.Upassword);
+
+                        //dbContext.Add(depositor);
+                        dbContext.SaveChanges();
+
+
                         transaction.Commit();
                     }
                     catch (Exception e)

@@ -24,5 +24,16 @@ namespace BankDepositUI.Controllers
             return View();
         }
         #endregion
+
+        #region 绑定错误页面
+        /// <summary>
+        /// 返回绑定错误页面
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult DepositoryNotExistError()
+        {
+            return View();
+        } 
+        #endregion
     }
 }
