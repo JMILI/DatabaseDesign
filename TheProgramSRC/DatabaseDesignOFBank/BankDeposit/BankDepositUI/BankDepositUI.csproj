@@ -28,6 +28,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Cards\Success.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Cards\WithDrawal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Depositors\UpdataBandInformation.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -38,6 +44,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Errors\DepositoryExistError.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Errors\MoneyError.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Managers\Login.cshtml">
@@ -53,6 +62,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Errors\PasswordError.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_CardsDrawalPageLayout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\_CardsPageLayout.cshtml">

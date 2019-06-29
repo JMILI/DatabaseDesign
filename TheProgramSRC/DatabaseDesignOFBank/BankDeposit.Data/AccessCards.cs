@@ -49,6 +49,29 @@ namespace BankDeposit.Data
                 return dbContext.Records.FromSql("select * from Records where Rcid={0} order by Rid desc", cid).AsNoTracking().Take(10).ToList();
             }
         }
+
+        public void UpdateCards(int cid, double money)
+        {
+            using (var dbContext = new bankContext())
+            {
+                //修改数据库信息最好有一些事务操作
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var sql = @"Update Cards SET CflowBalance =  {0} WHERE Cid =  {1}";
+                        dbContext.Database.ExecuteSqlCommand(sql, money, cid);
+                        dbContext.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        transaction.Rollback();
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

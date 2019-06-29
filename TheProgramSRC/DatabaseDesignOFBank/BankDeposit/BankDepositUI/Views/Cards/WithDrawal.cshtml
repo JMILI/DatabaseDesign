@@ -1,0 +1,18 @@
+﻿
+@{
+
+    Layout = "_CardsDrawalPageLayout";
+
+    ViewData["Title"] = "Home Page";
+}
+
+    <form name="form1" class="form-horizontal" role="form" method="post" action="@Url.Action("WithDrawalInformation","Cards")" onSubmit="return beforeSubmit(this);">
+        <p>
+            <button type="submit" style="width:330px;height:200px" class="btn btn-primary  btn-lg margin-bottom-20"name="money" value="100">100</button>
+            <button type="submit"  style="width:330px;height:200px" class="btn btn-primary  btn-lg margin-bottom-20"name="money" value="200">200</button>
+            <button type="submit"  style="width:330px;height:200px" class="btn btn-primary  btn-lg margin-bottom-20"name="money" value="500">500</button>
+            <button type="submit"  style="width:330px;height:200px" class="btn btn-primary  btn-lg margin-bottom-20"name="money" value="800">800</button>
+            <button type="submit"  style="width:330px;height:200px" class="btn btn-primary  btn-lg margin-bottom-20"name="money" value="1000">1000</button>
+            <button type="submit"  style="width:330px;height:200px" class="btn btn-primary  btn-lg margin-bottom-20"name="money" value="2000">2000</button>
+        </p>
+    </form>

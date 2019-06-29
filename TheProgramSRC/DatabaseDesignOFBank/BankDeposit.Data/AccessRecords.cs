@@ -13,6 +13,8 @@ namespace BankDeposit.Data
         public static User user = new User();
         public static Depositors depositor = new Depositors();
         public static Records record = new Records();
+
+    
         #endregion
 
         #region 查询前十项记录
@@ -30,6 +32,8 @@ namespace BankDeposit.Data
             }
         }
         #endregion
+
+        #region 取出最后一次交易记录时间
         public DateTime? RecordsTimeData(int cid)
         {
             using (bankContext dbContext = new bankContext())
@@ -41,8 +45,45 @@ namespace BankDeposit.Data
                 //DateTime dt1 = Convert.ToDateTime(Convert.ToDateTime(r.Ioldtime).ToString("yyyy-MM-dd HH:mm:ss"));
                 //通过ViewContext.Iformation属性从数据库中查询视图数据，因为和数据库表不同，
                 //我们不会更新数据库视图的数据，所以调用AsNoTracking方法来告诉EF Core不用在DbContext中跟踪返回的Iformation实体，可以提高EF Core的运行效率
-
             }
-        }
+        } 
+        #endregion
+
+        #region 增加交易记录
+        public void Add(DepositorAndCard dAndC, int v, double money)
+        {
+            using (var dbContext = new bankContext())
+            {
+                //修改数据库信息最好有一些事务操作
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Records records = new Records();
+
+                        records.Rcid = (int)dAndC.Dcid;
+                        records.Ruid = dAndC.Duid;
+                        if (v == 1)
+                        {
+                            records.Rwithdrawals = money;
+                        }else if(v==2){
+                            records.RflowDeposit = money;
+                        }else
+                        {
+                            records.RfixDepostit = money;
+                        }
+                        dbContext.Add(records);
+                        dbContext.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        transaction.Rollback();
+                    }
+                }
+            }
+        } 
+        #endregion
     }
 }

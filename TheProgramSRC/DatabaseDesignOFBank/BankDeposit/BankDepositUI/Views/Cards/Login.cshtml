@@ -12,3 +12,27 @@
         <h2>您好!@user.Dname</h2>
     </div>
 </div>
+<p>
+    <button type="button" onclick="show()" style="width:330px;height:200px" class="btn btn-primary  btn-lg margin-bottom-20">活期取款</button>
+    <button type="button" onclick="show1()" style="width:330px;height:200px" class="btn btn-primary  btn-lg margin-bottom-20">查询余额</button>
+    <button type="button" onclick="show2()" style="width:330px;height:200px" class="btn btn-primary  btn-lg margin-bottom-20">活期存款</button>
+</p>
+<script type="text/javascript">
+    function show() {
+        var url = '/Cards/WithDrawal';
+        location.href = url;
+        //window.open(url);
+    }
+    function show1() {
+        var url = '/Cards/FixDeposit';
+        location.href = url;
+        //window.open(url);
+    }
+    function show2() {
+        var url = '/Cards/FloatDeposit';
+        location.href = url;
+        //window.open(url);
+    }
+</script>
+
+

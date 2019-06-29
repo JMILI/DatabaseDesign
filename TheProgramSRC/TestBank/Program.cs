@@ -124,7 +124,7 @@ namespace TestBank
 
                         //dbContext.Add(depositor);
                         //Records record = new Records();
-                        var cid = 20001;
+                        //var cid = 20001;
                         //record = dbContext.Records.FromSql("select * from Records where Rcid={0} And RflowDeposit != 0 or Rwithdrawals != 0 order by Rid desc", cid).AsNoTracking().ToList().FirstOrDefault();
                         //foreach (var item in record)
                         //{
@@ -140,14 +140,19 @@ namespace TestBank
                         //DateTime dt2 = System.DateTime.Now;//生成新的系统时间
                         //Double Day = dt2.Day - dt1.Day;//天数差值
                         //Console.WriteLine(Day);
-                        List<Fixbalances> fixbalances = new List<Fixbalances>();
-                        fixbalances = dbContext.Fixbalances.FromSql("select * from Fixbalances where Fcid={0} order by Fid desc", cid).AsNoTracking().ToList();
-                        foreach (var item in fixbalances)
-                        {
-                            Console.WriteLine(item.Fcid);
-                            Console.WriteLine(item.FfixBalance);
-                            Console.WriteLine(item.FfixBalanceRate);
-                        }
+                        //List<Fixbalances> fixbalances = new List<Fixbalances>();
+                        //fixbalances = dbContext.Fixbalances.FromSql("select * from Fixbalances where Fcid={0} order by Fid desc", cid).AsNoTracking().ToList();
+                        //foreach (var item in fixbalances)
+                        //{
+                        //    Console.WriteLine(item.Fcid);
+                        //    Console.WriteLine(item.FfixBalance);
+                        //    Console.WriteLine(item.FfixBalanceRate);
+                        //}
+                        Records records = new Records();
+                        records.Rcid = 20001;
+                        records.Ruid = 10001;
+                        records.Rwithdrawals = 100;
+                        dbContext.Add(records);
                         dbContext.SaveChanges();
 
 

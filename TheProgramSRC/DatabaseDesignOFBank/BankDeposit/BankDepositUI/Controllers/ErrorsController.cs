@@ -24,7 +24,12 @@ namespace BankDepositUI.Controllers
             return View();
         }
         #endregion
+        public IActionResult MoneyError()
+        {
+            return View();
+        }
 
+        
         #region 绑定错误页面
         /// <summary>
         /// 返回绑定错误页面

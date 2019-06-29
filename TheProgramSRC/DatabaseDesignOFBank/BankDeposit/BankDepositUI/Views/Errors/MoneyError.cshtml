@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "_SignInLayout";
+}
+
+<h1 class="error">错误 <strong></strong></h1>
+<h2 class="error"> <strong>您的账号余额不足！！！</strong></h2>
+<form action="@Url.Action("ReLogin","Cards")">
+    <div class="controls">
+        <button class="btn btn-greensea"><i class="fa fa-home"></i>返回主页</button>
+    </div>
+</form>

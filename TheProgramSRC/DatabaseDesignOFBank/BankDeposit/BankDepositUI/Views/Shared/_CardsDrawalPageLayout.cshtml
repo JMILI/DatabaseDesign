@@ -1,7 +1,4 @@
-﻿@{
-    var user = Model;
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>主页</title>
@@ -161,7 +158,6 @@
                                             <img src="~/assets/images/profile-photo.jpg" alt />
                                         </div>
                                         <div class="message-info">
-                                            <span class="sender">@user.Dname</span>
                                             <span class="time">3 hours</span>
                                             <div class="message-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</div>
                                         </div>
@@ -250,7 +246,6 @@
                                 <img src="~/assets/images/profile-photo.jpg" alt />
                             </div>
                             <a class="dropdown-toggle options" data-toggle="dropdown" href="#">
-                                @user.Dname <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu arrow settings animated fadeInDown">
                                 <li>
@@ -291,20 +286,6 @@
                 </div>
             </div>
             <div id="content" class="col-md-12">
-                <div class="pageheader">
-                    <h2>
-                        <i class="fa fa-tachometer"></i> 姓名：
-                        <span>@user.Dname</span>
-                    </h2>
-                    <h2>
-                        <i class="fa fa-tachometer"></i> 账号：
-                        <span>@user.Duid</span>
-                    </h2>
-                    <h2>
-                        <i class="fa fa-tachometer"></i> 当前银行卡号：
-                        <span>@user.Dcid</span>
-                    </h2>
-                </div>
                 @RenderBody()
             </div>
             <div id="mmenu" class="right-panel">
