@@ -11,7 +11,5 @@ namespace TestBank.SqlBank
         public double? FfixBalanceRate { get; set; }
         public double? FfixBalance { get; set; }
         public DateTime? FbusinessTime { get; set; }
-
-        public Cards Fc { get; set; }
     }
 }

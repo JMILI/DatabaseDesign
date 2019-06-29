@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BankDepositUI.Models;
 using BankDeposit.Model.SqlBank;
 using BankDeposit.Service;
+using Newtonsoft.Json;
 
 namespace BankDepositUI.Controllers
 {
@@ -14,8 +15,9 @@ namespace BankDepositUI.Controllers
     {
         #region 实例化一些工具对象
         public static Managers manager = new Managers();
+        public static ManagersService managerServive = new ManagersService();
         #endregion
-     
+
         #region “登录”功能 已实现
         public IActionResult Login(Managers manager)
         {
@@ -31,16 +33,53 @@ namespace BankDepositUI.Controllers
         //1.返回填写信息页面
         //2.获得前端页面信息，向数据库Cards表中填写数据。
         //3.返回一个成功页面，展示新增的这项Cards记录
+        public IActionResult AddInformation()
+        {
+            return View();
+        }
+        public IActionResult AddLogin(Cards card)
+        {
+            managerServive.AddCardService(card);
+            return RedirectToAction("Success", "Managers");
+        }
+        public IActionResult Success()
+        {
+            return View();
+        }
+
+        public IActionResult ReLogin()
+        {
+            return RedirectToAction("Login", "Managers", ManagerRequestCookie());
+        }
+        public Managers ManagerRequestCookie()
+        {
+            this.Request.Cookies.TryGetValue("Mid", out string Mid);
+            int mid = int.Parse(Mid);
+
+            this.Request.Cookies.TryGetValue("Mname", out string Mname);
+            string name = Mname;
+            this.Request.Cookies.TryGetValue("Midentify", out string Midentify);
+            string midentify = Midentify;
+            manager.Mid = mid;
+            manager.Mname = name;
+            manager.Midentify = midentify;
+            return manager;
+        }
+
         #endregion
 
-        #region “统计查询所有储户卡信息”功能 待实现 
-        //模拟柜台管理员统计信息，信息自己定
+        #region 查询办理业务记录
+        public ActionResult BusinessInformation()
+        {
+            List<Information> Information = new List<Information>();
+            this.Request.Cookies.TryGetValue("Mid", out string Mid);
+            int mid = int.Parse(Mid);
+            Information = managerServive.BusinessRecordsService(mid);
+            return Content(JsonConvert.SerializeObject(Information));
+        }
         #endregion
 
-        #region “冻结账户”功能 待实现 
-        //模拟柜台管理员统计信息，信息自己定，
-        //如果做了此功能，储户系统，和ATM系统会作出相应改变，需要最后加入相应的改变
-        #endregion
+
 
     }
 }

@@ -18,6 +18,9 @@ namespace BankDeposit.Service
         public static CardsService cardServive = new CardsService();
 
         public static Cards card = new Cards();
+
+        
+
         public static Depositors depositor = new Depositors();
         public static DepositorAndCard cards = new DepositorAndCard();
         #endregion
@@ -102,5 +105,10 @@ namespace BankDeposit.Service
         }
 
         #endregion
+
+        internal void AddCardService(Cards card)
+        {
+            CardsAccess.Add(card);
+        }
     }
 }

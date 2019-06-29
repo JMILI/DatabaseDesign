@@ -49,6 +49,9 @@
     <Content Update="Views\Errors\MoneyError.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Managers\AddInformation.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Managers\Login.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -62,6 +65,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Errors\PasswordError.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Managers\Success.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\_CardsDrawalPageLayout.cshtml">

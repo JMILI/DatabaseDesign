@@ -26,6 +26,7 @@ namespace BankDeposit.Data
             //return access.QueryCardsData(user);
         }
         #endregion
+
         #region 查询银行卡
         public Cards CardsData(int? cid)
         {
@@ -35,6 +36,7 @@ namespace BankDeposit.Data
             }
         }
         #endregion
+
         #region 查询前十项记录
         /// <summary>
         /// 查询最近十项记录,
@@ -72,6 +74,32 @@ namespace BankDeposit.Data
                 }
             }
         }
+
+
+        #endregion
+
+        #region 增添银行卡用户
+        public void Add(Cards card)
+        {
+            using (var dbContext = new bankContext())
+            {
+                //修改数据库信息最好有一些事务操作
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        dbContext.Add(card);
+                        dbContext.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        transaction.Rollback();
+                    }
+                }
+            }
+        } 
         #endregion
     }
 }

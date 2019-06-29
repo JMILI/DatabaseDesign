@@ -75,8 +75,6 @@ namespace BankDepositUI.Controllers
         //3.重新返回主页
         #endregion
 
-
-
         #region “转账”功能 待实现 选做
         #endregion
 

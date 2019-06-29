@@ -16,22 +16,21 @@ namespace TestBank
             #region 操作数据库中的视图
             using (ViewContext dbContext = new ViewContext())
             {
+                var mid = 30001;
                 //通过ViewContext.Iformation属性从数据库中查询视图数据，因为和数据库表不同，
                 //我们不会更新数据库视图的数据，所以调用AsNoTracking方法来告诉EF Core不用在DbContext中跟踪返回的Iformation实体，可以提高EF Core的运行效率
-                //var vPersons = dbContext.Information.AsNoTracking().ToList();
-                //infomation = dbContext.Information.FirstOrDefault(a => a.Icid == 20001);
+                var vPersons = dbContext.Information.FromSql("select * from Information where Imid={0} and DateDiff(dd, Ioldtime, getdate()-1) = 0", mid).AsNoTracking().ToList();
+            //infomation = dbContext.Information.FirstOrDefault(a => a.Icid == 20001);
                 //Console.WriteLine(infomation.Icid);
                 //Console.WriteLine(infomation.Ioldtime);
-                //foreach (var vPerson in vPersons)
-                //{
-                //    Console.Write(vPerson.Icid + " ");
-                //    Console.Write(vPerson.Iuid + " ");
-                //    Console.Write(vPerson.Ioldtime + " ");
-                //    Console.Write(vPerson.IflowBalance + " ");
-                //    Console.Write(vPerson.IfixBalance + " ");
-                //    Console.Write(vPerson.Iname + " ");
-                //    Console.WriteLine(vPerson.Istatus + " ");
-                //}
+                foreach (var vPerson in vPersons)
+                {
+                    Console.Write(vPerson.Icid + " ");
+                    Console.Write(vPerson.Iuid + " ");
+                    Console.Write(vPerson.Ioldtime + " ");
+                    Console.Write(vPerson.Imid + " ");
+                    Console.WriteLine();
+                }
                 //Console.WriteLine($"Information视图有{vPersons.Count.ToString()}行数据");
                 //Console.WriteLine(vPersons[0].Icid.ToString());
 
@@ -50,6 +49,7 @@ namespace TestBank
                 //Day = Day * 0.2;
                 //Console.WriteLine(Day);
                 #endregion
+
             }
             #endregion
 

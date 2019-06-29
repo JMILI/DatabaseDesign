@@ -12,7 +12,6 @@ namespace BankDeposit.Model.SqlBank
         public double? RfixDepostit { get; set; }
         public double? Rwithdrawals { get; set; }
         public DateTime? RnowDateTime { get; set; }
-
-        public Cards Rc { get; set; }
+        public int Rmid { get; set; }
     }
 }

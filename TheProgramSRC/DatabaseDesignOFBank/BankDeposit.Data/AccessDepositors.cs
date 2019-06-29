@@ -83,13 +83,13 @@ namespace BankDeposit.Data
         /// </summary>
         /// <param name="depositor"></param>
         /// <returns></returns>
-        public Bands CheakBandData(int? Ucid)
-        {
-            using (var dbContext = new bankContext())
-            {
-                return dbContext.Bands.FromSql("select * from bands where Bcid = {0}", Ucid).AsNoTracking().ToList().FirstOrDefault();
-            }
-        }
+        //public Bands CheakBandData(int? Ucid)
+        //{
+        //    using (var dbContext = new bankContext())
+        //    {
+        //        return dbContext.Bands.FromSql("select * from bands where Bcid = {0}", Ucid).AsNoTracking().ToList().FirstOrDefault();
+        //    }
+        //}
         #endregion
 
         //#region 查询前十项记录

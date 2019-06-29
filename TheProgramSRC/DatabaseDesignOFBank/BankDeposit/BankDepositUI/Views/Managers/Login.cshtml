@@ -6,9 +6,84 @@
 
     var user = Model;
 }
+<script src="~/assets/js/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
 <div class="jumbotron bg-transparent-black-3">
 
     <div class="container text-center">
         <h2>您好!@user.Mname</h2>
     </div>
 </div>
+
+<script type="text/javascript">
+    function add(){
+        var url = '@Url.Action("AddInformation", "Managers")';
+        location.href = url;
+    }
+</script>
+
+
+
+<!-- 查询前十项记录功能块开始 -->
+<section class="tile color transparent-white">
+    <div class="tile-header">
+        <h1><strong>业务记录</strong> </h1>
+    </div>
+    <div class="tile-body nopadding">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>索引</th>
+                    <th>单号</th>
+                    <th>储户姓名</th>
+                    <th>储户账号</th>
+                    <th>银行卡号</th>
+                    <th>活期存款额</th>
+                    <th>定期存款额</th>
+                    <th>取款额</th>
+                    <th>交易时间</th>
+                    <th>业务办理员</th>
+                </tr>
+            </thead>
+            <tbody id="yeye"></tbody>
+        </table>
+    </div>
+</section>
+<script>
+    $(function () {
+        initBind(); //初始化所有绑定函数
+    })
+    function initBind() {
+        $('#yewu').bind('click', function () {
+            var url = "/Managers/BusinessInformation";
+            var strHtml;
+            $.ajax({
+                "url": url,
+                "async": true,
+                dataType: "json",	//必须加，将json字符串转换为json格式
+                success: function (result) {
+                    //result：Json数据，idx：下标，obj：内容（相当于result[idx]）
+                    $.each(result, function (idx, obj) {
+                        strHtml += '<tr class="danger">'
+                        strHtml += '<td>' + idx + '</td>'
+                        strHtml += '<td>' + obj.Irid + '</td>'
+                        strHtml += '<td>' + obj.Iname + '</td>'
+                        strHtml += '<td>' + obj.Iuid + '</td>'
+                        strHtml += '<td>' + obj.Icid + '</td>'
+                        strHtml += '<td>' + obj.IflowDeposit + '</td>'
+                        strHtml += '<td>' + obj.IfixDepostit + '</td>'
+                        strHtml += '<td>' + obj.Iwithdrawals + '</td>'
+                        strHtml += '<td>' + obj.Ioldtime + '</td>'
+                        strHtml += '<td>' + obj.Imid + '</td>'
+                        strHtml += '</tr>';
+                    })
+
+                    $('#yeye').empty().append(strHtml);
+                    //$("#tb_list").text(result);
+                }
+            })
+        })
+    }
+
+</script>

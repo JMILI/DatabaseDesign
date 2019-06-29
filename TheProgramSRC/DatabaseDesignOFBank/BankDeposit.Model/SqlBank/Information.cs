@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TestBank.SqlBank
+namespace BankDeposit.Model.SqlBank
 {
-    class Information
+   public class Information
     {
         public int Irid { get; set; }
         public string Iname { get; set; }

@@ -15,7 +15,6 @@ namespace BankDeposit.Model.SqlBank
         {
         }
 
-        public virtual DbSet<Bands> Bands { get; set; }
         public virtual DbSet<Cards> Cards { get; set; }
         public virtual DbSet<Depositors> Depositors { get; set; }
         public virtual DbSet<Fixbalances> Fixbalances { get; set; }
@@ -33,23 +32,6 @@ namespace BankDeposit.Model.SqlBank
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Bands>(entity =>
-            {
-                entity.HasKey(e => e.Bcid);
-
-                entity.ToTable("bands");
-
-                entity.Property(e => e.Bcid).HasColumnType("int(100)");
-
-                entity.Property(e => e.Buid).HasColumnType("int(100)");
-
-                entity.HasOne(d => d.Bc)
-                    .WithOne(p => p.Bands)
-                    .HasForeignKey<Bands>(d => d.Bcid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reference_4");
-            });
-
             modelBuilder.Entity<Cards>(entity =>
             {
                 entity.HasKey(e => e.Cid);
@@ -117,9 +99,6 @@ namespace BankDeposit.Model.SqlBank
 
                 entity.ToTable("fixbalances");
 
-                entity.HasIndex(e => e.Fcid)
-                    .HasName("FK_Reference_3");
-
                 entity.Property(e => e.Fid).HasColumnType("int(100)");
 
                 entity.Property(e => e.FbusinessTime)
@@ -139,12 +118,6 @@ namespace BankDeposit.Model.SqlBank
                 entity.Property(e => e.Fyear)
                     .HasColumnType("int(50)")
                     .HasDefaultValueSql("'0'");
-
-                entity.HasOne(d => d.Fc)
-                    .WithMany(p => p.Fixbalances)
-                    .HasForeignKey(d => d.Fcid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reference_3");
             });
 
             modelBuilder.Entity<Managers>(entity =>
@@ -175,9 +148,6 @@ namespace BankDeposit.Model.SqlBank
 
                 entity.ToTable("records");
 
-                entity.HasIndex(e => e.Rcid)
-                    .HasName("FK_Reference_2");
-
                 entity.Property(e => e.Rid).HasColumnType("int(100)");
 
                 entity.Property(e => e.Rcid).HasColumnType("int(100)");
@@ -190,6 +160,8 @@ namespace BankDeposit.Model.SqlBank
                     .HasColumnType("double(200,3)")
                     .HasDefaultValueSql("'0.000'");
 
+                entity.Property(e => e.Rmid).HasColumnType("int(100)");
+
                 entity.Property(e => e.RnowDateTime)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("'CURRENT_TIMESTAMP'");
@@ -199,12 +171,6 @@ namespace BankDeposit.Model.SqlBank
                 entity.Property(e => e.Rwithdrawals)
                     .HasColumnType("double(200,3)")
                     .HasDefaultValueSql("'0.000'");
-
-                entity.HasOne(d => d.Rc)
-                    .WithMany(p => p.Records)
-                    .HasForeignKey(d => d.Rcid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reference_2");
             });
         }
     }

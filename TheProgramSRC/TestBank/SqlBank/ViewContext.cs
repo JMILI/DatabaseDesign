@@ -24,17 +24,19 @@ namespace TestBank.SqlBank
             {
                 //告诉EF Core实体Information对应数据库中的Information视图，这里使用entity.ToTable方法后，上面的DbSet<Information> Information集合属性可以叫任何名字，比如我们可以将其定义为DbSet<Information> V_People也可以，如果不使用entity.ToTable方法，那么DbSet<Information> Information的属性名字必须和数据库视图Information的名字相同，否则EF Core会报错
                 entity.ToTable("Information");
-
-                //设置实体的唯一属性，因为我们知道数据库中Information视图的ID列值是唯一的，所以这里我们设置实体Information的Id属性为唯一属性
-                entity.HasKey(e => e.Icid);
-                //利用Fluent API将实体Information的每一列映射到数据库视图的每一列
+                entity.HasKey(e => e.Irid);
+                //利用Fluent API将实体DepositorAndCard的每一列映射到数据库视图的每一列
                 entity.Property(e => e.Iuid).HasColumnName("Iuid");
-                entity.Property(e => e.Ioldtime).HasColumnName("Ioldtime");
-                entity.Property(e => e.IflowBalance).HasColumnName("IflowBalance");
-                entity.Property(e => e.IfixBalance).HasColumnName("IfixBalance");
+                entity.Property(e => e.Icid).HasColumnName("Icid");
                 entity.Property(e => e.Iname).HasColumnName("Iname");
-                entity.Property(e => e.Istatus).HasColumnName("Istatus");
+                entity.Property(e => e.IfixDepostit).HasColumnName("IfixDepostit");
+                entity.Property(e => e.IflowDeposit).HasColumnName("IflowDeposit");
+                entity.Property(e => e.Ioldtime).HasColumnName("Ioldtime");
+                entity.Property(e => e.Iwithdrawals).HasColumnName("Iwithdrawals");
+                entity.Property(e => e.Imid).HasColumnName("Imid");
             });
+
+
         }
     }
 }

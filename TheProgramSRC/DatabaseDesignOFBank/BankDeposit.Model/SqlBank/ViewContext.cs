@@ -14,6 +14,7 @@ namespace BankDeposit.Model.SqlBank
         /// 定义一个DbSet<DepositorAndCard>的集合属性DepositorAndCard，EF Core会自动为其赋值，然后可以利用ViewContextt.DepositorAndCard属性来读取数据库中DepositorAndCard视图的数据
         /// </summary>
         public virtual DbSet<DepositorAndCard> DepositorAndCard { get; set; }
+        public virtual DbSet<Information> Information { get; set; }
         /// <summary>
         /// 在重写的OnModelCreating方法中，使用Fluent API来设置实体DepositorAndCard和数据库中DepositorAndCard视图的关系
         /// </summary>
@@ -34,8 +35,28 @@ namespace BankDeposit.Model.SqlBank
                 entity.Property(e => e.Duid).HasColumnName("Duid");
                 entity.Property(e => e.Dname).HasColumnName("Dname");
             });
+
+            modelBuilder.Entity<Information>(entity =>
+            {
+                entity.ToTable("Information");
+                entity.HasKey(e => e.Irid);
+                //利用Fluent API将实体DepositorAndCard的每一列映射到数据库视图的每一列
+                entity.Property(e => e.Iuid).HasColumnName("Iuid");
+                entity.Property(e => e.Icid).HasColumnName("Icid");
+                entity.Property(e => e.Iname).HasColumnName("Iname");
+                entity.Property(e => e.IfixDepostit).HasColumnName("IfixDepostit");
+                entity.Property(e => e.IflowDeposit).HasColumnName("IflowDeposit");
+                entity.Property(e => e.Ioldtime).HasColumnName("Ioldtime");
+                entity.Property(e => e.Iwithdrawals).HasColumnName("Iwithdrawals");
+                entity.Property(e => e.Imid).HasColumnName("Imid");
+            });
+
         }
         #endregion
+
+
+  
+
 
     }
 }
