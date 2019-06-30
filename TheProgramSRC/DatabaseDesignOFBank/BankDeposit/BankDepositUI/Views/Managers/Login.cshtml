@@ -57,10 +57,12 @@
     function initBind() {
         $('#yewu').bind('click', function () {
             var url = "/Managers/BusinessInformation";
+             var limitdata = $("#limit").val();
             var strHtml;
             $.ajax({
                 "url": url,
                 "async": true,
+                data: {limit : limitdata},
                 dataType: "json",	//必须加，将json字符串转换为json格式
                 success: function (result) {
                     //result：Json数据，idx：下标，obj：内容（相当于result[idx]）

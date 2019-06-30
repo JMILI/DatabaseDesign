@@ -18,18 +18,21 @@ namespace BankDepositUI.Controllers
             return View();
         }
         #endregion
+
         #region 账户已存在页面
         public IActionResult DepositoryExistError()
         {
             return View();
         }
         #endregion
+        
+        #region 账户钱不够错误提醒页面
         public IActionResult MoneyError()
         {
             return View();
-        }
+        } 
+        #endregion
 
-        
         #region 绑定错误页面
         /// <summary>
         /// 返回绑定错误页面

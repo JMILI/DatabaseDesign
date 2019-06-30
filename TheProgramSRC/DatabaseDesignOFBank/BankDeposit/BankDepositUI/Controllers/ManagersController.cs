@@ -28,7 +28,7 @@ namespace BankDepositUI.Controllers
         }
         #endregion
 
-        #region “注册银行卡”功能 待实现 
+        #region “注册银行卡”功能 已实现 
         //模拟柜台管理员给储户开户，即要填写用户基本信息储户账号Cuid，密码Cpassword
         //1.返回填写信息页面
         //2.获得前端页面信息，向数据库Cards表中填写数据。
@@ -68,18 +68,38 @@ namespace BankDepositUI.Controllers
 
         #endregion
 
-        #region 查询办理业务记录
-        public ActionResult BusinessInformation()
+        #region 查询管理员一段时间的办理业务记录 已完成
+        public ActionResult BusinessInformation(string limit)
         {
+            limit= handledata(limit);
             List<Information> Information = new List<Information>();
             this.Request.Cookies.TryGetValue("Mid", out string Mid);
             int mid = int.Parse(Mid);
-            Information = managerServive.BusinessRecordsService(mid);
+            Information = managerServive.BusinessRecordsService(mid, limit);
             return Content(JsonConvert.SerializeObject(Information));
         }
+
+        #region 辅助函数，进行搜索信息分类
+        public string handledata(string limit)
+        {
+            if (limit == "" || limit == null)
+                return limit = "0";
+            else if (limit.Contains("月"))
+            {
+                return limit = "月";
+            }
+            else if (limit.Contains("周"))
+            {
+                return limit = "周";
+            }
+            else return limit = "天";
+        }
+        #endregion
         #endregion
 
+        #region 办理储户的各种业务（复用ATM系统，扩展）待实现
 
+        #endregion
 
     }
 }

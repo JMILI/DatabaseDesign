@@ -26,9 +26,9 @@ namespace BankDeposit.Service
             cardServive.AddCardService(card);
         }
 
-        public List<Information> BusinessRecordsService(int mid)
+        public List<Information> BusinessRecordsService(int mid, string limit)
         {
-            return accessInformation.BusinessData(mid);
+            return accessInformation.BusinessData(mid, limit);
         }
         #endregion
     }

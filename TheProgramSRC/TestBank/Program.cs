@@ -19,10 +19,45 @@ namespace TestBank
                 var mid = 30001;
                 //通过ViewContext.Iformation属性从数据库中查询视图数据，因为和数据库表不同，
                 //我们不会更新数据库视图的数据，所以调用AsNoTracking方法来告诉EF Core不用在DbContext中跟踪返回的Iformation实体，可以提高EF Core的运行效率
-                var vPersons = dbContext.Information.FromSql("select * from Information where Imid={0} and DateDiff(dd, Ioldtime, getdate()-1) = 0", mid).AsNoTracking().ToList();
-            //infomation = dbContext.Information.FirstOrDefault(a => a.Icid == 20001);
+                //var vPersons = dbContext.Information.FromSql("select * from Information where Imid={0} and DateDiff(dd, Ioldtime, getdate()-1) = 0", mid).AsNoTracking().ToList();
+                //select* from 数据表 where  DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= 你要判断的时间字段名
+                //select* from Information where  DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= Ioldtime
+                //var vPersons = dbContext.Information.FromSql(
+                //    "SELECT* FROM  Information WHERE YEARWEEK(date_format(Ioldtime, '%Y-%m-%d')) = YEARWEEK(now()) and Imid={0}",mid).AsNoTracking().ToList();
+                //       var vPersons =  dbContext.Information.FromSql(
+                //" SELECT* FROM  Information WHERE DATE_FORMAT(Ioldtime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m') and Imid={0}", mid)
+                //.AsNoTracking().ToList();
+                //var vPersons = dbContext.Information.
+                //select* from Information where to_days(Ioldtime) = to_days(now());
+                //SELECT* FROM Information WHERE TO_DAYS(NOW()) - TO_DAYS(Ioldtime) <= 1
+                //SELECT* FROM  Information WHERE YEARWEEK(date_format(Ioldtime, '%Y-%m-%d')) = YEARWEEK(now())
+                //infomation = dbContext.Information.FirstOrDefault(a => a.Icid == 20001);
                 //Console.WriteLine(infomation.Icid);
                 //Console.WriteLine(infomation.Ioldtime);
+                string limit = "月";
+                List<Information> vPersons = new List<Information>();
+                if (limit == "月")
+                {
+                     vPersons = dbContext.Information.FromSql(
+         " SELECT* FROM  Information WHERE DATE_FORMAT(Ioldtime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m') and Imid={0}", mid)
+         .AsNoTracking().ToList();
+                }
+                else if (limit == "周")
+                {  //返回一周类该管理员办理的业务    
+                     vPersons = dbContext.Information.FromSql(
+                    "SELECT* FROM  Information WHERE YEARWEEK(date_format(Ioldtime, '%Y-%m-%d')) = YEARWEEK(now()) and Imid={0}", mid).AsNoTracking().ToList();
+                }
+                else if (limit == "天")
+                {
+                    //返回今天的业务办理情况
+                     vPersons = dbContext.Information.FromSql(
+              "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().ToList();
+                }
+                else
+                {
+                     vPersons = dbContext.Information.FromSql(
+            "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().Take(10).ToList();
+                }
                 foreach (var vPerson in vPersons)
                 {
                     Console.Write(vPerson.Icid + " ");
