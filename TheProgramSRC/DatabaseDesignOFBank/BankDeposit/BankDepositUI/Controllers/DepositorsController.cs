@@ -49,7 +49,7 @@ namespace BankDepositUI.Controllers
         public IActionResult AddLogin(Depositors depositor)
         {
             depositors = depositorServive.AddService(depositor);
-            if ( depositors != null)
+            if (depositors != null)
             {
                 cooikeAdd(depositors);
                 return RedirectToAction("Login", "Depositors", depositors);
@@ -67,7 +67,7 @@ namespace BankDepositUI.Controllers
         /// <returns>返回json数据</returns>
         public ActionResult QueryTenRecords()
         {
-            List<Records> record = new List<Records>() ;
+            List<Records> record = new List<Records>();
             this.Request.Cookies.TryGetValue("Cid", out string Cid);
             int cid = int.Parse(Cid);
             record = depositorServive.TenRecordsService(cid);
@@ -96,7 +96,7 @@ namespace BankDepositUI.Controllers
             depositor.Dname = Name;
             int uid = int.Parse(Uid);
             bool s = depositorServive.UpdataBandService(depositor);
-            if (s ==true)
+            if (s == true)
             {
                 //cooikeAdd(depositors);
                 return RedirectToAction("Login", "Depositors", depositor);
@@ -122,9 +122,9 @@ namespace BankDepositUI.Controllers
         public ActionResult FixBalance()
         {
             List<Fixbalances> record = new List<Fixbalances>();
-            this.Request.Cookies.TryGetValue("Cid", out string Cid);//从cookie中请求当前用户卡号
-            int cid = int.Parse(Cid);
-            record = depositorServive.FixBalanceService(cid);//这里需要service返回一个余额，一个利息
+            //this.Request.Cookies.TryGetValue("Cid", out string Cid);//从cookie中请求当前用户卡号
+            //int cid = int.Parse(Cid);
+            record = depositorServive.FixBalanceService((int)DAndC().Dcid);//这里需要service返回一个余额，一个利息
             return Content(JsonConvert.SerializeObject(record));//以json方式
         }
         #endregion
@@ -145,6 +145,20 @@ namespace BankDepositUI.Controllers
             this.Response.Cookies.Append("Uid", depositor.Duid.ToString());
             this.Response.Cookies.Append("Cid", depositor.Dcid.ToString());
             this.Response.Cookies.Append("Name", depositor.Dname.ToString());
+        }
+        public DepositorAndCard DAndC()
+        {
+            DepositorAndCard dAndC = new DepositorAndCard();
+            this.Request.Cookies.TryGetValue("Cid", out string Cid);
+            int cid = int.Parse(Cid);
+            this.Request.Cookies.TryGetValue("Uid", out string Uid);
+            int uid = int.Parse(Uid);
+            this.Request.Cookies.TryGetValue("Name", out string Name);
+            string name = Name;
+            dAndC.Dcid = cid;
+            dAndC.Dname = name;
+            dAndC.Duid = uid;
+            return dAndC;
         }
         #endregion
 

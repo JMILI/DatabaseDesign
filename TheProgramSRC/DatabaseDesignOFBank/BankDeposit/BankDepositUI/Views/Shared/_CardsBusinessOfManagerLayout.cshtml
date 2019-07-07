@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <title>主页</title>
@@ -158,7 +159,7 @@
                                             <img src="~/assets/images/profile-photo.jpg" alt />
                                         </div>
                                         <div class="message-info">
-                                            <span class="sender">管理员</span>
+                                            <span class="sender"></span>
                                             <span class="time">3 hours</span>
                                             <div class="message-content">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</div>
                                         </div>
@@ -275,15 +276,15 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="@Url.Action(" UpdateView","Student")"><i class="fa fa-envelope"></i> 修改信息 </a>
+                                    <a href="@Url.Action("UpdateView","Student")"><i class="fa fa-envelope"></i> 修改信息 </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="@Url.Action(" Index","Home")"><i class="fa fa-power-off"></i> 退出</a>
+                                    <a href="@Url.Action("Index","Home")"><i class="fa fa-power-off"></i> 退出</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="@Url.Action(" Delete","Student")"><button type="submit" class="btn btn-red"><i class="fa fa-calendar"></i> 注销</button></a>
+                                    <a href="@Url.Action("Delete","Student")"><button type="submit" class="btn btn-red"><i class="fa fa-calendar"></i> 注销</button></a>
                                 </li>
                             </ul>
                         <li>
@@ -301,21 +302,37 @@
                             </ul>
                         </li>
                         <li class="navigation" id="navigation">
-                            <a href="#" class="sidebar-toggle" data-toggle="#navigation">储户办理业务 <i class="fa fa-angle-up"></i></a>
+                            <a href="#" class="sidebar-toggle" data-toggle="#navigation">银行卡办理业务 <i class="fa fa-angle-up"></i></a>
                             <ul class="menu">
                                 <li class="dropdown" onclick="FixDeposit()">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-pencil"></i> 定期存款 <b class="fa fa-plus dropdown-plus"></b>
                                     </a>
                                 </li>
+                                <li class="dropdown" onclick="FlowDeposit()">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-pencil"></i> 活期存款 <b class="fa fa-plus dropdown-plus"></b>
+                                    </a>
+                                </li>
+                                <li class="dropdown" id="btn_listflow">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-list"></i> 查询活期存款余额 <b class="fa fa-plus dropdown-plus"></b>
+                                    </a>
+                                </li>
+                                <li class="dropdown" id="btn_listfix">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-list"></i> 查询定期存款余额 <b class="fa fa-plus dropdown-plus"></b>
+                                    </a>
+                                </li>
 
                             </ul>
                         </li>
 
-                      
+
 
                 </div>
             </div>
+            <div id="content" class="col-md-12">
                 @RenderBody()
             </div>
             <div id="mmenu" class="right-panel">

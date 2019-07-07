@@ -22,10 +22,10 @@ namespace BankDeposit.Service
         public static DepositorAndCard depositors = new DepositorAndCard();
         public static Cards card = new Cards();
         public static List<Records> records = new List<Records>();
-       
+
         public static CardsService cardsService = new CardsService();
         public static FixbalanceService fixbalanceService = new FixbalanceService();
-        
+
         #endregion
 
         #region 查询储户
@@ -131,14 +131,14 @@ namespace BankDeposit.Service
         /// <returns></returns>
         public List<double> FlowBalanceService(int cid)
         {
-           return cardsService.FlowBalanceService(cid);
+            return cardsService.FlowBalanceService(cid);
         }
         #endregion
         #region 查询定期余额情况
         public List<Fixbalances> FixBalanceService(int cid)
         {
             return fixbalanceService.FixBalancesService(cid);
-        } 
+        }
         #endregion
     }
 }

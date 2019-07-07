@@ -16,7 +16,7 @@ namespace TestBank
             #region 操作数据库中的视图
             using (ViewContext dbContext = new ViewContext())
             {
-                var mid = 30001;
+                //var mid = 30001;
                 //通过ViewContext.Iformation属性从数据库中查询视图数据，因为和数据库表不同，
                 //我们不会更新数据库视图的数据，所以调用AsNoTracking方法来告诉EF Core不用在DbContext中跟踪返回的Iformation实体，可以提高EF Core的运行效率
                 //var vPersons = dbContext.Information.FromSql("select * from Information where Imid={0} and DateDiff(dd, Ioldtime, getdate()-1) = 0", mid).AsNoTracking().ToList();
@@ -34,38 +34,38 @@ namespace TestBank
                 //infomation = dbContext.Information.FirstOrDefault(a => a.Icid == 20001);
                 //Console.WriteLine(infomation.Icid);
                 //Console.WriteLine(infomation.Ioldtime);
-                string limit = "";
-                List<Information> vPersons = new List<Information>();
-                if (limit == "月")
-                {
-                     vPersons = dbContext.Information.FromSql(
-         " SELECT* FROM  Information WHERE DATE_FORMAT(Ioldtime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m') and Imid={0}", mid)
-         .AsNoTracking().ToList();
-                }
-                else if (limit == "周")
-                {  //返回一周类该管理员办理的业务    
-                     vPersons = dbContext.Information.FromSql(
-                    "SELECT* FROM  Information WHERE YEARWEEK(date_format(Ioldtime, '%Y-%m-%d')) = YEARWEEK(now()) and Imid={0}", mid).AsNoTracking().ToList();
-                }
-                else if (limit == "天")
-                {
-                    //返回今天的业务办理情况
-                     vPersons = dbContext.Information.FromSql(
-              "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().ToList();
-                }
-                else
-                {
-                     vPersons = dbContext.Information.FromSql(
-            "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().Take(10).ToList();
-                }
-                foreach (var vPerson in vPersons)
-                {
-                    Console.Write(vPerson.Icid + " ");
-                    Console.Write(vPerson.Iuid + " ");
-                    Console.Write(vPerson.Ioldtime + " ");
-                    Console.Write(vPerson.Imid + " ");
-                    Console.WriteLine();
-                }
+         //       string limit = "";
+         //       List<Information> vPersons = new List<Information>();
+         //       if (limit == "月")
+         //       {
+         //            vPersons = dbContext.Information.FromSql(
+         //" SELECT* FROM  Information WHERE DATE_FORMAT(Ioldtime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m') and Imid={0}", mid)
+         //.AsNoTracking().ToList();
+         //       }
+         //       else if (limit == "周")
+         //       {  //返回一周类该管理员办理的业务    
+         //            vPersons = dbContext.Information.FromSql(
+         //           "SELECT* FROM  Information WHERE YEARWEEK(date_format(Ioldtime, '%Y-%m-%d')) = YEARWEEK(now()) and Imid={0}", mid).AsNoTracking().ToList();
+         //       }
+         //       else if (limit == "天")
+         //       {
+         //           //返回今天的业务办理情况
+         //            vPersons = dbContext.Information.FromSql(
+         //     "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().ToList();
+         //       }
+         //       else
+         //       {
+         //            vPersons = dbContext.Information.FromSql(
+         //   "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().Take(10).ToList();
+         //       }
+         //       foreach (var vPerson in vPersons)
+         //       {
+         //           Console.Write(vPerson.Icid + " ");
+         //           Console.Write(vPerson.Iuid + " ");
+         //           Console.Write(vPerson.Ioldtime + " ");
+         //           Console.Write(vPerson.Imid + " ");
+         //           Console.WriteLine();
+         //       }
                 //Console.WriteLine($"Information视图有{vPersons.Count.ToString()}行数据");
                 //Console.WriteLine(vPersons[0].Icid.ToString());
 
@@ -183,10 +183,10 @@ namespace TestBank
                         //    Console.WriteLine(item.FfixBalance);
                         //    Console.WriteLine(item.FfixBalanceRate);
                         //}
-                        Records records = new Records();
-                        records.Rcid = 20001;
-                        records.Ruid = 10001;
-                        records.Rwithdrawals = 100;
+                        Cards records = new Cards();
+                        records.CflowBalanceRate = 0.00325;
+                        records.Cuid = 10001;
+                        records.Cpassword = "20035";
                         dbContext.Add(records);
                         dbContext.SaveChanges();
 

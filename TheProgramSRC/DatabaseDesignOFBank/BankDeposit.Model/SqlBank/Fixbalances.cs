@@ -11,6 +11,6 @@ namespace BankDeposit.Model.SqlBank
         public double? FfixBalanceRate { get; set; }
         public double? FfixBalance { get; set; }
         public DateTime? FbusinessTime { get; set; }
+        public int? Fmid { get; set; }
     }
-    
 }

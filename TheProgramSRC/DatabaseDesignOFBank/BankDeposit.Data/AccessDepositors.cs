@@ -48,7 +48,7 @@ namespace BankDeposit.Data
         {
             using (var dbContext = new bankContext())
             {
-                return depositor = dbContext.Depositors.FirstOrDefault(a => a.Uid ==uid);
+                return depositor = dbContext.Depositors.FirstOrDefault(a => a.Uid == uid);
             }
         }
         #endregion

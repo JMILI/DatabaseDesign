@@ -55,7 +55,7 @@ namespace BankDeposit.Model.SqlBank
         #endregion
 
 
-  
+
 
 
     }

@@ -51,7 +51,7 @@ namespace BankDeposit.Data
             using (var dbContext = new bankContext())
             {
                 card = dbContext.Cards.FirstOrDefault(a => a.Cid == user.Id);
-                if (card != null&&card.Cpassword == user.Password)
+                if (card != null && card.Cpassword == user.Password)
                 {
                     using (var viewContext = new ViewContext())
                     {

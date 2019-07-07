@@ -58,6 +58,9 @@
     <Content Update="Views\Errors\VerifyPasswordError.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Managers\AddFlowInformation.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Managers\AddFixInformation.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

@@ -63,9 +63,11 @@ namespace BankDeposit.Service
 
         public void AddRecords(DepositorAndCard dAndC, int v, double money)
         {
-           //此处零代表的是记录表中Mid填为0，代表取款是在ATM中进行的。
-            recordsService.AddRecords(dAndC, v, money,0);
+            //此处零代表的是记录表中Mid填为0，代表取款是在ATM中进行的。
+            recordsService.AddRecords(dAndC, v, money, 0);
         }
+
+
 
 
         #endregion
@@ -105,6 +107,15 @@ namespace BankDeposit.Service
         internal void AddCardService(Cards card)
         {
             CardsAccess.Add(card);
+        }
+
+        public Cards CheakCards(int cid)
+        {
+            return CardsAccess.CardsData(cid);
+        }
+        internal void UpdataFlowBalanceService(Cards card)
+        {
+            CardsAccess.UpdateCards(card.Cid, (double)card.CflowBalance);
         }
     }
 }

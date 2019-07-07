@@ -60,7 +60,7 @@ using BankDepositUI.Models;
             WriteLiteral("\r\n<h1 class=\"error\">错误 <strong></strong></h1>\r\n<h2 class=\"error\"> <strong>请检查您的账号或密码是否正确？</strong></h2>\r\n");
             EndContext();
             BeginContext(143, 186, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "33318dc58b5f4ad6968c8b7360b65019", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "77b3bdc1ae9a4729800dcc3bd9297504", async() => {
                 BeginContext(196, 126, true);
                 WriteLiteral("\r\n    <div class=\"controls\">\r\n        <button class=\"btn btn-greensea\"><i class=\"fa fa-home\"></i>重新输入密码</button>\r\n    </div>\r\n");
                 EndContext();

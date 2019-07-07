@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BankDeposit.Service
 {
-   public class RecordsService
+    public class RecordsService
     {
         #region 实例化一些工具对象
         public static AccessCards access = new AccessCards();
@@ -14,12 +14,12 @@ namespace BankDeposit.Service
         public static AccessDAndC aAndC = new AccessDAndC();
         public static Records record = new Records();
 
-        public void AddRecords(DepositorAndCard dAndC, int v,double money,int mid)
+        public void AddRecords(DepositorAndCard dAndC, int v, double money, int mid)
         {
-            accessRecords.Add(dAndC,v,money,mid);
+            accessRecords.Add(dAndC, v, money, mid);
         }
 
-    
+
         #endregion
 
 

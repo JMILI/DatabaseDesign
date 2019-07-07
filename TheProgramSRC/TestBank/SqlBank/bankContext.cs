@@ -47,9 +47,7 @@ namespace TestBank.SqlBank
                     .HasColumnType("double(200,5)")
                     .HasDefaultValueSql("'0.00000'");
 
-                entity.Property(e => e.CflowBalanceRate)
-                    .HasColumnType("double(200,5)")
-                    .HasDefaultValueSql("'0.00000'");
+                entity.Property(e => e.CflowBalanceRate).HasColumnType("double(200,5)");
 
                 entity.Property(e => e.Cpassword)
                     .IsRequired()
@@ -114,6 +112,8 @@ namespace TestBank.SqlBank
                 entity.Property(e => e.FfixBalanceRate)
                     .HasColumnType("double(200,5)")
                     .HasDefaultValueSql("'0.00000'");
+
+                entity.Property(e => e.Fmid).HasColumnType("int(100)");
 
                 entity.Property(e => e.Fyear)
                     .HasColumnType("int(50)")

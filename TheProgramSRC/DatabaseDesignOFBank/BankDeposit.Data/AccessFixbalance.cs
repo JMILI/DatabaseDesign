@@ -46,7 +46,7 @@ namespace BankDeposit.Data
                     }
                 }
             }
-        } 
+        }
         #endregion
     }
 }

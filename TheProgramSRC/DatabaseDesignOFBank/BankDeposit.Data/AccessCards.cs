@@ -32,7 +32,7 @@ namespace BankDeposit.Data
         {
             using (var dbContext = new bankContext())
             {
-                return  dbContext.Cards.FirstOrDefault(a => a.Cid == cid);
+                return dbContext.Cards.FirstOrDefault(a => a.Cid == cid);
             }
         }
         #endregion
@@ -99,7 +99,7 @@ namespace BankDeposit.Data
                     }
                 }
             }
-        } 
+        }
         #endregion
     }
 }

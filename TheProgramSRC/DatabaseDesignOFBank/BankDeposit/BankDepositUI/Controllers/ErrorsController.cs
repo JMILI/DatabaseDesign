@@ -29,7 +29,7 @@ namespace BankDepositUI.Controllers
         public IActionResult CardsLoginError()
         {
             return View();
-        } 
+        }
         #endregion
         #region 账户已存在页面
         public IActionResult DepositoryExistError()

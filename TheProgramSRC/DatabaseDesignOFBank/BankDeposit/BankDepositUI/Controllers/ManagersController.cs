@@ -91,7 +91,7 @@ namespace BankDepositUI.Controllers
             dAndC = managerServive.LoginCardsService(card);
             if (dAndC != null)
             {
-               AddCooikeOfDAndC(dAndC);
+                AddCooikeOfDAndC(dAndC);
                 return View();
             }
             else
@@ -106,19 +106,47 @@ namespace BankDepositUI.Controllers
         }
         public IActionResult AddFixBalance(Fixbalances fix)
         {
-            managerServive.AddFixBalanceService(DAndC(),fix, ManagerRequestCookie().Mid);
+            managerServive.AddFixBalanceService(DAndC(), fix, ManagerRequestCookie().Mid);
             return RedirectToAction("Success", "Managers");
+        }
+        #endregion
+
+        #region 活期存款（柜台模拟）已实现
+        public IActionResult AddFlowInformation()
+        {
+            return View();
+        }
+        public IActionResult AddFlowBalance(Cards card)
+        {
+            managerServive.AddFlowBalanceService(DAndC(), card, ManagerRequestCookie().Mid);
+            return RedirectToAction("Success", "Managers");
+        }
+        #endregion
+
+        #region “查询活期余额”功能 已实现
+        public ActionResult FlowBalance()
+        {
+            List<Double> record = new List<Double>();
+            record = managerServive.FlowBalanceService((int)DAndC().Dcid);//这里需要service返回一个余额，一个利息
+            return Content(JsonConvert.SerializeObject(record));//以json方式
+        }
+        #endregion
+
+        #region “查询定期余额”功能 已实现
+        public ActionResult FixBalance()
+        {
+            List<Fixbalances> record = new List<Fixbalances>();
+            record = managerServive.FixBalanceService((int)DAndC().Dcid);//这里需要service返回一个余额，一个利息
+            return Content(JsonConvert.SerializeObject(record));//以json方式
         }
         #endregion
 
         #region cooike加入cid,uid,name,以及请求
         public void AddCooikeOfDAndC(DepositorAndCard card1)
         {
-            DepositorAndCard dAndC = new DepositorAndCard();
-            dAndC = card1;
-            this.Response.Cookies.Append("Uid", dAndC.Duid.ToString());
-            this.Response.Cookies.Append("Cid", dAndC.Dcid.ToString());
-            this.Response.Cookies.Append("Name", dAndC.Dname.ToString());
+            this.Response.Cookies.Append("Uid", card1.Duid.ToString());
+            this.Response.Cookies.Append("Cid", card1.Dcid.ToString());
+            this.Response.Cookies.Append("Name", card1.Dname.ToString());
         }
         public DepositorAndCard DAndC()
         {
@@ -133,7 +161,7 @@ namespace BankDepositUI.Controllers
             dAndC.Dname = name;
             dAndC.Duid = uid;
             return dAndC;
-        } 
+        }
         #endregion
         #endregion
 
