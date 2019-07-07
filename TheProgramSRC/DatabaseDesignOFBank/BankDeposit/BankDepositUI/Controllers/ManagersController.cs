@@ -16,6 +16,7 @@ namespace BankDepositUI.Controllers
         #region 实例化一些工具对象
         public static Managers manager = new Managers();
         public static ManagersService managerServive = new ManagersService();
+        public static CardsController cardsController = new CardsController();
         #endregion
 
         #region “登录”功能 已实现
@@ -55,7 +56,6 @@ namespace BankDepositUI.Controllers
         {
             this.Request.Cookies.TryGetValue("Mid", out string Mid);
             int mid = int.Parse(Mid);
-
             this.Request.Cookies.TryGetValue("Mname", out string Mname);
             string name = Mname;
             this.Request.Cookies.TryGetValue("Midentify", out string Midentify);
@@ -65,40 +65,76 @@ namespace BankDepositUI.Controllers
             manager.Midentify = midentify;
             return manager;
         }
-
         #endregion
 
         #region 查询管理员一段时间的办理业务记录 已完成
         public ActionResult BusinessInformation(string limit)
         {
-            limit= handledata(limit);
             List<Information> Information = new List<Information>();
-            this.Request.Cookies.TryGetValue("Mid", out string Mid);
-            int mid = int.Parse(Mid);
-            Information = managerServive.BusinessRecordsService(mid, limit);
+            Information = managerServive.BusinessRecordsService(ManagerRequestCookie().Mid, limit);
             return Content(JsonConvert.SerializeObject(Information));
         }
-
-        #region 辅助函数，进行搜索信息分类
-        public string handledata(string limit)
-        {
-            if (limit == "" || limit == null)
-                return limit = "0";
-            else if (limit.Contains("月"))
-            {
-                return limit = "月";
-            }
-            else if (limit.Contains("周"))
-            {
-                return limit = "周";
-            }
-            else return limit = "天";
-        }
-        #endregion
         #endregion
 
         #region 办理储户的各种业务（复用ATM系统，扩展）待实现
 
+        #region 识别银行卡（银行卡登录）已实现
+
+        public IActionResult VerifyLoginInformation()
+        {
+            return View();
+        }
+
+        public IActionResult BusinessLogin(User card)
+        {
+            DepositorAndCard dAndC = new DepositorAndCard();
+            dAndC = managerServive.LoginCardsService(card);
+            if (dAndC != null)
+            {
+               AddCooikeOfDAndC(dAndC);
+                return View();
+            }
+            else
+                return RedirectToAction("CardsLoginError", "Errors");
+        }
+        #endregion
+
+        #region 定期存款（柜台模拟）已实现
+        public IActionResult AddFixInformation()
+        {
+            return View();
+        }
+        public IActionResult AddFixBalance(Fixbalances fix)
+        {
+            managerServive.AddFixBalanceService(DAndC(),fix, ManagerRequestCookie().Mid);
+            return RedirectToAction("Success", "Managers");
+        }
+        #endregion
+
+        #region cooike加入cid,uid,name,以及请求
+        public void AddCooikeOfDAndC(DepositorAndCard card1)
+        {
+            DepositorAndCard dAndC = new DepositorAndCard();
+            dAndC = card1;
+            this.Response.Cookies.Append("Uid", dAndC.Duid.ToString());
+            this.Response.Cookies.Append("Cid", dAndC.Dcid.ToString());
+            this.Response.Cookies.Append("Name", dAndC.Dname.ToString());
+        }
+        public DepositorAndCard DAndC()
+        {
+            DepositorAndCard dAndC = new DepositorAndCard();
+            this.Request.Cookies.TryGetValue("Cid", out string Cid);
+            int cid = int.Parse(Cid);
+            this.Request.Cookies.TryGetValue("Uid", out string Uid);
+            int uid = int.Parse(Uid);
+            this.Request.Cookies.TryGetValue("Name", out string Name);
+            string name = Name;
+            dAndC.Dcid = cid;
+            dAndC.Dname = name;
+            dAndC.Duid = uid;
+            return dAndC;
+        } 
+        #endregion
         #endregion
 
     }

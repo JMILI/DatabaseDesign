@@ -60,7 +60,7 @@ using BankDepositUI.Models;
             WriteLiteral("\r\n<h1 class=\"error\">错误 <strong></strong></h1>\r\n<h2 class=\"error\"> <strong>该储户账号已经存在</strong></h2>\r\n");
             EndContext();
             BeginContext(137, 189, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "72c75c836a0d4860ae02e3552611a8d5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "74373a34ef1b43398d9a3a8892041de5", async() => {
                 BeginContext(195, 124, true);
                 WriteLiteral("\r\n    <div class=\"controls\">\r\n        <button class=\"btn btn-greensea\"><i class=\"fa fa-home\"></i>重新注册</button>\r\n    </div>\r\n");
                 EndContext();

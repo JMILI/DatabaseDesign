@@ -60,7 +60,7 @@ using BankDepositUI.Models;
             WriteLiteral("\r\n<h1 class=\"error\">错误 <strong></strong></h1>\r\n<h2 class=\"error\"> <strong>您的账号余额不足！！！</strong></h2>\r\n");
             EndContext();
             BeginContext(139, 177, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6632b6f53f4e43169b2ebe8dabcef5d0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "39a3a9696b544a5cb90c8c4a47098f90", async() => {
                 BeginContext(185, 124, true);
                 WriteLiteral("\r\n    <div class=\"controls\">\r\n        <button class=\"btn btn-greensea\"><i class=\"fa fa-home\"></i>返回主页</button>\r\n    </div>\r\n");
                 EndContext();

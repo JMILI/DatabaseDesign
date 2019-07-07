@@ -14,9 +14,9 @@ namespace BankDeposit.Service
         public static AccessDAndC aAndC = new AccessDAndC();
         public static Records record = new Records();
 
-        public void AddRecords(DepositorAndCard dAndC, int v,double money)
+        public void AddRecords(DepositorAndCard dAndC, int v,double money,int mid)
         {
-            accessRecords.Add(dAndC,v,money);
+            accessRecords.Add(dAndC,v,money,mid);
         }
 
     

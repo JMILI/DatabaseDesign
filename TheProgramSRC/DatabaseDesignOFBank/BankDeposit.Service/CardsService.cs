@@ -16,18 +16,14 @@ namespace BankDeposit.Service
         public static AccessRecords accessRecord = new AccessRecords();
         public static RecordsService recordsService = new RecordsService();
         public static CardsService cardServive = new CardsService();
-
-        public static Cards card = new Cards();
-
-        
-
-        public static Depositors depositor = new Depositors();
-        public static DepositorAndCard cards = new DepositorAndCard();
         #endregion
 
         #region 查询卡登录
         public DepositorAndCard QueryCardsService(User user)
         {
+            DepositorAndCard cards = new DepositorAndCard();
+            Cards card = new Cards();
+            Depositors depositor = new Depositors();
             card = CardsAccess.QueryCardsData(user);
             if (card != null)
             {
@@ -37,7 +33,6 @@ namespace BankDeposit.Service
                 }
                 else
                 {
-                    //cards.Dname = user.Uname;
                     cards.Duid = card.Cuid;
                     cards.Dcid = card.Cid;
                     depositor = DepositorsAccess.CheakData(card.Cuid);
@@ -59,7 +54,6 @@ namespace BankDeposit.Service
             {
                 //1.修改卡的表项，//取钱，
                 AddRecords(dAndC, identity, money);
-
                 money = record[1] - money;//使用计算的余额减去要取余额。
                 CardsAccess.UpdateCards((int)dAndC.Dcid, money);//更新余额
                 return true;
@@ -69,7 +63,8 @@ namespace BankDeposit.Service
 
         public void AddRecords(DepositorAndCard dAndC, int v, double money)
         {
-            recordsService.AddRecords(dAndC, v, money);
+           //此处零代表的是记录表中Mid填为0，代表取款是在ATM中进行的。
+            recordsService.AddRecords(dAndC, v, money,0);
         }
 
 
@@ -83,6 +78,7 @@ namespace BankDeposit.Service
         /// <returns>返回计算后的余额，和利息</returns>
         public List<double> FlowBalanceService(int cid)
         {
+            Cards card = new Cards();
             card = CardsAccess.CardsData(cid);
             if (card != null)
             {

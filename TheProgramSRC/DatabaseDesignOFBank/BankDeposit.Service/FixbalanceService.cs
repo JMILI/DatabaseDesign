@@ -40,6 +40,12 @@ namespace BankDeposit.Service
             }
             return newFixbalances;
         }
+
+        internal void AddFixBalanceService(Fixbalances fix)
+        {
+            accessFixbalance.Add(fix);
+
+        }
         #endregion
 
     }

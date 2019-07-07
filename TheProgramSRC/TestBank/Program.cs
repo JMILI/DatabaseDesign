@@ -34,7 +34,7 @@ namespace TestBank
                 //infomation = dbContext.Information.FirstOrDefault(a => a.Icid == 20001);
                 //Console.WriteLine(infomation.Icid);
                 //Console.WriteLine(infomation.Ioldtime);
-                string limit = "月";
+                string limit = "";
                 List<Information> vPersons = new List<Information>();
                 if (limit == "月")
                 {

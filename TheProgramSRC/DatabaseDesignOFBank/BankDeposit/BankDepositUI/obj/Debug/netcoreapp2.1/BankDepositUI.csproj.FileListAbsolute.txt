@@ -110,3 +110,10 @@ F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDe
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Errors\MoneyError.g.cshtml.cs
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Managers\AddInformation.g.cshtml.cs
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Managers\Success.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Cards\VerifyPassword.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Errors\VerifyPasswordError.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Errors\CardsLoginError.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Managers\AddFixInformation.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Managers\BusinessLogin.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Managers\VerifyLoginInformation.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CardsBusinessOfManagerLayout.g.cshtml.cs

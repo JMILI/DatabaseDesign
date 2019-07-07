@@ -18,19 +18,31 @@ namespace BankDepositUI.Controllers
             return View();
         }
         #endregion
+        #region 验证密码取款
+        public IActionResult VerifyPasswordError()
+        {
+            return View();
+        }
 
+        #endregion
+        #region 管理员登录银行卡报错
+        public IActionResult CardsLoginError()
+        {
+            return View();
+        } 
+        #endregion
         #region 账户已存在页面
         public IActionResult DepositoryExistError()
         {
             return View();
         }
         #endregion
-        
+
         #region 账户钱不够错误提醒页面
         public IActionResult MoneyError()
         {
             return View();
-        } 
+        }
         #endregion
 
         #region 绑定错误页面
@@ -41,7 +53,7 @@ namespace BankDepositUI.Controllers
         public IActionResult DepositoryNotExistError()
         {
             return View();
-        } 
+        }
         #endregion
     }
 }

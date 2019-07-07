@@ -22,6 +22,30 @@ namespace BankDeposit.Data
             {
                 return dbContext.Fixbalances.FromSql("select * from Fixbalances where Fcid={0} order by Fid desc", cid).AsNoTracking().ToList();
             }
+        }
+        #endregion
+
+        #region 增加定期存款记录
+        public void Add(Fixbalances fix)
+        {
+            using (var dbContext = new bankContext())
+            {
+                //修改数据库信息最好有一些事务操作
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        dbContext.Add(fix);
+                        dbContext.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        transaction.Rollback();
+                    }
+                }
+            }
         } 
         #endregion
     }

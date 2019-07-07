@@ -50,7 +50,7 @@ namespace BankDeposit.Data
         #endregion
 
         #region 增加交易记录
-        public void Add(DepositorAndCard dAndC, int v, double money)
+        public void Add(DepositorAndCard dAndC, int v, double money,int mid)
         {
             using (var dbContext = new bankContext())
             {
@@ -63,6 +63,7 @@ namespace BankDeposit.Data
 
                         records.Rcid = (int)dAndC.Dcid;
                         records.Ruid = dAndC.Duid;
+                        records.Rmid = mid;
                         if (v == 1)
                         {
                             records.Rwithdrawals = money;
