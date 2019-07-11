@@ -122,6 +122,10 @@ namespace BankDepositUI.Controllers
         }
 
         #region 记录导出Excel
+        /// <summary>
+        /// 记录导出Excel
+        /// </summary>
+        /// <returns></returns>
         public FileResult OutExcel()
         {
             //引入NPOI包，System.Configuration.ConfigurationManager包
