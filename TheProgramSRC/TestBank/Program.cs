@@ -4,18 +4,36 @@ using TestBank.SqlBank;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace TestBank
 {
     class Program
     {
+        public static string MD5Encrypt64(string password)
+        { 
+            string cl = password;
+            MD5 md5 = MD5.Create(); //实例化一个md5对像
+                                    // 加密后是一个字节类型的数组，这里要注意编码UTF8/Unicode等的选择　
+            byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(cl));
+            return Convert.ToBase64String(s);
+        }
         static void Main(string[] args)
         {
             Depositors depositors = new Depositors();
             Information infomation = new Information();
             #region 操作数据库中的视图
+
+            string s = "30001";
+            //MD5Encrypt64(MD5Encrypt64(s));
+            Console.WriteLine(MD5Encrypt64(s));
+            //Console.WriteLine(MD5Encrypt64(MD5Encrypt64(s)));
             using (ViewContext dbContext = new ViewContext())
             {
+
+
+                //SELECT* FROM 表名 WHERE TO_DAYS(NOW()) - TO_DAYS(Ioldtime) <= 1
                 //var mid = 30001;
                 //通过ViewContext.Iformation属性从数据库中查询视图数据，因为和数据库表不同，
                 //我们不会更新数据库视图的数据，所以调用AsNoTracking方法来告诉EF Core不用在DbContext中跟踪返回的Iformation实体，可以提高EF Core的运行效率
@@ -34,38 +52,42 @@ namespace TestBank
                 //infomation = dbContext.Information.FirstOrDefault(a => a.Icid == 20001);
                 //Console.WriteLine(infomation.Icid);
                 //Console.WriteLine(infomation.Ioldtime);
-         //       string limit = "";
-         //       List<Information> vPersons = new List<Information>();
-         //       if (limit == "月")
-         //       {
-         //            vPersons = dbContext.Information.FromSql(
-         //" SELECT* FROM  Information WHERE DATE_FORMAT(Ioldtime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m') and Imid={0}", mid)
-         //.AsNoTracking().ToList();
-         //       }
-         //       else if (limit == "周")
-         //       {  //返回一周类该管理员办理的业务    
-         //            vPersons = dbContext.Information.FromSql(
-         //           "SELECT* FROM  Information WHERE YEARWEEK(date_format(Ioldtime, '%Y-%m-%d')) = YEARWEEK(now()) and Imid={0}", mid).AsNoTracking().ToList();
-         //       }
-         //       else if (limit == "天")
-         //       {
-         //           //返回今天的业务办理情况
-         //            vPersons = dbContext.Information.FromSql(
-         //     "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().ToList();
-         //       }
-         //       else
-         //       {
-         //            vPersons = dbContext.Information.FromSql(
-         //   "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().Take(10).ToList();
-         //       }
-         //       foreach (var vPerson in vPersons)
-         //       {
-         //           Console.Write(vPerson.Icid + " ");
-         //           Console.Write(vPerson.Iuid + " ");
-         //           Console.Write(vPerson.Ioldtime + " ");
-         //           Console.Write(vPerson.Imid + " ");
-         //           Console.WriteLine();
-         //       }
+                //       string limit = "";
+                //    List<Information> vPersons = new List<Information>();
+                //    var mid = 30001;
+                //    vPersons= dbContext.Information.FromSql(
+                //" SELECT* FROM  Information WHERE TO_DAYS(NOW()) - TO_DAYS(Ioldtime) <= 1 and Imid={0}", mid)
+                //.AsNoTracking().ToList();
+                //       if (limit == "月")
+                //       {
+                //            vPersons = dbContext.Information.FromSql(
+                //" SELECT* FROM  Information WHERE DATE_FORMAT(Ioldtime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m') and Imid={0}", mid)
+                //.AsNoTracking().ToList();
+                //       }
+                //       else if (limit == "周")
+                //       {  //返回一周类该管理员办理的业务    
+                //            vPersons = dbContext.Information.FromSql(
+                //           "SELECT* FROM  Information WHERE YEARWEEK(date_format(Ioldtime, '%Y-%m-%d')) = YEARWEEK(now()) and Imid={0}", mid).AsNoTracking().ToList();
+                //       }
+                //       else if (limit == "天")
+                //       {
+                //           //返回今天的业务办理情况
+                //            vPersons = dbContext.Information.FromSql(
+                //     "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().ToList();
+                //       }
+                //       else
+                //       {
+                //            vPersons = dbContext.Information.FromSql(
+                //   "select * from Information where to_days(Ioldtime) = to_days(now()) and Imid={0}", mid).AsNoTracking().Take(10).ToList();
+                //       }
+                //foreach (var vPerson in vPersons)
+                //{
+                //    Console.Write(vPerson.Icid + " ");
+                //    Console.Write(vPerson.Iuid + " ");
+                //    Console.Write(vPerson.Ioldtime + " ");
+                //    Console.Write(vPerson.Imid + " ");
+                //    Console.WriteLine();
+                //}
                 //Console.WriteLine($"Information视图有{vPersons.Count.ToString()}行数据");
                 //Console.WriteLine(vPersons[0].Icid.ToString());
 
@@ -78,9 +100,10 @@ namespace TestBank
                 //Console.WriteLine(infomation.Ioldtime);//查看数据库视图中的旧时间字段
                 //DateTime dt2 = System.DateTime.Now;//生成新的系统时间
                 //Console.WriteLine(DateTime.Now);//打印现在时间
-                //Double Day = dt2.Day - dt1.Day;//天数差值
-                //Console.WriteLine(Day);
-                //Double Month = (dt2.Year - dt1.Year) * 12 + (dt2.Month - dt1.Month);//月数差值
+                ////Double Day = dt2.Day - dt1.Day;//天数差值
+                ////Console.WriteLine(Day);
+                //Double Month = dt2.Month;
+                //Console.WriteLine(Month);
                 //Day = Day * 0.2;
                 //Console.WriteLine(Day);
                 #endregion
@@ -111,6 +134,7 @@ namespace TestBank
 
 
                         //List<Records> record = new List<Records>();
+                        //List<Records> records = new List<Records>();
                         ////record = dbContext.Database.ExecuteSqlCommand(sql1);//修改时使用
                         //var cid = 20001;
                         //record = dbContext.Records.FromSql("select * from Records where Rcid={0} order by Rid desc",cid).AsNoTracking().Take(10).ToList();
@@ -120,7 +144,26 @@ namespace TestBank
                         //    Console.WriteLine(item.Rid);
                         //}
 
-
+                       // var mid = 30001;
+                       //var i = 0;
+                        //for (int i = 0; i < 12; i++)
+                        //{
+                            //          record = dbContext.Records.FromSql(
+                            //" SELECT* FROM  Records WHERE TO_DAYS(NOW()) - TO_DAYS(RnowDateTime) = {0} and Rmid={1}", i,mid)
+                            //.AsNoTracking().ToList();
+                            // record = dbContext.Records.FromSql(
+                            //"  SELECT* FROM Records WHERE PERIOD_DIFF(date_format(now(), '%Y%m'), date_format(RnowDateTime, '%Y%m')) = {0} and Rmid={1}", i, mid)
+                            //.AsNoTracking().ToList();
+                            //record = dbContext.Records.FromSql(
+                            //"SELECT* FROM Records WHERE YEAR(RnowDateTime) = YEAR(NOW())", i)
+                            //.AsNoTracking().ToList();
+                            //foreach (var item in record)
+                            //{
+                            //    records.Add(item);
+                            //}
+                            //records.Add();
+                        //}
+                
 
 
                         //查询一组对象
@@ -160,7 +203,7 @@ namespace TestBank
                         //dbContext.Add(depositor);
                         //Records record = new Records();
                         //var cid = 20001;
-                        //record = dbContext.Records.FromSql("select * from Records where Rcid={0} And RflowDeposit != 0 or Rwithdrawals != 0 order by Rid desc", cid).AsNoTracking().ToList().FirstOrDefault();
+                        ////record = dbContext.Records.FromSql("select * from Records where Rcid={0} And RflowDeposit != 0 or Rwithdrawals != 0 order by Rid desc", cid).AsNoTracking().ToList().FirstOrDefault();
                         //foreach (var item in record)
                         //{
                         //    Console.WriteLine(item.RflowDeposit);
@@ -183,12 +226,12 @@ namespace TestBank
                         //    Console.WriteLine(item.FfixBalance);
                         //    Console.WriteLine(item.FfixBalanceRate);
                         //}
-                        Cards records = new Cards();
-                        records.CflowBalanceRate = 0.00325;
-                        records.Cuid = 10001;
-                        records.Cpassword = "20035";
-                        dbContext.Add(records);
-                        dbContext.SaveChanges();
+                        //Cards records = new Cards();
+                        //records.CflowBalanceRate = 0.00325;
+                        //records.Cuid = 10001;
+                        //records.Cpassword = "20036";
+                        //dbContext.Add(records);
+                        //dbContext.SaveChanges();
 
 
                         transaction.Commit();

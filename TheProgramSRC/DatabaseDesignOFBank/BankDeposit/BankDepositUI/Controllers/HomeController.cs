@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using BankDepositUI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using BankDeposit.Model.SqlBank;
 using BankDeposit.Service;
+using BankDeposit.Model.Helper;
+using System.Security.Cryptography;
+using System.Text;
+using System;
 
 namespace BankDepositUI.Controllers
 {
@@ -19,16 +17,31 @@ namespace BankDepositUI.Controllers
         public static DepositorsService depositorServive = new DepositorsService();
         public static CardsService cardServive = new CardsService();
         public static ManagersService managerServive = new ManagersService();
-        public static DAndCService dAndCServive = new DAndCService();
 
-        public static Depositors depositor = new Depositors();
-        public static Cards card = new Cards();
         public static Managers manager = new Managers();
         public static DepositorAndCard dAndC = new DepositorAndCard();
-        public static User users = new User();
+        #endregion
+
+        #region 辅助函数MD5加密用户密码
+        /// <summary>
+        /// MD5加密用户密码
+        /// </summary>
+        /// <param name="password"> 加密后是一个字节类型的数组，这里要注意编码UTF8/Unicode等的选择　</param>
+        /// <returns></returns>
+        public static string MD5Encrypt64(string password)
+        {
+            string cl = password;
+            MD5 md5 = MD5.Create(); //实例化一个md5对像
+            byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(cl));
+            return Convert.ToBase64String(s);
+        }
         #endregion
 
         #region 返回登录初始页面
+        /// <summary>
+        /// 登录账户页面
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             //返回登录页面
@@ -40,16 +53,17 @@ namespace BankDepositUI.Controllers
         /// <summary>
         /// 接受页面参数，准备判断应该登录那个系统
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="user">传入登录信息，账号Id,Password,Identify</param>
         /// <returns></returns>
         public IActionResult SignIn(User user)
         {
+            user.Password = MD5Encrypt64(user.Password);//接到登录信息，给密码加密
             //此处分类，让储户,管理员分别登录到自己的界面，
             //还有ATM系统登录（利用卡号登录）
             #region 储户新版本
             if (user.Identify == "depository")
             {
-                dAndC = depositorServive.QueryDepositorsService(user);
+                dAndC = depositorServive.QueryDepositorsService(user);//验证信息
                 if (dAndC != null)
                 {
                     return RedirectToAction("Login", "Depositors", dAndC);
@@ -61,7 +75,7 @@ namespace BankDepositUI.Controllers
             #region ATM-银行卡
             else if (user.Identify == "cards")
             {
-                dAndC = cardServive.QueryCardsService(user);
+                dAndC = cardServive.QueryCardsService(user);//验证信息
                 if (dAndC != null)
                 {
                     return RedirectToAction("Login", "Cards", dAndC);
@@ -73,19 +87,17 @@ namespace BankDepositUI.Controllers
             #region 管理员或行长
             else
             {
-                manager = managerServive.QueryManagersService(user);
+                manager = managerServive.QueryManagersService(user);//验证信息
                 if (manager == null || manager.Mpassword != user.Password)
                 {
                     return Redirect(Url.Action("PasswordError", "Errors"));
                 }
                 else if (user.Identify == "manager")
                 {
-                    manager.Mpassword = "***";
                     return RedirectToAction("Login", "Managers", manager);
                 }
                 else
                 {
-                    depositor.Upassword = "***";
                     return RedirectToAction("Login", "Governors", manager);
                 }
             }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BankDepositUI.Models;
 using BankDeposit.Model.SqlBank;
 using BankDeposit.Service;
+using BankDeposit.Model.Helper;
 
 namespace BankDepositUI.Controllers
 {
@@ -18,79 +19,93 @@ namespace BankDepositUI.Controllers
         #endregion
 
         #region “登录”功能 已实现
+        /// <summary>
+        /// “登录”功能,向cooike中加入信息
+        /// </summary>
+        /// <param name="card">传入DepositorAndCard类型的参数</param>
+        /// <returns>返回主页，带参数</returns>
         public IActionResult Login(DepositorAndCard card)
         {
+
             AddCooikeOfDAndC(card);
             return View("Login", card);
         }
         #endregion
 
         #region “活期取款”功能 已实现
-        //向记录表中填入数据，Ruid ,Rcid, Rwithdrawals DOUBLE(200,3) 
-        //1.返回一个包含各种取款金额的页面（100,200,800,500,1000,2000)，模拟取款操作
-        //2.获得前端页面信息，更新数据库
-        ////2.1 可以将生成的记录向主页展示，选做
-        //3.重新返回主页
-
+        /// <summary>
+        /// 返回密码验证页面
+        /// </summary>
+        /// <returns></returns>
         public IActionResult VerifyPassword()
         {
             return View();
         }
+        /// <summary>
+        /// 接受密码并验证信息
+        /// </summary>
+        /// <param name="card">接受密码，接受User对象</param>
+        /// <returns>返回操作页面</returns>
         public IActionResult Verify(User card)
         {
-            DepositorAndCard dAndC = new DepositorAndCard();
-            dAndC = DAndC();
-            card.Id = (int)dAndC.Dcid;
+            card.Id = (int)DAndC().Dcid;
             if (cardServive.QueryCardsService(card) != null)
-            {
+            {//返回一个取钱页面
                 return Redirect(Url.Action("WithDrawal", "Cards"));
             }
             else
+                //返回一个验证错误页面
                 return Redirect(Url.Action("VerifyPasswordError", "Errors"));
         }
 
+        /// <summary>
+        /// 返回取钱页面
+        /// </summary>
+        /// <returns>返回取钱页面</returns>
         public IActionResult WithDrawal()
         {
             return View();
         }
-
+        /// <summary>
+        /// 接受取钱信息
+        /// </summary>
+        /// <param name="money">传入取钱金额</param>
+        /// <returns></returns>
         public IActionResult WithDrawalInformation(double money)
         {
-            DepositorAndCard dAndC = new DepositorAndCard();
-            dAndC = DAndC();
-            bool istrue = cardServive.Drawal(dAndC, 1, money);
-            if (istrue == true)//修改存款余额
-            {
-                //cardServive.AddRecords(dAndC,1,money);//增加记录表,1代表的是要修改的是取款项
+            bool istrue = cardServive.Drawal(DAndC(), 1, money);
+            if (istrue == true)//修改存款余额成功
+            {//返回成功页面
                 return Redirect(Url.Action("Success", "Cards"));
             }
             else
-            {
+            {//错误页面
                 return Redirect(Url.Action("MoneyError", "Errors"));
             }
         }
-
+        /// <summary>
+        ///返回成功页面
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Success()
         {
             return View();
         }
-
+        /// <summary>
+        /// 返回操作完之后重新登录主页
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ReLogin()
         {
-            DepositorAndCard dAndC = new DepositorAndCard();
-            dAndC = DAndC();
-            return RedirectToAction("Login", "Cards", dAndC);
+            return RedirectToAction("Login", "Cards", DAndC());
         }
         #endregion
 
-        #region “活期存款”功能 待实现
-
-        #endregion
-
-        #region “转账”功能 待实现 选做
-        #endregion
-
         #region 辅助函数获得cooike对象，以及cooike加值
+        /// <summary>
+        /// 从浏览器获取DepositorAndCard对象的值：Dcid，Dname，Duid
+        /// </summary>
+        /// <returns>返回DepositorAndCard对象</returns>
         public DepositorAndCard DAndC()
         {
             DepositorAndCard dAndC = new DepositorAndCard();
@@ -105,10 +120,12 @@ namespace BankDepositUI.Controllers
             dAndC.Duid = uid;
             return dAndC;
         }
-        public void AddCooikeOfDAndC(DepositorAndCard card1)
+        /// <summary>
+        /// 向浏览器cooike中加入值DepositorAndCard
+        /// </summary>
+        /// <param name="card1">传入DepositorAndCard对象</param>
+        public void AddCooikeOfDAndC(DepositorAndCard dAndC)
         {
-            DepositorAndCard dAndC = new DepositorAndCard();
-            dAndC = card1;
             this.Response.Cookies.Append("Uid", dAndC.Duid.ToString());
             this.Response.Cookies.Append("Cid", dAndC.Dcid.ToString());
             this.Response.Cookies.Append("Name", dAndC.Dname.ToString());

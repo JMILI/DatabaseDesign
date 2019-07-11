@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="~/assets/js/vendor/chosen/css/chosen-bootstrap.css">
     <link href="~/assets/css/minimal.css" rel="stylesheet">
 </head>
-<body class="bg-6">
+<body class="bg-2">
     <div class="mask"><div id="loader"></div></div>
     <div id="wrap">
         <div class="row">
@@ -247,7 +247,7 @@
                         </li>
                         <li class="dropdown divided user" id="current-user">
                             <div class="profile-photo">
-                                <img src="~/assets/images/profile-photo.jpg" alt />
+                                <img src="~/assets/images/profile-photo.jpg" alt="" />
                             </div>
                             <a class="dropdown-toggle options" data-toggle="dropdown" href="#">
                                 @user.Mname <i class="fa fa-caret-down"></i>
@@ -278,20 +278,11 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="@Url.Action("UpdateView","Student")"><i class="fa fa-envelope"></i> 修改信息 </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
                                     <a href="@Url.Action("Index","Home")"><i class="fa fa-power-off"></i> 退出</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="@Url.Action("Delete","Student")"><button type="submit" class="btn btn-red"><i class="fa fa-calendar"></i> 注销</button></a>
                                 </li>
                             </ul>
                         <li>
                             <a href="#mmenu"><i class="fa fa-comments"></i></a>
-                        </li>
                         </li>
                     </ul>
                     <!-- /Quick Actions -->
@@ -306,10 +297,16 @@
                         <li class="navigation" id="navigation">
                             <a href="#" class="sidebar-toggle" data-toggle="#navigation">功能 <i class="fa fa-angle-up"></i></a>
                             <ul class="menu">
-                                <li class="active">
-                                    <a href="index.html">
-                                        <i class="fa fa-tachometer"></i> 学院通知
-                                        <span class="badge badge-red">1</span>
+                                <li class="active" id="Profits">
+                                    <a href="#">
+                                        <i class="fa fa-tachometer"></i>最近七天利润趋势
+                                        <span class="badge badge-red"></span>
+                                    </a>
+                                </li>
+                                <li class="active" id="tongji">
+                                    <a href="#">
+                                        <i class="fa fa-tachometer"></i>收支统计（月）
+                                        <span class="badge badge-red"></span>
                                     </a>
                                 </li>
                                 <li class="dropdown">

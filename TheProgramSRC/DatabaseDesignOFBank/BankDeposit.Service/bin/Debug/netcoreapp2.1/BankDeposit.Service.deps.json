@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "3a0879b64c36f2989a7f32aafed4f7c53c785600"
+    "signature": "715be21b6562f9b3a07ce3459a9156513fb58c15"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,8 +10,10 @@
         "dependencies": {
           "BankDeposit.Data": "1.0.0",
           "BankDeposit.Model": "1.0.0",
+          "EPPlus": "4.1.1",
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.8",
+          "NPOI": "2.2.1",
           "Newtonsoft.Json": "12.0.2",
           "Pomelo.EntityFrameworkCore.MySql": "2.1.4",
           "Microsoft.AspNetCore.Http.Abstractions": "2.1.1.0",
@@ -19,6 +21,14 @@
         },
         "runtime": {
           "BankDeposit.Service.dll": {}
+        }
+      },
+      "EPPlus/4.1.1": {
+        "runtime": {
+          "lib/net40/EPPlus.dll": {
+            "assemblyVersion": "4.1.1.0",
+            "fileVersion": "4.1.1.0"
+          }
         }
       },
       "Microsoft.CSharp/4.5.0": {},
@@ -217,6 +227,29 @@
           }
         }
       },
+      "NPOI/2.2.1": {
+        "dependencies": {
+          "SharpZipLib": "0.86.0"
+        },
+        "runtime": {
+          "lib/net40/NPOI.OOXML.dll": {
+            "assemblyVersion": "2.2.1.0",
+            "fileVersion": "2.2.1.0"
+          },
+          "lib/net40/NPOI.OpenXml4Net.dll": {
+            "assemblyVersion": "2.2.1.0",
+            "fileVersion": "2.2.1.0"
+          },
+          "lib/net40/NPOI.OpenXmlFormats.dll": {
+            "assemblyVersion": "2.2.1.0",
+            "fileVersion": "2.2.1.0"
+          },
+          "lib/net40/NPOI.dll": {
+            "assemblyVersion": "2.2.1.0",
+            "fileVersion": "2.2.1.0"
+          }
+        }
+      },
       "Pomelo.EntityFrameworkCore.MySql/2.1.4": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "2.1.8",
@@ -260,6 +293,14 @@
           "lib/netstandard1.0/Remotion.Linq.dll": {
             "assemblyVersion": "2.2.0.0",
             "fileVersion": "2.2.0.30000"
+          }
+        }
+      },
+      "SharpZipLib/0.86.0": {
+        "runtime": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {
+            "assemblyVersion": "0.86.0.518",
+            "fileVersion": "0.86.0.518"
           }
         }
       },
@@ -443,7 +484,9 @@
       "BankDeposit.Data/1.0.0": {
         "dependencies": {
           "BankDeposit.Model": "1.0.0",
+          "EPPlus": "4.1.1",
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
+          "NPOI": "2.2.1",
           "Newtonsoft.Json": "12.0.2",
           "Pomelo.EntityFrameworkCore.MySql": "2.1.4"
         },
@@ -453,7 +496,9 @@
       },
       "BankDeposit.Model/1.0.0": {
         "dependencies": {
+          "EPPlus": "4.1.1",
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
+          "NPOI": "2.2.1",
           "Newtonsoft.Json": "12.0.2",
           "Pomelo.EntityFrameworkCore.MySql": "2.1.4"
         },
@@ -544,6 +589,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "EPPlus/4.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UYnF9q+XuJJCZc77RG4mQCqYhVwg4I8VgoDWO8m78mu11/GpjDR1Wt1JiVolDojt56r6y3jPEMcMfloKDh1JHQ==",
+      "path": "epplus/4.1.1",
+      "hashPath": "epplus.4.1.1.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",
@@ -685,6 +737,13 @@
       "path": "newtonsoft.json/12.0.2",
       "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
     },
+    "NPOI/2.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-esdT/yuODxuYCmqcbQ+6DDpAmPbVcJylgpA4leQZOfUcESbD8vYXEDtCTg4AKlWJIPHcbDnxlAtQxMEVw621Mw==",
+      "path": "npoi/2.2.1",
+      "hashPath": "npoi.2.2.1.nupkg.sha512"
+    },
     "Pomelo.EntityFrameworkCore.MySql/2.1.4": {
       "type": "package",
       "serviceable": true,
@@ -705,6 +764,13 @@
       "sha512": "sha512-fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw==",
       "path": "remotion.linq/2.2.0",
       "hashPath": "remotion.linq.2.2.0.nupkg.sha512"
+    },
+    "SharpZipLib/0.86.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5DbS1SlKLMi+WG00Cm0ueYf2oyXJrowETQk8nx96rmdjTuHsA3laPykGV7Sxi0R5Xxfx0Kh/EfacAZ1f6M7y/g==",
+      "path": "sharpziplib/0.86.0",
+      "hashPath": "sharpziplib.0.86.0.nupkg.sha512"
     },
     "System.Collections/4.0.11": {
       "type": "package",

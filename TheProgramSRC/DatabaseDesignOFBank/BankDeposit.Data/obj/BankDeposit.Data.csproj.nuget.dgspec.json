@@ -49,6 +49,10 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
               "version": "[2.1.8, )"
@@ -64,6 +68,10 @@
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.2.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -123,6 +131,10 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
               "version": "[2.1.8, )"
@@ -138,6 +150,10 @@
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.2.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

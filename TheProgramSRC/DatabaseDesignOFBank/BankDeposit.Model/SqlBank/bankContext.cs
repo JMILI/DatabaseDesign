@@ -54,12 +54,6 @@ namespace BankDeposit.Model.SqlBank
                     .HasColumnType("varchar(200)");
 
                 entity.Property(e => e.Cuid).HasColumnType("int(100)");
-
-                entity.HasOne(d => d.Cu)
-                    .WithMany(p => p.Cards)
-                    .HasForeignKey(d => d.Cuid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reference_1");
             });
 
             modelBuilder.Entity<Depositors>(entity =>

@@ -2,7 +2,7 @@
 using BankDeposit.Model.SqlBank;
 //using Microsoft.AspNetCore.Mvc;
 using System.Web.Extensions;
-
+using BankDeposit.Model.Helper;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using System;
@@ -13,19 +13,8 @@ namespace BankDeposit.Service
     {
         #region 实例化一些工具对象
         public static AccessDepositors access = new AccessDepositors();
-        public static AccessCards accessCard = new AccessCards();
-        public static AccessRecords accessRecord = new AccessRecords();
-
-
-        //public static AccessCards band = new AccessCards();
-        public static Depositors depositor = new Depositors();
-        public static DepositorAndCard depositors = new DepositorAndCard();
-        public static Cards card = new Cards();
-        public static List<Records> records = new List<Records>();
-
         public static CardsService cardsService = new CardsService();
         public static FixbalanceService fixbalanceService = new FixbalanceService();
-
         #endregion
 
         #region 查询储户
@@ -36,6 +25,8 @@ namespace BankDeposit.Service
         /// <returns>Depositors</returns>
         public DepositorAndCard QueryDepositorsService(User user)
         {
+            Depositors depositor = new Depositors();//接受返回值
+            DepositorAndCard depositors = new DepositorAndCard();//函数将要返回的对象
             depositor = access.QueryDepositorsData(user);
             if (depositor != null)
             {
@@ -66,6 +57,7 @@ namespace BankDeposit.Service
         /// <returns>DepositorAndCard</returns>
         public DepositorAndCard AddService(Depositors depositor)
         {
+            DepositorAndCard depositors = new DepositorAndCard();
             Depositors depositor1 = new Depositors();
             depositor1 = access.CheakData(depositor.Uid);//查询有没有该储户
             if (depositor1 != null)
@@ -87,31 +79,34 @@ namespace BankDeposit.Service
 
         #region 查询十项交易记录
         /// <summary>
-        /// Service层用来查询前十项交易记录的函数
+        /// DepositorsService层用来查询前十项交易记录的函数,向CardsService对象发送请求。
         /// </summary>
         /// <param name="cid">传入从cooike中查询的cid</param>
-        /// <returns>  /// <summary>
-        /// Service层用来查询前十项交易记录的函数
-        /// </summary>
-        /// <returns>返回一个根据储户当前默认银行卡的交易记录，取前十项</returns></returns>
+        /// <returns>返回一个根据储户当前默认银行卡的交易记录，取前十项</returns>
         public List<Records> TenRecordsService(int cid)
         {
-            return accessCard.TenRecordsData(cid);
+            return cardsService.TenRecordsService(cid);
         }
         #endregion
 
         #region 储户绑定卡号
+        /// <summary>
+        /// 储户绑定卡号,先找到该储户，然后找到该储户要绑定的银行卡，最后绑定
+        /// </summary>
+        /// <param name="depositor">前端传入DepositorAndCard对象，属性：Duid,Dname,Dcid</param>
+        /// <returns></returns>
         public bool UpdataBandService(DepositorAndCard depositor)
         {
-            bool s = false;
-            Depositors depositor1 = new Depositors();
+            Cards card = new Cards();//接受返回数据
+            bool s = false;//绑定银行卡成功的标志。true为成功
+            Depositors depositor1 = new Depositors();//接受查询到的数据
             depositor1 = access.CheakData(depositor.Duid);//查询有没有该储户
-            if (depositor1 != null)
+            if (depositor1 != null)//有数据
             {
                 if (depositor1.Uid == depositor.Duid)//判断查找到的储户是不是我们要找的
                 {
-                    card = accessCard.CardsData(depositor.Dcid);
-                    if (card != null && card.Cuid == depositor.Duid)
+                    card = cardsService.CheakCards((int)depositor.Dcid);
+                    if (card != null && card.Cuid == depositor.Duid)//判断查找到的银行卡是不是我们要找的
                     {
                         access.UpdataBandData(depositor);//更新绑定卡号
                         s = true;
@@ -125,16 +120,22 @@ namespace BankDeposit.Service
 
         #region 查询活期存款余额情况
         /// <summary>
-        ///  是DepositoryService的方法，将查询余额利息的职责交给CardsService类来处理
+        ///  查询活期存款余额情况,是DepositoryService的方法，将查询余额利息的职责交给CardsService类来处理
         /// </summary>
-        /// <param name="cid"></param>
+        /// <param name="cid">传入查询的cid</param>
         /// <returns></returns>
         public List<double> FlowBalanceService(int cid)
         {
             return cardsService.FlowBalanceService(cid);
         }
         #endregion
+
         #region 查询定期余额情况
+        /// <summary>
+        /// 查询定期余额情况,是DepositoryService的方法，将查询余额利息的职责交给FixbalanceService类来处理
+        /// </summary>
+        /// <param name="cid">传入查询的cid</param>
+        /// <returns></returns>
         public List<Fixbalances> FixBalanceService(int cid)
         {
             return fixbalanceService.FixBalancesService(cid);

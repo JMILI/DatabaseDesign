@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BankDeposit.Model.Helper;
 
 namespace BankDeposit.Service
 {
@@ -12,8 +13,7 @@ namespace BankDeposit.Service
     {
         #region 实例化一些工具对象
         public static AccessFixbalance accessFixbalance = new AccessFixbalance();
-        public static List<Fixbalances> fixbalances = new List<Fixbalances>();
-        public static List<Fixbalances> newFixbalances = new List<Fixbalances>();
+        //public static List<Fixbalances> fixbalances = new List<Fixbalances>();
         #endregion
 
         #region 银行卡计算利息和余额
@@ -24,6 +24,8 @@ namespace BankDeposit.Service
         /// <returns>返回计算后的定期存款表的所有记录</returns>
         public List<Fixbalances> FixBalancesService(int cid)
         {
+            List<Fixbalances> fixbalances = new List<Fixbalances>();//接受查询到的定期存款数据
+            List<Fixbalances> newFixbalances = new List<Fixbalances>();//存放修改后的定期存款数据
             fixbalances = accessFixbalance.FixBalanceData(cid);
             DateTime dt2 = System.DateTime.Now;
             Double Year;
@@ -34,18 +36,22 @@ namespace BankDeposit.Service
                 DateTime dt1 = (DateTime)item.FbusinessTime;
                 Year = dt2.Year - dt1.Year;
                 Rate = Year * balance;//算出利息，按年计算
-
                 item.FfixBalance = Rate + balance;//得到计算后的定期存款余额，数据库没有更新
                 newFixbalances.Add(item);
             }
             return newFixbalances;
         }
+        #endregion
 
+        #region MyRegion
+        /// <summary>
+        /// internal代表内部的意思
+        /// </summary>
+        /// <param name="fix">Fyear，FfixBalanceRate，FfixBalance，FfixBalance</param>
         internal void AddFixBalanceService(Fixbalances fix)
         {
             accessFixbalance.Add(fix);
-
-        }
+        } 
         #endregion
 
     }
