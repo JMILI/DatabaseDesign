@@ -12,11 +12,11 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using BankDeposit.Model.Helper;
 using System.IO;
-using OfficeOpenXml;
 using System.Web;
 using NPOI.HSSF.UserModel;
 using System.Security.Cryptography;
 using System.Text;
+using NPOI.SS.UserModel;
 
 namespace BankDepositUI.Controllers
 {
@@ -24,6 +24,45 @@ namespace BankDepositUI.Controllers
     {
         #region 实例化一些工具对象
         public static DepositorsService depositorServive = new DepositorsService();
+        #endregion
+
+        #region 辅助函数，导出数据用的
+        /// <summary>
+        /// 根据Excel列类型获取列的值
+        /// </summary>
+        /// <param name="cell">Excel列</param>
+        /// <returns></returns>
+        private static string GetCellValue(ICell cell)
+        {
+            if (cell == null)
+                return string.Empty;
+            switch (cell.CellType)
+            {
+                case CellType.Blank:
+                    return string.Empty;
+                case CellType.Boolean:
+                    return cell.BooleanCellValue.ToString();
+                case CellType.Error:
+                    return cell.ErrorCellValue.ToString();
+                case CellType.Numeric:
+                case CellType.Unknown:
+                default:
+                    return cell.ToString();//This is a trick to get the correct value of the cell. NumericCellValue will return a numeric value no matter the cell value is a date or a number
+                case CellType.String:
+                    return cell.StringCellValue;
+                case CellType.Formula:
+                    try
+                    {
+                        HSSFFormulaEvaluator e = new HSSFFormulaEvaluator(cell.Sheet.Workbook);
+                        e.EvaluateInCell(cell);
+                        return cell.ToString();
+                    }
+                    catch
+                    {
+                        return cell.NumericCellValue.ToString();
+                    }
+            }
+        } 
         #endregion
 
         #region “登录”功能 已实现
@@ -85,79 +124,51 @@ namespace BankDepositUI.Controllers
         #region 记录导出Excel
         public FileResult OutExcel()
         {
+            //引入NPOI包，System.Configuration.ConfigurationManager包
             List<Records> record = new List<Records>();
             record = depositorServive.TenRecordsService((int)DAndC().Dcid);
             //创建Excel文件的对象
             HSSFWorkbook book = new HSSFWorkbook();
-            //添加一个sheet
+            ////添加一个sheet
             NPOI.SS.UserModel.ISheet sheet1 = book.CreateSheet("Sheet1");
-
             //貌似这里可以设置各种样式字体颜色背景等，
             //推荐：使用NPOI操作Excel导入导出数据
             //使用 NPOI 的优势: 1、你不需要在服务器上安装微软的 Office，可以避免版权问题。 2、使用起来比 Office PIA的 API更加方便，更人性化。 3、你不用去花大力气维
             //但是不是很方便，这里就不设置了
             //给sheet1添加第一行的头部标题
             NPOI.SS.UserModel.IRow row1 = sheet1.CreateRow(0);
-            row1.CreateCell(0).SetCellValue("索引");
-            row1.CreateCell(1).SetCellValue("单号");
-            row1.CreateCell(2).SetCellValue("账户ID");
-            row1.CreateCell(3).SetCellValue("银行卡号");
-            row1.CreateCell(4).SetCellValue("活期存款额");
-            row1.CreateCell(5).SetCellValue("定期存款额");
-            row1.CreateCell(6).SetCellValue("取款额");
-            row1.CreateCell(7).SetCellValue("交易时间");
-            row1.CreateCell(8).SetCellValue("办理员");
-            //row1.CreateCell(0).SetCellValue("单号");
-            //row1.CreateCell(1).SetCellValue("账户ID");
-            //row1.CreateCell(2).SetCellValue("银行卡号");
-            //row1.CreateCell(3).SetCellValue("活期存款额");
-            //row1.CreateCell(4).SetCellValue("定期存款额");
-            //row1.CreateCell(5).SetCellValue("取款额");
-            //row1.CreateCell(6).SetCellValue("交易时间");
-            //row1.CreateCell(7).SetCellValue("办理员");
+            row1.CreateCell(0).SetCellValue("单号");
+            row1.CreateCell(1).SetCellValue("账户ID");
+            row1.CreateCell(2).SetCellValue("银行卡号");
+            row1.CreateCell(3).SetCellValue("活期存款额");
+            row1.CreateCell(4).SetCellValue("定期存款额");
+            row1.CreateCell(5).SetCellValue("取款额");
+            row1.CreateCell(6).SetCellValue("交易时间");
+            row1.CreateCell(7).SetCellValue("办理员");
             //....N行
-
             //将数据逐步写入sheet1各个行
             for (int i = 0; i < record.Count; i++)
             {
-                //创建行
+                //    //创建行
                 NPOI.SS.UserModel.IRow rowTemp = sheet1.CreateRow(i + 1);
-                rowTemp.CreateCell(0).SetCellValue((i + 1).ToString());
-                rowTemp.CreateCell(1).SetCellValue(record[i].Rid);
-                rowTemp.CreateCell(2).SetCellValue(record[i].Ruid);
-                rowTemp.CreateCell(3).SetCellValue(record[i].Rcid);
-                rowTemp.CreateCell(4).SetCellValue((double)record[i].RflowDeposit);
-                rowTemp.CreateCell(5).SetCellValue((double)record[i].RfixDepostit);
-                rowTemp.CreateCell(6).SetCellValue((double)record[i].Rwithdrawals);
-                rowTemp.CreateCell(7).SetCellValue(record[i].RnowDateTime.ToString());
-                rowTemp.CreateCell(8).SetCellValue((double)record[i].Rmid);
-                //rowTemp.CreateCell(0).SetCellValue(record[i].Rid);
-                //rowTemp.CreateCell(1).SetCellValue(record[i].Ruid);
-                //rowTemp.CreateCell(2).SetCellValue(record[i].Rcid);
-                //rowTemp.CreateCell(3).SetCellValue((double)record[i].RflowDeposit);
-                //rowTemp.CreateCell(4).SetCellValue((double)record[i].RfixDepostit);
-                //rowTemp.CreateCell(5).SetCellValue((double)record[i].Rwithdrawals);
-                //rowTemp.CreateCell(6).SetCellValue(record[i].RnowDateTime.ToString());
-                //rowTemp.CreateCell(7).SetCellValue((double)record[i].Rmid);
-                //....N行
+                rowTemp.CreateCell(0).SetCellValue(record[i].Rid);
+                rowTemp.CreateCell(1).SetCellValue(record[i].Ruid);
+                rowTemp.CreateCell(2).SetCellValue(record[i].Rcid);
+                rowTemp.CreateCell(3).SetCellValue((double)record[i].RflowDeposit);
+                rowTemp.CreateCell(4).SetCellValue((double)record[i].RfixDepostit);
+                rowTemp.CreateCell(5).SetCellValue((double)record[i].Rwithdrawals);
+                rowTemp.CreateCell(6).SetCellValue(record[i].RnowDateTime.ToString());
+                rowTemp.CreateCell(7).SetCellValue((double)record[i].Rmid);
+                //    //....N行
             }
             // 写入到客户端 
             MemoryStream ms = new MemoryStream();
-            book.Write(ms);
-            ms.Seek(0, SeekOrigin.Begin);
-            DateTime dt = DateTime.Now;
-            string dateTime = dt.ToString("yyMMddHHmmssfff");
-            string fileName = "查询结果" + dateTime + ".xls";
-            return File(ms, "application/vnd.ms-excel", fileName);
-            //System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            //book.Write(ms);
-            //ms.Seek(0, SeekOrigin.Begin);
-            //Response.a("Content-Disposition", string.Format("attachment; filename={0}.xls", "****总表" + DateTime.Now.ToString("yyyyMMddHHmmssfff")));
-            //Response.BinaryWrite(ms.ToArray());
-            //book = null;
-            //ms.Close();
-            //ms.Dispose();
-            //return Content("");
+                book.Write(ms);
+                ms.Seek(0, SeekOrigin.Begin);
+                DateTime dt = DateTime.Now;
+                string dateTime = dt.ToString("yyMMddHHmmssfff");
+                string fileName = "储户最近十项交易记录（最多10项）" + dateTime + ".xls";
+                return File(ms, "application/vnd.ms-excel", fileName);
         }
         #endregion
 

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "8e76731e71e863bef8782a84c9881fd4c15e7160"
+    "signature": "ac85a42348fc92c5afc12924b06d6d1131f4d54b"
   },
   "compilationOptions": {
     "defines": [
@@ -26,15 +26,18 @@
         "dependencies": {
           "BankDeposit.Model": "1.0.0",
           "BankDeposit.Service": "1.0.0",
-          "EPPlus": "4.1.1",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.8",
           "Microsoft.NETCore.App": "2.1.0",
           "NPOI": "2.2.1",
+          "NPOI.OOXML.dll": "2.0.6",
+          "NPOI.OpenXml4Net.dll": "2.0.6",
+          "NPOI.OpenXmlFormats.dll": "2.0.6",
           "Newtonsoft.Json": "12.0.2",
           "Pomelo.EntityFrameworkCore.MySql": "2.1.4",
+          "System.Configuration.ConfigurationManager": "4.5.0",
           "System.Web.Extensions": "3.5.0.0"
         },
         "runtime": {
@@ -44,17 +47,7 @@
           "BankDepositUI.dll": {}
         }
       },
-      "EPPlus/4.1.1": {
-        "runtime": {
-          "lib/net40/EPPlus.dll": {
-            "assemblyVersion": "4.1.1.0",
-            "fileVersion": "4.1.1.0"
-          }
-        },
-        "compile": {
-          "lib/net40/EPPlus.dll": {}
-        }
-      },
+      "jQuery/2.1.1": {},
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
       "Microsoft.EntityFrameworkCore/2.1.8": {
         "dependencies": {
@@ -346,6 +339,21 @@
           "lib/net40/NPOI.dll": {}
         }
       },
+      "NPOI.OOXML.dll/2.0.6": {
+        "dependencies": {
+          "SampleDependency": "1.0.0"
+        }
+      },
+      "NPOI.OpenXml4Net.dll/2.0.6": {
+        "dependencies": {
+          "SampleDependency": "1.0.0"
+        }
+      },
+      "NPOI.OpenXmlFormats.dll/2.0.6": {
+        "dependencies": {
+          "SampleDependency": "1.0.0"
+        }
+      },
       "Pomelo.EntityFrameworkCore.MySql/2.1.4": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "2.1.8",
@@ -401,6 +409,11 @@
           "lib/netstandard1.0/Remotion.Linq.dll": {}
         }
       },
+      "SampleDependency/1.0.0": {
+        "dependencies": {
+          "jQuery": "2.1.1"
+        }
+      },
       "SharpZipLib/0.86.0": {
         "runtime": {
           "lib/20/ICSharpCode.SharpZipLib.dll": {
@@ -413,6 +426,21 @@
         }
       },
       "System.Collections.Immutable/1.5.0": {},
+      "System.Configuration.ConfigurationManager/4.5.0": {
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "4.5.0",
+          "System.Security.Permissions": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "4.0.1.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+        }
+      },
       "System.Diagnostics.DiagnosticSource/4.5.1": {
         "runtime": {
           "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {
@@ -450,14 +478,33 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.Security.Cryptography.ProtectedData/4.5.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        }
+      },
       "BankDeposit.Data/1.0.0": {
         "dependencies": {
           "BankDeposit.Model": "1.0.0",
-          "EPPlus": "4.1.1",
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
           "NPOI": "2.2.1",
+          "NPOI.OOXML.dll": "2.0.6",
+          "NPOI.OpenXml4Net.dll": "2.0.6",
+          "NPOI.OpenXmlFormats.dll": "2.0.6",
           "Newtonsoft.Json": "12.0.2",
-          "Pomelo.EntityFrameworkCore.MySql": "2.1.4"
+          "Pomelo.EntityFrameworkCore.MySql": "2.1.4",
+          "System.Configuration.ConfigurationManager": "4.5.0"
         },
         "runtime": {
           "BankDeposit.Data.dll": {}
@@ -468,11 +515,14 @@
       },
       "BankDeposit.Model/1.0.0": {
         "dependencies": {
-          "EPPlus": "4.1.1",
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
           "NPOI": "2.2.1",
+          "NPOI.OOXML.dll": "2.0.6",
+          "NPOI.OpenXml4Net.dll": "2.0.6",
+          "NPOI.OpenXmlFormats.dll": "2.0.6",
           "Newtonsoft.Json": "12.0.2",
-          "Pomelo.EntityFrameworkCore.MySql": "2.1.4"
+          "Pomelo.EntityFrameworkCore.MySql": "2.1.4",
+          "System.Configuration.ConfigurationManager": "4.5.0"
         },
         "runtime": {
           "BankDeposit.Model.dll": {}
@@ -485,11 +535,14 @@
         "dependencies": {
           "BankDeposit.Data": "1.0.0",
           "BankDeposit.Model": "1.0.0",
-          "EPPlus": "4.1.1",
           "Microsoft.EntityFrameworkCore.Design": "2.1.8",
           "NPOI": "2.2.1",
+          "NPOI.OOXML.dll": "2.0.6",
+          "NPOI.OpenXml4Net.dll": "2.0.6",
+          "NPOI.OpenXmlFormats.dll": "2.0.6",
           "Newtonsoft.Json": "12.0.2",
-          "Pomelo.EntityFrameworkCore.MySql": "2.1.4"
+          "Pomelo.EntityFrameworkCore.MySql": "2.1.4",
+          "System.Configuration.ConfigurationManager": "4.5.0"
         },
         "runtime": {
           "BankDeposit.Service.dll": {}
@@ -3412,12 +3465,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "EPPlus/4.1.1": {
+    "jQuery/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UYnF9q+XuJJCZc77RG4mQCqYhVwg4I8VgoDWO8m78mu11/GpjDR1Wt1JiVolDojt56r6y3jPEMcMfloKDh1JHQ==",
-      "path": "epplus/4.1.1",
-      "hashPath": "epplus.4.1.1.nupkg.sha512"
+      "sha512": "sha512-/cy0NGAGBx0W6XLqrnehQAKeJhfnZLDdPnBvlNLq/k4mraD1a7rbHBYzV5PYBaz9t5wh+VrGhPUbPztvnFAOrQ==",
+      "path": "jquery/2.1.1",
+      "hashPath": "jquery.2.1.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
       "type": "package",
@@ -3538,6 +3591,27 @@
       "path": "npoi/2.2.1",
       "hashPath": "npoi.2.2.1.nupkg.sha512"
     },
+    "NPOI.OOXML.dll/2.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7XvpdC4BV3xBK/R3aUMuyZ+yC0FLl5gWMFC57D2ml/dpuRNEcdYYvuAfksxd/Ur93pdw1QvhgnzGwe1vDyZAVg==",
+      "path": "npoi.ooxml.dll/2.0.6",
+      "hashPath": "npoi.ooxml.dll.2.0.6.nupkg.sha512"
+    },
+    "NPOI.OpenXml4Net.dll/2.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AmeWeF2ZuDTOVuItnl67zUVTxJvM1kYR7sn8MztLSXioXl+ArR09iS9e1wnsk505+36VJaRmXbtKVdTPxC2vTg==",
+      "path": "npoi.openxml4net.dll/2.0.6",
+      "hashPath": "npoi.openxml4net.dll.2.0.6.nupkg.sha512"
+    },
+    "NPOI.OpenXmlFormats.dll/2.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cOsQZW5K3Euy2nKJKZNJLah4oxo/U6JZspuhBcYaDFYbUzWyRsQTk2JysIYnYk+jdJijUz0zxVq0Pk06YpdIuQ==",
+      "path": "npoi.openxmlformats.dll/2.0.6",
+      "hashPath": "npoi.openxmlformats.dll.2.0.6.nupkg.sha512"
+    },
     "Pomelo.EntityFrameworkCore.MySql/2.1.4": {
       "type": "package",
       "serviceable": true,
@@ -3559,6 +3633,13 @@
       "path": "remotion.linq/2.2.0",
       "hashPath": "remotion.linq.2.2.0.nupkg.sha512"
     },
+    "SampleDependency/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rkrKnTI2KT/L+BaaB6/xZbDiqyQ702TxYp5adqgC/GYU7KBufnNArz/5KNetThpOeXmVEMg0VlFU+9/cKz0L4w==",
+      "path": "sampledependency/1.0.0",
+      "hashPath": "sampledependency.1.0.0.nupkg.sha512"
+    },
     "SharpZipLib/0.86.0": {
       "type": "package",
       "serviceable": true,
@@ -3572,6 +3653,13 @@
       "sha512": "sha512-EXKiDFsChZW0RjrZ4FYHu9aW6+P4MCgEDCklsVseRfhoO0F+dXeMSsMRAlVXIo06kGJ/zv+2w1a2uc2+kxxSaQ==",
       "path": "system.collections.immutable/1.5.0",
       "hashPath": "system.collections.immutable.1.5.0.nupkg.sha512"
+    },
+    "System.Configuration.ConfigurationManager/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UIFvaFfuKhLr9u5tWMxmVoDPkFeD+Qv8gUuap4aZgVGYSYMdERck4OhLN/2gulAc0nYTEigWXSJNNWshrmxnng==",
+      "path": "system.configuration.configurationmanager/4.5.0",
+      "hashPath": "system.configuration.configurationmanager.4.5.0.nupkg.sha512"
     },
     "System.Diagnostics.DiagnosticSource/4.5.1": {
       "type": "package",
@@ -3593,6 +3681,13 @@
       "sha512": "sha512-Yn/WfYe9RoRfmSLvUt2JerP0BTGGykCZkQPgojaxgzF2N0oPo+/AhB8TXOpdCcNlrG3VRtsamtK2uzsp3cqRVw==",
       "path": "system.linq.queryable/4.0.1",
       "hashPath": "system.linq.queryable.4.0.1.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wLBKzFnDCxP12VL9ANydSYhk59fC4cvOr9ypYQLPnAj48NQIhqnjdD2yhP8yEKyBJEjERWS9DisKL7rX5eU25Q==",
+      "path": "system.security.cryptography.protecteddata/4.5.0",
+      "hashPath": "system.security.cryptography.protecteddata.4.5.0.nupkg.sha512"
     },
     "BankDeposit.Data/1.0.0": {
       "type": "project",

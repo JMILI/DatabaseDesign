@@ -45,10 +45,6 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
-            "EPPlus": {
-              "target": "Package",
-              "version": "[4.1.1, )"
-            },
             "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
               "version": "[2.1.8, )"
@@ -69,6 +65,18 @@
               "target": "Package",
               "version": "[2.2.1, )"
             },
+            "NPOI.OOXML.dll": {
+              "target": "Package",
+              "version": "[2.0.6, )"
+            },
+            "NPOI.OpenXml4Net.dll": {
+              "target": "Package",
+              "version": "[2.0.6, )"
+            },
+            "NPOI.OpenXmlFormats.dll": {
+              "target": "Package",
+              "version": "[2.0.6, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[12.0.2, )"
@@ -76,6 +84,10 @@
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[2.1.4, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
