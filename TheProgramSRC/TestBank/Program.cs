@@ -25,7 +25,7 @@ namespace TestBank
             Information infomation = new Information();
             #region 操作数据库中的视图
 
-            string s = "30001";
+            string s = "30005";
             //MD5Encrypt64(MD5Encrypt64(s));
             Console.WriteLine(MD5Encrypt64(s));
             //Console.WriteLine(MD5Encrypt64(MD5Encrypt64(s)));

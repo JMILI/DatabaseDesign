@@ -144,11 +144,11 @@ namespace BankDepositUI.Controllers
             row1.CreateCell(0).SetCellValue("单号");
             row1.CreateCell(1).SetCellValue("账户ID");
             row1.CreateCell(2).SetCellValue("银行卡号");
-            row1.CreateCell(3).SetCellValue("活期存款额");
-            row1.CreateCell(4).SetCellValue("定期存款额");
-            row1.CreateCell(5).SetCellValue("取款额");
+            row1.CreateCell(3).SetCellValue("活期存款额（元）");
+            row1.CreateCell(4).SetCellValue("定期存款额（元）");
+            row1.CreateCell(5).SetCellValue("取款额（元）");
             row1.CreateCell(6).SetCellValue("交易时间");
-            row1.CreateCell(7).SetCellValue("办理员");
+            row1.CreateCell(7).SetCellValue("办理员账号");
             //....N行
             //将数据逐步写入sheet1各个行
             for (int i = 0; i < record.Count; i++)
