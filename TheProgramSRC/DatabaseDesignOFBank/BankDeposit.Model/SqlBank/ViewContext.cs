@@ -44,7 +44,7 @@ namespace BankDeposit.Model.SqlBank
                 entity.Property(e => e.Iuid).HasColumnName("Iuid");
                 entity.Property(e => e.Icid).HasColumnName("Icid");
                 entity.Property(e => e.Iname).HasColumnName("Iname");
-                entity.Property(e => e.IfixDepostit).HasColumnName("IfixDepostit");
+                entity.Property(e => e.IfixDeposit).HasColumnName("IfixDeposit");
                 entity.Property(e => e.IflowDeposit).HasColumnName("IflowDeposit");
                 entity.Property(e => e.Ioldtime).HasColumnName("Ioldtime");
                 entity.Property(e => e.Iwithdrawals).HasColumnName("Iwithdrawals");

@@ -118,3 +118,5 @@ F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDe
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Managers\VerifyLoginInformation.g.cshtml.cs
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CardsBusinessOfManagerLayout.g.cshtml.cs
 F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Managers\AddFlowInformation.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Governors\AddInformation.g.cshtml.cs
+F:\SoftOfJIMILI\Github\workspaceJM\C#web\DatabaseDesign\TheProgramSRC\DatabaseDesignOFBank\BankDeposit\BankDepositUI\obj\Debug\netcoreapp2.1\Razor\Views\Governors\Success.g.cshtml.cs

@@ -1,6 +1,9 @@
 ﻿@{
+
     var user = Model;
+
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +49,7 @@
                         </li>
                     </ul>
                     <div class="search" id="main-search">
-                        <i class="fa fa-search"></i> <input type="text" placeholder="今天/本周/本月的业务记录" id="limit">
+                        <i class="fa fa-search"></i> <input type="text" placeholder="搜索...">
                     </div>
                     <ul class="nav navbar-nav quick-actions">
                         <li class="dropdown divided">
@@ -247,7 +250,7 @@
                         </li>
                         <li class="dropdown divided user" id="current-user">
                             <div class="profile-photo">
-                                <img src="~/assets/images/profile-photo.jpg" alt= />
+                                <img src="~/assets/images/profile-photo.jpg" alt />
                             </div>
                             <a class="dropdown-toggle options" data-toggle="dropdown" href="#">
                                 @user.Mname <i class="fa fa-caret-down"></i>
@@ -278,14 +281,14 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="@Url.Action(" Index","Home")"><i class="fa fa-power-off"></i> 退出</a>
+                                    <a href="@Url.Action("Index","Home")"><i class="fa fa-power-off"></i> 退出</a>
                                 </li>
                             </ul>
                         <li>
                             <a href="#mmenu"><i class="fa fa-comments"></i></a>
                         </li>
+                        </li>
                     </ul>
-                    </li>
                     <!-- /Quick Actions -->
                     <!-- Sidebar -->
                     <ul class="nav navbar-nav side-nav" id="sidebar">
@@ -314,8 +317,11 @@
                                         <i class="fa fa-pencil"></i> 银行卡业务办理 <b class="fa fa-plus dropdown-plus"></b>
                                     </a>
                                 </li>
+
                             </ul>
                         </li>
+
+
 
                 </div>
             </div>
@@ -720,6 +726,7 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="~/assets/js/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="~/assets/js/vendor/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/assets/js/vendor/mmenu/js/jquery.mmenu.min.js"></script>
@@ -1024,6 +1031,8 @@
         })
 
     </script>
+
+
 </body>
 </html>
 

@@ -1,6 +1,9 @@
 ﻿@{
+
     var user = Model;
+
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +26,7 @@
     <link rel="stylesheet" href="~/assets/js/vendor/chosen/css/chosen-bootstrap.css">
     <link href="~/assets/css/minimal.css" rel="stylesheet">
 </head>
-<body class="bg-2">
+<body class="bg-6">
     <div class="mask"><div id="loader"></div></div>
     <div id="wrap">
         <div class="row">
@@ -247,7 +250,7 @@
                         </li>
                         <li class="dropdown divided user" id="current-user">
                             <div class="profile-photo">
-                                <img src="~/assets/images/profile-photo.jpg" alt="" />
+                                <img src="~/assets/images/profile-photo.jpg" alt />
                             </div>
                             <a class="dropdown-toggle options" data-toggle="dropdown" href="#">
                                 @user.Mname <i class="fa fa-caret-down"></i>
@@ -284,6 +287,7 @@
                         <li>
                             <a href="#mmenu"><i class="fa fa-comments"></i></a>
                         </li>
+                        </li>
                     </ul>
                     <!-- /Quick Actions -->
                     <!-- Sidebar -->
@@ -297,30 +301,33 @@
                         <li class="navigation" id="navigation">
                             <a href="#" class="sidebar-toggle" data-toggle="#navigation">功能 <i class="fa fa-angle-up"></i></a>
                             <ul class="menu">
-                                <li class="active" id="Profits">
-                                    <a href="#">
-                                        <i class="fa fa-tachometer"></i>最近七天利润趋势
-                                        <span class="badge badge-red"></span>
-                                    </a>
-                                </li>
-                                <li class="active" id="tongji">
-                                    <a href="#">
-                                        <i class="fa fa-tachometer"></i>收支统计（月）
-                                        <span class="badge badge-red"></span>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
+                                <li class="dropdown" id="btn_list">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-list"></i> 学期 <b class="fa fa-plus dropdown-plus"></b>
+                                        <i class="fa fa-list"></i> 管理员展示<b class="fa fa-plus dropdown-plus"></b>
                                     </a>
                                 </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
+                        <li class="dropdown" onclick="add()">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-pencil"></i> 网上选课 <b class="fa fa-plus dropdown-plus"></b>
+                                <i class="fa fa-pencil"></i> 注册管理员 <b class="fa fa-plus dropdown-plus"></b>
                             </a>
                         </li>
+                        <li class="active" id="Profits">
+                            <a href="#">
+                                <i class="fa fa-tachometer"></i>最近七天利润趋势
+                                <span class="badge badge-red"></span>
+                            </a>
+                        </li>
+                        <li class="active" id="tongji">
+                            <a href="#">
+                                <i class="fa fa-tachometer"></i>收支统计（月）
+                                <span class="badge badge-red"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    </li>
+
+
+
                 </div>
             </div>
             <div id="content" class="col-md-12">
@@ -724,6 +731,7 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="~/assets/js/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="~/assets/js/vendor/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/assets/js/vendor/mmenu/js/jquery.mmenu.min.js"></script>
@@ -1028,6 +1036,8 @@
         })
 
     </script>
+
+
 </body>
 </html>
 

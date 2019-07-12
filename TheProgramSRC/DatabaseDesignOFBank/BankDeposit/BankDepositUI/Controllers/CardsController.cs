@@ -8,6 +8,8 @@ using BankDepositUI.Models;
 using BankDeposit.Model.SqlBank;
 using BankDeposit.Service;
 using BankDeposit.Model.Helper;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BankDepositUI.Controllers
 {
@@ -48,6 +50,7 @@ namespace BankDepositUI.Controllers
         /// <returns>返回操作页面</returns>
         public IActionResult Verify(User card)
         {
+            card.Password=MD5Encrypt64(card.Password);
             card.Id = (int)DAndC().Dcid;
             if (cardServive.QueryCardsService(card) != null)
             {//返回一个取钱页面
@@ -129,6 +132,21 @@ namespace BankDepositUI.Controllers
             this.Response.Cookies.Append("Uid", dAndC.Duid.ToString());
             this.Response.Cookies.Append("Cid", dAndC.Dcid.ToString());
             this.Response.Cookies.Append("Name", dAndC.Dname.ToString());
+        }
+        #endregion
+
+        #region 辅助函数MD5加密用户密码
+        /// <summary>
+        /// MD5加密用户密码
+        /// </summary>
+        /// <param name="password"> 加密后是一个字节类型的数组，这里要注意编码UTF8/Unicode等的选择　</param>
+        /// <returns></returns>
+        public static string MD5Encrypt64(string password)
+        {
+            string cl = password;
+            MD5 md5 = MD5.Create(); //实例化一个md5对像
+            byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(cl));
+            return Convert.ToBase64String(s);
         }
         #endregion
 

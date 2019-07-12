@@ -105,6 +105,7 @@ namespace BankDepositUI.Controllers
         /// <returns></returns>
         public IActionResult BusinessLogin(User card)
         {
+            card.Password = MD5Encrypt64(card.Password);//Md5加密
             DepositorAndCard dAndC = new DepositorAndCard();
             dAndC = managerServive.LoginCardsService(card);
             if (dAndC != null)//不空，证明验证成功

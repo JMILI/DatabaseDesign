@@ -14,6 +14,8 @@ namespace BankDeposit.Service
     {
         #region 实例化一些对象
         public static RecordsService recordsService = new RecordsService();
+        public static AccessGovernors accessGovernors = new AccessGovernors();
+
         #endregion
 
         #region 按月统计收支利润
@@ -34,6 +36,16 @@ namespace BankDeposit.Service
             }
             return statisticalByMonth;
         }
+        #endregion
+
+        #region 增加管理员
+        public void AddService(Managers governors)
+        {
+            accessGovernors.AddData(governors);
+        }
+        #endregion
+
+        #region 按月统计每月的利润，支出，收入
         /// <summary>
         /// 按月统计每月的利润，支出，收入
         /// </summary>
@@ -56,7 +68,19 @@ namespace BankDeposit.Service
             statisticalData.Profits = (Income - Spending) / 10000;
             statisticalData.Describe = MonthRecord + "月";//填写计算结果是几月份的数据
             return statisticalData;
+
         }
         #endregion
+
+        #region 查询管理员（不含行长）H
+        public List<Managers> QueryManagerService()
+        {
+            return accessGovernors.QueryManagerData();
+        }
+        #endregion
+
+
+
+
     }
 }

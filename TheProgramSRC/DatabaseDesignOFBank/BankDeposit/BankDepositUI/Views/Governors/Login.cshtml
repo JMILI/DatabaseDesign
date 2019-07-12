@@ -42,7 +42,7 @@
                 {
                     type: 'category',
                     axisTick: { show: false },
-                    data: ['今天1', '昨天2', '前天3','4','5','6','7']
+                    data: ['今天1', '昨天2', '前天3', '4', '5', '6', '7']
                 }
             ],
             yAxis: [
@@ -60,7 +60,7 @@
                             position: 'inside'
                         }
                     },
-                    data: [23,15,34,13,46,63,26]
+                    data: [23, 15, 34, 13, 46, 63, 26]
                 }
             ]
         };
@@ -182,3 +182,68 @@
     </script>
 </div>
 
+
+
+
+
+
+<script type="text/javascript">
+    function add(){
+        var url = '@Url.Action("AddInformation", "Governors")';
+        location.href = url;
+        //window.open(url);
+    }
+</script>
+
+<section class="tile color transparent-white">
+    <div class="tile-header">
+        <h1><strong>管理员信息</strong> </h1>
+        <div class="controls">
+            <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+            <a href="#" class="remove"><i class="fa fa-times"></i></a>
+        </div>
+    </div>
+    <div class="tile-body nopadding">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>索引</th>
+                    <th>工号</th>
+                    <th>姓名</th>
+                    <th>身份</th>
+                </tr>
+            </thead>
+            <tbody id="tb_list"></tbody>
+        </table>
+    </div>
+    </section>
+        <script>
+            $(function () {
+                initBind(); //初始化所有绑定函数
+            })
+            function initBind() {
+                $('#btn_list').bind('click', function () {
+                    var url = "/Governors/ShowManagersData";
+                    var strHtml;
+                    $.ajax({
+                        "url": url,
+                        "async": true,
+                        dataType: "json",	//必须加，将json字符串转换为json格式
+                        success: function (result) {
+                            //result：Json数据，idx：下标，obj：内容（相当于result[idx]）
+                            $.each(result, function (idx, obj) {
+                                strHtml += '<tr class="danger">';
+                                strHtml += '<td>' + idx + '</td>'
+                                strHtml += '<td>' + obj.Mid + '</td>'
+                                strHtml += '<td>' + obj.Mname + '</td>'
+                                strHtml += '<td>' + obj.Midentify + '</td>'
+                                strHtml += '</tr>';
+                            })
+
+                            $('#tb_list').empty().append(strHtml);
+                            //$("#tb_list").text(result);
+                        }
+                    })
+                })
+            }
+        </script>

@@ -159,7 +159,7 @@ namespace BankDepositUI.Controllers
                 rowTemp.CreateCell(1).SetCellValue(record[i].Ruid);
                 rowTemp.CreateCell(2).SetCellValue(record[i].Rcid);
                 rowTemp.CreateCell(3).SetCellValue((double)record[i].RflowDeposit);
-                rowTemp.CreateCell(4).SetCellValue((double)record[i].RfixDepostit);
+                rowTemp.CreateCell(4).SetCellValue((double)record[i].RfixDeposit);
                 rowTemp.CreateCell(5).SetCellValue((double)record[i].Rwithdrawals);
                 rowTemp.CreateCell(6).SetCellValue(record[i].RnowDateTime.ToString());
                 rowTemp.CreateCell(7).SetCellValue((double)record[i].Rmid);

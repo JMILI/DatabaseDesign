@@ -33,7 +33,7 @@ namespace BankDeposit.Model.SqlBank
         /// <summary>
         /// IfixDepostit 定期存款额
         /// </summary>
-        public double IfixDepostit { get; set; }
+        public double IfixDeposit { get; set; }
         /// <summary>
         /// Iwithdrawals 取款额
         /// </summary>

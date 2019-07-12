@@ -18,6 +18,7 @@ namespace BankDepositUI.Controllers
     {
         #region  实例化一些工具对象
         public static GovernorsService governorsService = new GovernorsService();
+        public static GovernorsService managersService = new GovernorsService();
         #endregion
 
         #region  “登录”功能 已实现
@@ -25,6 +26,34 @@ namespace BankDepositUI.Controllers
         {
             cooikeAdd(manager);
             return View("Login", manager);
+        }
+        #endregion
+
+        #region  “增添管理员”功能 已实现（选做）和注册类似
+        //1.返回填写信息页面
+        public IActionResult AddInformation()
+        {
+            return View();
+        }
+        //2.将返回的信息进行处理，然后登陆系统主页
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="managers">Mid,Mname,MPassword</param>
+        /// <returns></returns>
+        public IActionResult AddLogin(Managers governors)
+        {
+            governors.Mpassword = MD5Encrypt64(governors.Mpassword);
+            governorsService.AddService(governors);
+            return RedirectToAction("Success", "Governors", governors);
+        }
+        public IActionResult Success()
+        {
+            return View();
+        }
+        public IActionResult ReLogin()
+        {
+            return View("Login", RequestCooikeManager());
         }
         #endregion
 
@@ -89,6 +118,21 @@ namespace BankDepositUI.Controllers
             MD5 md5 = MD5.Create(); //实例化一个md5对像
             byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(cl));
             return Convert.ToBase64String(s);
+        }
+        #endregion
+
+        #region "管理员展示“功能 H
+        //可以只做管理员信息展示，至于量化评价，可以不实现
+        /// <summary>
+        /// 主要查询记录表中该用户的交易记录,查询前十项记录，该功能要用Ajax，
+        /// 所以不需要建一个新的cshtml页面，只需要在Login的页面中加入数据即可。
+        /// </summary>
+        /// <returns>返回json数据</returns>
+        public ActionResult ShowManagersData()
+        {
+            List<Managers> governors = new List<Managers>();
+            governors = governorsService.QueryManagerService();
+            return Content(JsonConvert.SerializeObject(governors));
         }
         #endregion
 

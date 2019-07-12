@@ -63,6 +63,12 @@
     <Content Update="Views\Errors\VerifyPasswordError.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Governors\AddInformation.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Governors\Success.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Managers\AddFlowInformation.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -114,10 +120,6 @@
     <Content Update="Views\Shared\_DepositorsPageLayout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="download\" />
   </ItemGroup>
 
 </Project>

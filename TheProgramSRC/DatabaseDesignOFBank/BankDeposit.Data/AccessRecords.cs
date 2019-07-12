@@ -93,7 +93,7 @@ namespace BankDeposit.Data
                         }
                         else
                         {
-                            records.RfixDepostit = money;
+                            records.RfixDeposit = money;
                         }
                         dbContext.Add(records);
                         dbContext.SaveChanges();
